@@ -24,19 +24,19 @@ interface DriverProfile {
 
 export default function AdminFleetsPage() {
   const [fleets, setFleets] = useState<FleetUnit[]>([
-    { id: 'f1', name: 'All New Avanza (Unit #01)', plate: 'DR 1422 AX', type: 'MPV Hemat', capacity: '5-6 Pax', status: 'Ready', driver: 'Pak Johari' },
-    { id: 'f2', name: 'Innova Reborn (Unit #02)', plate: 'DR 1889 BZ', type: 'Medium MPV', capacity: '7 Pax', status: 'On Trip', driver: 'Mas Dedi' },
-    { id: 'f3', name: 'Innova Reborn (Unit #03)', plate: 'DR 1902 CL', type: 'Medium MPV', capacity: '7 Pax', status: 'Ready', driver: 'Pak Herman' },
-    { id: 'f4', name: 'Toyota HiAce Commuter (Unit #04)', plate: 'DR 7120 DK', type: 'Minibus Rombongan', capacity: '14 Pax', status: 'Booked Besok', driver: 'Bang Fikri' },
-    { id: 'f5', name: 'Toyota HiAce Premio Luxury (Unit #05)', plate: 'DR 7788 VIP', type: 'Executive Van', capacity: '10 Pax', status: 'Ready', driver: 'Pak Rudi' },
-    { id: 'f6', name: 'Toyota Fortuner VRZ (Unit #06)', plate: 'DR 1111 EX', type: 'SUV VIP', capacity: '6 Pax', status: 'Ready', driver: 'Mas Ridwan' },
+    { id: 'f1', name: 'All New Avanza (Unit #01)', plate: 'P 1422 AX', type: 'MPV Hemat', capacity: '5-6 Pax', status: 'Ready', driver: 'Pak Johari' },
+    { id: 'f2', name: 'Innova Reborn (Unit #02)', plate: 'P 1889 BZ', type: 'Medium MPV', capacity: '7 Pax', status: 'On Trip', driver: 'Mas Dedi' },
+    { id: 'f3', name: 'Innova Reborn (Unit #03)', plate: 'P 1902 CL', type: 'Medium MPV', capacity: '7 Pax', status: 'Ready', driver: 'Pak Herman' },
+    { id: 'f4', name: 'Toyota HiAce Commuter (Unit #04)', plate: 'P 7120 DK', type: 'Minibus Rombongan', capacity: '14 Pax', status: 'Booked Besok', driver: 'Bang Fikri' },
+    { id: 'f5', name: 'Toyota HiAce Premio Luxury (Unit #05)', plate: 'P 7788 VIP', type: 'Executive Van', capacity: '10 Pax', status: 'Ready', driver: 'Pak Rudi' },
+    { id: 'f6', name: 'Toyota Fortuner VRZ (Unit #06)', plate: 'P 1111 EX', type: 'SUV VIP', capacity: '6 Pax', status: 'Ready', driver: 'Mas Ridwan' },
   ]);
 
   const [drivers, setDrivers] = useState<DriverProfile[]>([
-    { id: 'd1', name: 'Pak Johari', origin: 'Tetebatu, Sikur', phone: '081277889911', specialty: 'Rute Tetebatu, Air Terjun, & Kopi Sasak', status: 'Ready', rating: 4.9 },
-    { id: 'd2', name: 'Mas Dedi', origin: 'Sikur, Lombok Timur', phone: '081933445566', specialty: 'Rute Snorkeling 3 Gili, Malimbu & Sunset', status: 'On Duty', rating: 5.0 },
-    { id: 'd3', name: 'Pak Herman', origin: 'Tetebatu Selatan', phone: '085211223344', specialty: 'Sabar, ramah keluarga & lansia', status: 'Ready', rating: 4.9 },
-    { id: 'd4', name: 'Bang Fikri', origin: 'Mataram Barat', phone: '087766554433', specialty: 'HiAce Rombongan & Event Instansi', status: 'On Duty', rating: 4.8 },
+    { id: 'd1', name: 'Pak Johari', origin: 'Sumbersari, Jember', phone: '081277889911', specialty: 'Rute Bromo Sunrise & Lautan Pasir', status: 'Ready', rating: 4.9 },
+    { id: 'd2', name: 'Mas Dedi', origin: 'Kaliwates, Jember', phone: '081933445566', specialty: 'Rute Kawah Ijen & Pantai Papuma', status: 'On Duty', rating: 5.0 },
+    { id: 'd3', name: 'Pak Herman', origin: 'Patrang, Jember', phone: '085211223344', specialty: 'Rute Malang Batu & Ramah Keluarga', status: 'Ready', rating: 4.9 },
+    { id: 'd4', name: 'Bang Fikri', origin: 'Sumbersari, Jember', phone: '087766554433', specialty: 'HiAce Rombongan & Event Organizer', status: 'On Duty', rating: 4.8 },
   ]);
 
   const toggleFleetStatus = (id: string) => {
@@ -58,14 +58,14 @@ export default function AdminFleetsPage() {
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <h1 style={{ fontSize: '24px', fontWeight: 800, margin: 0, color: '#0f172a' }}>
-              Armada & Driver Lokal Sasak
+              Armada & Driver Travelogy
             </h1>
             <span style={{ background: '#dcfce7', color: '#15803d', fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '4px' }}>
-              Operasional Kendaraan
+              Operasional Transportasi
             </span>
           </div>
           <p style={{ fontSize: '13.5px', color: '#64748b', margin: '4px 0 0 0' }}>
-            Kesiapan unit mobil sewa private ber-AC dan profil pemandu lokal asli Lombok.
+            Kesiapan unit armada sewa private ber-AC dan profil driver Travelogy Jember.
           </p>
         </div>
       </div>
@@ -209,7 +209,7 @@ export default function AdminFleetsPage() {
                 </div>
 
                 <a
-                  href={`https://wa.me/62${drv.phone.slice(1)}?text=Halo%20${encodeURIComponent(drv.name)},%20ada%20update%20jadwal%20trip%20tamu%20Lombok_Travelers.`}
+                  href={`https://wa.me/62${drv.phone.slice(1)}?text=Halo%20${encodeURIComponent(drv.name)},%20ada%20update%20jadwal%20trip%20tamu%20Travelogy.`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{

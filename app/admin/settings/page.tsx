@@ -7,10 +7,10 @@ export default function AdminSettingsPage() {
   const [copiedBank, setCopiedBank] = useState<string | null>(null);
   const [savedSuccess, setSavedSuccess] = useState(false);
 
-  const [agencyName, setAgencyName] = useState('Lombok_Travelers');
-  const [phone, setPhone] = useState('0831-1711-0638');
-  const [address, setAddress] = useState('Jl. Pariwisata Tetebatu, Kec. Sikur, Kabupaten Lombok Timur, NTB 83662');
-  const [nib, setNib] = useState('NIB: 1205240098712 (Biro Perjalanan Wisata Lokal)');
+  const [agencyName, setAgencyName] = useState('Travelogy Tour Organizer');
+  const [phone, setPhone] = useState('+62 813-3399-2989');
+  const [address, setAddress] = useState('Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124');
+  const [nib, setNib] = useState('PT. Travelogy Tour Organizer');
 
   const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
@@ -30,7 +30,7 @@ export default function AdminSettingsPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `backup_database_lombok_travelers_${new Date().toISOString().split('T')[0]}.json`);
+    link.setAttribute('download', `backup_database_travelogy_${new Date().toISOString().split('T')[0]}.json`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -44,7 +44,7 @@ export default function AdminSettingsPage() {
           Pengaturan Biro Travel & Rekening Pembayaran
         </h1>
         <p style={{ fontSize: '13.5px', color: '#64748b', margin: 0 }}>
-          Kelola informasi resmi Tetebatu Basecamp, nomor rekening penerimaan DP, dan backup database.
+          Kelola informasi resmi Travelogy Tour Organizer Jember, nomor rekening penerimaan DP, dan backup database.
         </p>
       </div>
 
@@ -57,7 +57,7 @@ export default function AdminSettingsPage() {
       {/* Grid Settings */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
         
-        {/* Section 1: Profil Basecamp & Legalitas */}
+        {/* Section 1: Profil Legalitas */}
         <div style={{ background: '#ffffff', borderRadius: '12px', padding: '24px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.03)' }}>
           <h2 style={{ fontSize: '17px', fontWeight: 800, color: '#0f172a', marginBottom: '16px' }}>
             Profil Resmi Biro Travel
@@ -87,7 +87,7 @@ export default function AdminSettingsPage() {
             </div>
 
             <div style={{ marginBottom: '14px' }}>
-              <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>Alamat Kantor Basecamp</label>
+              <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>Alamat Kantor Jember</label>
               <input
                 type="text"
                 value={address}
@@ -97,7 +97,7 @@ export default function AdminSettingsPage() {
             </div>
 
             <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>Legalitas & Izin Pariwisata</label>
+              <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, marginBottom: '6px' }}>Badan Usaha / Legalitas</label>
               <input
                 type="text"
                 value={nib}
@@ -109,7 +109,7 @@ export default function AdminSettingsPage() {
             <button
               type="submit"
               style={{
-                background: '#185a38',
+                background: '#1b4332',
                 color: '#ffffff',
                 border: 'none',
                 padding: '9px 20px',
@@ -146,7 +146,7 @@ export default function AdminSettingsPage() {
                 </button>
               </div>
               <div style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'monospace', color: '#0f172a' }}>056-1188-291</div>
-              <span style={{ fontSize: '12px', color: '#64748b' }}>a.n. Lombok Travelers</span>
+              <span style={{ fontSize: '12px', color: '#64748b' }}>a.n. PT. Travelogy Tour Organizer</span>
             </div>
 
             <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
@@ -161,7 +161,7 @@ export default function AdminSettingsPage() {
                 </button>
               </div>
               <div style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'monospace', color: '#0f172a' }}>161-00-9988-7711</div>
-              <span style={{ fontSize: '12px', color: '#64748b' }}>a.n. Lombok Travelers</span>
+              <span style={{ fontSize: '12px', color: '#64748b' }}>a.n. PT. Travelogy Tour Organizer</span>
             </div>
 
             <div style={{ background: '#f8fafc', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
@@ -176,7 +176,7 @@ export default function AdminSettingsPage() {
                 </button>
               </div>
               <div style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'monospace', color: '#0f172a' }}>4722-01-019922-53-1</div>
-              <span style={{ fontSize: '12px', color: '#64748b' }}>a.n. Ahmad (Owner)</span>
+              <span style={{ fontSize: '12px', color: '#64748b' }}>a.n. PT. Travelogy Tour Organizer</span>
             </div>
           </div>
         </div>
@@ -187,7 +187,7 @@ export default function AdminSettingsPage() {
             Cadangan Data Reservasi (Backup)
           </h2>
           <p style={{ fontSize: '13px', color: '#64748b', margin: '0 0 16px 0' }}>
-            Unduh seluruh riwayat booking dan nomor telepon tamu dalam format file JSON untuk arsip offline.
+            Unduh seluruh riwayat booking dan data reservasi tamu dalam format file JSON untuk arsip offline Travelogy.
           </p>
 
           <button

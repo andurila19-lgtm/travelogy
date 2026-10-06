@@ -54,7 +54,7 @@ export default function AdminFinancePage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `laporan_keuangan_lombok_travelers_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `laporan_keuangan_travelogy_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

@@ -103,7 +103,7 @@ export const createBookingSchema = z
       .string()
       .max(200, { message: 'Lokasi jemput maksimal 200 karakter.' })
       .optional()
-      .default('Lombok Airport / Hotel')
+      .default('Stasiun / Hotel / Meeting Point Jember')
       .transform((val) => sanitizeText(val)),
 
     hotel_class: z

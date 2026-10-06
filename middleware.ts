@@ -55,10 +55,8 @@ function checkRateLimit(
 
 // Trusted domains allowed to access APIs
 const ALLOWED_ORIGINS = [
-  'https://lomboktravelers.reaksy.com',
-  'https://reaksy.com',
-  'https://lomboktravelers.com',
-  'https://www.lomboktravelers.com',
+  'https://travelogy.co.id',
+  'https://www.travelogy.co.id',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
 ];
@@ -109,8 +107,7 @@ export async function middleware(request: NextRequest) {
       if (
         origin &&
         (ALLOWED_ORIGINS.includes(origin) ||
-          origin.endsWith('.reaksy.com') ||
-          origin.endsWith('.lomboktravelers.com'))
+          origin.endsWith('.travelogy.co.id'))
       ) {
         preflightHeaders.set('Access-Control-Allow-Origin', origin);
         preflightHeaders.set(
@@ -213,8 +210,7 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith('/api') && origin) {
     if (
       ALLOWED_ORIGINS.includes(origin) ||
-      origin.endsWith('.reaksy.com') ||
-      origin.endsWith('.lomboktravelers.com')
+      origin.endsWith('.travelogy.co.id')
     ) {
       response.headers.set('Access-Control-Allow-Origin', origin);
       response.headers.set(

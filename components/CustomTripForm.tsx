@@ -9,238 +9,386 @@ export default function CustomTripForm() {
   const [whatsapp, setWhatsapp] = useState('');
   const [tanggal, setTanggal] = useState('');
   const [peserta, setPeserta] = useState('2');
-  const [pickup, setPickup] = useState('');
-  const [durasi, setDurasi] = useState('3 Hari 2 Malam');
-  const [destinasi, setDestinasi] = useState('');
+  const [destinasi, setDestinasi] = useState('Bromo');
+  const [jenisTrip, setJenisTrip] = useState('Family Vacation');
+  const [transport, setTransport] = useState('Mobil Keluarga (Avanza / Innova)');
+  const [hotel, setHotel] = useState('Hotel Bintang 3/4');
   const [catatan, setCatatan] = useState('');
-  const [honeypot, setHoneypot] = useState('');
   const [formError, setFormError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const todayStr = new Date().toISOString().split('T')[0];
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setFormError('');
 
     if (!nama.trim() || nama.trim().length < 2) {
-      setFormError(language === 'en' ? 'Name must be at least 2 characters.' : 'Nama pemesan minimal 2 karakter.');
+      setFormError(language === 'en' ? 'Please enter your full name.' : 'Mohon masukkan nama lengkap Anda (minimal 2 karakter).');
       return;
     }
 
     const cleanPhone = whatsapp.replace(/[^0-9+]/g, '');
     if (!cleanPhone || cleanPhone.length < 8) {
-      setFormError(language === 'en' ? 'Invalid WhatsApp number.' : 'Nomor WhatsApp tidak valid (minimal 8 digit).');
-      return;
-    }
-
-    if (tanggal && tanggal < todayStr) {
-      setFormError(language === 'en' ? 'Date cannot be in the past.' : 'Tanggal perjalanan tidak boleh tanggal yang sudah lewat.');
+      setFormError(language === 'en' ? 'Please enter a valid WhatsApp number.' : 'Nomor WhatsApp tidak valid (minimal 8 digit).');
       return;
     }
 
     const paxNum = parseInt(peserta) || 2;
-    if (paxNum < 1 || paxNum > 100) {
-      setFormError(language === 'en' ? 'Participants must be between 1 and 100.' : 'Jumlah peserta harus antara 1 sampai 100.');
+    if (paxNum < 1 || paxNum > 200) {
+      setFormError(language === 'en' ? 'Participants must be between 1 and 200.' : 'Jumlah peserta harus antara 1 sampai 200 orang.');
       return;
-    }
-
-    setIsSubmitting(true);
-
-    let bookingCode = '';
-    try {
-      const res = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          customer_name: nama.trim(),
-          whatsapp: whatsapp.trim(),
-          package_name: `Custom Trip: ${destinasi || durasi}`,
-          package_id: 'custom-trip',
-          travel_date: tanggal || todayStr,
-          participants: paxNum,
-          pickup_location: pickup.trim() || 'Bandara Lombok',
-          transportation: 'Innova / Avanza (Sesuai Rute Custom)',
-          notes: `[Durasi: ${durasi}] [Destinasi: ${destinasi}] ${catatan}`.trim(),
-          hp_field: honeypot,
-          status: 'New Inquiry',
-        }),
-      });
-      const data = await res.json();
-      if (data.success && data.data?.booking_number) {
-        bookingCode = data.data.booking_number;
-      }
-    } catch (err) {
-      console.error('Error saving custom trip booking:', err);
-    } finally {
-      setIsSubmitting(false);
     }
 
     const isEn = language === 'en';
     const message = isEn
-      ? `Hello Lombok_Travelers,\n\nI would like to submit a Custom Trip Inquiry:\n\nBooking Ref: ${bookingCode || 'LT-CUSTOM'}\nName: ${nama.trim()}\nPlan: Custom Trip (${destinasi || durasi})\nDate: ${tanggal || 'To be discussed'}\nGuests: ${paxNum} Pax\nPick-up: ${pickup.trim() || 'Lombok Airport'}\n${catatan ? `Notes: ${catatan.trim()}\n` : ''}\nPlease confirm availability and quote.`
-      : `Halo Lombok_Travelers,\n\nSaya ingin konfirmasi booking:\n\nNo. Booking: ${bookingCode || 'LT-CUSTOM'}\nNama: ${nama.trim()}\nPaket: Custom Trip (${destinasi || durasi})\nTanggal: ${tanggal || 'Sesuai Diskusi'}\nPeserta: ${paxNum} Orang\nPickup: ${pickup.trim() || 'Bandara Lombok'}\n${catatan ? `Catatan: ${catatan.trim()}\n` : ''}\nMohon konfirmasi ketersediaannya.`;
+      ? `Hello Travelogy Tour Organizer,\n\nI would like to consult about a Custom Trip:\n\n*Name:* ${nama.trim()}\n*WhatsApp:* ${whatsapp.trim()}\n*Destination:* ${destinasi}\n*Travel Date:* ${tanggal || 'Flexible / To be discussed'}\n*Participants:* ${paxNum} Person\n*Trip Style:* ${jenisTrip}\n*Transportation:* ${transport}\n*Accommodation:* ${hotel}\n${catatan ? `*Notes:* ${catatan.trim()}\n` : ''}\nPlease let me know the details and itinerary recommendation. Thank you!`
+      : `Halo Travelogy, saya ingin konsultasi mengenai custom trip.\n\n*Nama:* ${nama.trim()}\n*WhatsApp:* ${whatsapp.trim()}\n*Destinasi:* ${destinasi}\n*Tanggal Perjalanan:* ${tanggal || 'Fleksibel / Sesuai Diskusi'}\n*Jumlah Peserta:* ${paxNum} Orang\n*Jenis Perjalanan:* ${jenisTrip}\n*Kebutuhan Transportasi:* ${transport}\n*Kebutuhan Hotel:* ${hotel}\n${catatan ? `*Catatan:* ${catatan.trim()}\n` : ''}\nMohon informasi rekomendasi jadwal dan estimasi biayanya. Terima kasih!`;
 
-    const waUrl = `https://wa.me/6283117110638?text=${encodeURIComponent(message)}`;
+    const waUrl = `https://wa.me/6281333992989?text=${encodeURIComponent(message)}`;
     window.open(waUrl, '_blank');
   };
 
   return (
-    <div className="custom-form-card">
-      <h3>{language === 'en' ? 'Custom Trip Inquiry Form' : 'Formulir Request Custom Trip'}</h3>
-      <form onSubmit={handleSubmit}>
-        {/* Anti-Spam Bot Trap (Honeypot) */}
-        <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
-          <label htmlFor="hp_field_custom">Jangan isi bidang ini</label>
-          <input
-            id="hp_field_custom"
-            type="text"
-            name="hp_field"
-            tabIndex={-1}
-            autoComplete="off"
-            value={honeypot}
-            onChange={(e) => setHoneypot(e.target.value)}
+    <div
+      className="custom-form-card"
+      style={{
+        backgroundColor: '#ffffff',
+        borderRadius: '20px',
+        padding: '36px 32px',
+        boxShadow: '0 16px 40px rgba(27, 67, 50, 0.08)',
+        border: '1px solid var(--border)'
+      }}
+    >
+      <div style={{ marginBottom: '24px' }}>
+        <span
+          style={{
+            display: 'inline-block',
+            backgroundColor: 'var(--primary-soft)',
+            color: 'var(--primary)',
+            padding: '4px 12px',
+            borderRadius: '20px',
+            fontSize: '12px',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '0.8px',
+            marginBottom: '8px'
+          }}
+        >
+          {language === 'en' ? 'Direct Consultation' : 'Konsultasi Langsung'}
+        </span>
+        <h3
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: '24px',
+            fontWeight: 700,
+            color: 'var(--dark)',
+            lineHeight: 1.2
+          }}
+        >
+          {language === 'en' ? 'Plan Your Custom Journey' : 'Rancang Perjalanan Khusus Anda'}
+        </h3>
+        <p style={{ fontSize: '14px', color: 'var(--muted)', marginTop: '6px' }}>
+          {language === 'en'
+            ? 'Fill out your trip details below. Our team will tailor the optimal itinerary directly via WhatsApp.'
+            : 'Isi kebutuhan perjalanan Anda di bawah ini. Tim Travelogy akan menyiapkan rancangan terbaik langsung ke WhatsApp Anda.'}
+        </p>
+      </div>
+
+      <form className="custom-trip-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+        {/* Row 1: Nama & WhatsApp */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'Full Name *' : 'Nama Lengkap *'}
+            </label>
+            <input
+              type="text"
+              required
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              placeholder={language === 'en' ? 'e.g. Amanda Putri' : 'Contoh: Bapak / Ibu Hendra'}
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            />
+          </div>
+
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'WhatsApp Number *' : 'Nomor WhatsApp *'}
+            </label>
+            <input
+              type="tel"
+              required
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
+              placeholder="081333992989"
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Row 2: Tanggal & Jumlah Peserta */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'Travel Date' : 'Tanggal Perjalanan'}
+            </label>
+            <input
+              type="date"
+              min={todayStr}
+              value={tanggal}
+              onChange={(e) => setTanggal(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            />
+          </div>
+
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'Participants (Guests)' : 'Jumlah Peserta'}
+            </label>
+            <input
+              type="number"
+              min="1"
+              max="200"
+              value={peserta}
+              onChange={(e) => setPeserta(e.target.value)}
+              placeholder="2"
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Row 3: Destinasi & Jenis Perjalanan */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'Destination' : 'Destinasi'}
+            </label>
+            <select
+              value={destinasi}
+              onChange={(e) => setDestinasi(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            >
+              <option value="Bromo">Bromo & Tengger</option>
+              <option value="Bali">Bali (Ubud, Bedugul & Pantai)</option>
+              <option value="Malang & Batu">Malang & Kota Wisata Batu</option>
+              <option value="Kawah Ijen">Kawah Ijen & Banyuwangi</option>
+              <option value="Yogyakarta">Yogyakarta & Candi Borobudur</option>
+              <option value="Jember">Jember (Papuma, Teluk Love & Kopi)</option>
+              <option value="East Java Overland">East Java Overland Adventure</option>
+              <option value="Custom Destination">Destinasi Lainnya (Sesuai Permintaan)</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'Trip Type' : 'Jenis Perjalanan'}
+            </label>
+            <select
+              value={jenisTrip}
+              onChange={(e) => setJenisTrip(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            >
+              <option value="Family Vacation">Family Vacation (Liburan Keluarga)</option>
+              <option value="Couple / Honeymoon">Couple / Honeymoon Romantis</option>
+              <option value="Corporate / Company Gathering">Corporate / Company Gathering</option>
+              <option value="Outbound / Team Building">Outbound / Team Building</option>
+              <option value="Study Tour / Community">Study Tour / Rombongan Komunitas</option>
+              <option value="Private Adventure">Private Adventure / Solo Explorer</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Row 4: Kebutuhan Transportasi & Kebutuhan Hotel */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'Transportation Need' : 'Kebutuhan Transportasi'}
+            </label>
+            <select
+              value={transport}
+              onChange={(e) => setTransport(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            >
+              <option value="Mobil Keluarga (Avanza / Innova)">Mobil Keluarga (Avanza / Innova Reborn)</option>
+              <option value="Minibus Wisata (Toyota HiAce 14 Seat)">Minibus Wisata (Toyota HiAce Commuter / Premio)</option>
+              <option value="Bus Pariwisata Medium / Big Bus">Bus Pariwisata (Medium / Big Bus)</option>
+              <option value="Airport / Station Transfer Saja">Antar-Jemput Bandara / Stasiun Saja</option>
+              <option value="Tanpa Transportasi (Hanya Tour Guide / Hotel)">Tanpa Transportasi (Bawa Kendaraan Sendiri)</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+            >
+              {language === 'en' ? 'Accommodation Need' : 'Kebutuhan Hotel'}
+            </label>
+            <select
+              value={hotel}
+              onChange={(e) => setHotel(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
+            >
+              <option value="Hotel Bintang 3">Hotel Bintang 3 (Nyaman & Ekonomis)</option>
+              <option value="Hotel Bintang 4 / Resort">Hotel Bintang 4 / Resort Nyaman</option>
+              <option value="Villa Privat / Family Suite">Villa Privat / Family Suite</option>
+              <option value="Homestay Bersih">Homestay Asri Bersih</option>
+              <option value="Tanpa Hotel (Sudah Ada Akomodasi)">Tanpa Hotel (Sudah Booking Sendiri)</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Row 5: Catatan */}
+        <div>
+          <label
+            style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
+          >
+            {language === 'en' ? 'Notes / Special Requests' : 'Catatan Khusus / Permintaan Rute'}
+          </label>
+          <textarea
+            rows={3}
+            value={catatan}
+            onChange={(e) => setCatatan(e.target.value)}
+            placeholder={
+              language === 'en'
+                ? 'e.g., Interested in photography spots, children under 5 years, dietary preferences...'
+                : 'Contoh: Ingin mampir ke spot foto tertentu, ada lansia/balita, request menu makanan khusus...'
+            }
+            style={{
+              width: '100%',
+              padding: '12px 14px',
+              borderRadius: '10px',
+              border: '1px solid var(--border)',
+              fontSize: '14px',
+              outline: 'none',
+              backgroundColor: '#fafcfb',
+              resize: 'vertical'
+            }}
           />
         </div>
 
         {formError && (
-          <div style={{ background: '#fef2f2', border: '1px solid #fecaca', color: '#b91c1c', padding: '10px 14px', borderRadius: '8px', fontSize: '13px', marginBottom: '14px' }}>
+          <div
+            style={{
+              padding: '10px 14px',
+              borderRadius: '8px',
+              backgroundColor: '#fef2f2',
+              color: '#b91c1c',
+              fontSize: '13px',
+              border: '1px solid #fecaca'
+            }}
+          >
             {formError}
           </div>
         )}
 
-        <div className="form-grid">
-          <div className="form-group">
-            <label htmlFor="customNama">
-              {language === 'en' ? 'Full Name *' : 'Nama Pemesan *'}
-            </label>
-            <input
-              type="text"
-              id="customNama"
-              className="form-input"
-              placeholder={language === 'en' ? 'e.g. John Doe' : 'Contoh: Pak Budi Santoso'}
-              value={nama}
-              onChange={(e) => setNama(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="customWhatsapp">
-              {language === 'en' ? 'WhatsApp Number *' : 'Nomor WhatsApp Aktif *'}
-            </label>
-            <input
-              type="tel"
-              id="customWhatsapp"
-              className="form-input"
-              placeholder={language === 'en' ? '+62 / +1 ...' : '0812xxxxxxxx'}
-              value={whatsapp}
-              onChange={(e) => setWhatsapp(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="customTanggal">
-              {language === 'en' ? 'Estimated Date *' : 'Tanggal Perjalanan *'}
-            </label>
-            <input
-              type="date"
-              id="customTanggal"
-              className="form-input"
-              min={todayStr}
-              value={tanggal}
-              onChange={(e) => setTanggal(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="customPeserta">
-              {language === 'en' ? 'Number of Guests (Pax) *' : 'Jumlah Peserta (Pax) *'}
-            </label>
-            <input
-              type="number"
-              id="customPeserta"
-              className="form-input"
-              min="1"
-              max="100"
-              placeholder={language === 'en' ? 'e.g. 4' : 'Contoh: 4'}
-              value={peserta}
-              onChange={(e) => setPeserta(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="customPickup">
-              {language === 'en' ? 'Pick-up Location *' : 'Lokasi Pickup *'}
-            </label>
-            <input
-              type="text"
-              id="customPickup"
-              className="form-input"
-              placeholder={language === 'en' ? 'Lombok Airport / Hotel / Harbor' : 'Bandara Lombok / Hotel Senggigi / dll'}
-              value={pickup}
-              onChange={(e) => setPickup(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="customDurasi">
-              {language === 'en' ? 'Estimated Duration' : 'Durasi Perjalanan'}
-            </label>
-            <select
-              id="customDurasi"
-              className="form-select"
-              value={durasi}
-              onChange={(e) => setDurasi(e.target.value)}
-            >
-              <option value="1 Hari (Full Day)">{language === 'en' ? '1 Day (Full Day)' : '1 Hari (Full Day)'}</option>
-              <option value="2 Hari 1 Malam">{language === 'en' ? '2 Days 1 Night' : '2 Hari 1 Malam'}</option>
-              <option value="3 Hari 2 Malam">{language === 'en' ? '3 Days 2 Nights' : '3 Hari 2 Malam'}</option>
-              <option value="4 Hari 3 Malam">{language === 'en' ? '4 Days 3 Nights' : '4 Hari 3 Malam'}</option>
-              <option value="5 Hari 4 Malam">{language === 'en' ? '5 Days 4 Nights' : '5 Hari 4 Malam'}</option>
-              <option value="Lebih dari 5 Hari">{language === 'en' ? 'More than 5 Days' : 'Lebih dari 5 Hari'}</option>
-            </select>
-          </div>
-
-          <div className="form-group col-span-2">
-            <label htmlFor="customDestinasi">
-              {language === 'en' ? 'Preferred Destinations / Activities' : 'Destinasi yang Diminati'}
-            </label>
-            <input
-              type="text"
-              id="customDestinasi"
-              className="form-input"
-              placeholder={language === 'en' ? 'e.g. Tetebatu, Gili Trawangan, Mandalika, Sembalun' : 'Contoh: Tetebatu, Gili Trawangan, Mandalika, Sembalun'}
-              value={destinasi}
-              onChange={(e) => setDestinasi(e.target.value)}
-            />
-          </div>
-
-          <div className="form-group col-span-2">
-            <label htmlFor="customCatatan">
-              {language === 'en' ? 'Special Notes / Requests' : 'Catatan / Kebutuhan Khusus'}
-            </label>
-            <textarea
-              id="customCatatan"
-              className="form-textarea"
-              placeholder={language === 'en' ? 'e.g. Traveling with toddlers, halal culinary requests, 3-star hotel recommendation...' : 'Contoh: Ada anak kecil, minta rekomendasi kuliner halal khas Sasak, hotel bintang 3...'}
-              value={catatan}
-              onChange={(e) => setCatatan(e.target.value)}
-            ></textarea>
-          </div>
-
-        </div>
-
-        <button type="submit" className="btn-submit-custom" disabled={isSubmitting}>
-          <i className={`fa ${isSubmitting ? 'fa-spinner fa-spin' : 'fa-whatsapp'}`} style={{ fontSize: '18px' }}></i>
-          {isSubmitting
-            ? (language === 'en' ? ' Saving Inquiry...' : ' Menyimpan Reservasi...')
-            : (language === 'en' ? ' Request Custom Trip via WhatsApp' : ' Request Custom Trip via WhatsApp')}
+        {/* Submit CTA Button */}
+        <button
+          type="submit"
+          style={{
+            backgroundColor: 'var(--primary)',
+            color: '#ffffff',
+            padding: '16px 28px',
+            borderRadius: '30px',
+            border: 'none',
+            fontSize: '15.5px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '10px',
+            boxShadow: '0 8px 24px rgba(27, 67, 50, 0.28)',
+            transition: 'all 0.25s ease',
+            marginTop: '6px'
+          }}
+        >
+          <i className="fa fa-whatsapp" style={{ fontSize: '20px' }}></i>
+          <span>Request Custom Trip</span>
         </button>
+
+        <p style={{ textAlign: 'center', fontSize: '12px', color: 'var(--muted)', marginTop: '2px' }}>
+          {language === 'en'
+            ? '✓ Connects directly to PT. Travelogy Tour Organizer WhatsApp (+62 813-3399-2989)'
+            : '✓ Terhubung langsung ke WhatsApp PT. Travelogy Tour Organizer (+62 813-3399-2989)'}
+        </p>
       </form>
     </div>
   );

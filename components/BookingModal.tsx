@@ -62,7 +62,7 @@ export default function BookingModal({
   if (!isOpen) return null;
 
   const selectedPkg = packages.find((p) => p.slug === packageId);
-  const packageName = packageTitle || (selectedPkg ? selectedPkg.title : (packageId ? packageId : 'Custom Trip Lombok'));
+  const packageName = packageTitle || (selectedPkg ? selectedPkg.title : (packageId ? packageId : 'Custom Trip Travelogy'));
 
   const todayStr = new Date().toISOString().split('T')[0];
 
@@ -109,7 +109,7 @@ export default function BookingModal({
         package_name: packageName,
         travel_date: travelDate,
         participants: paxNum,
-        pickup_location: pickupLocation.trim() || (language === 'en' ? 'Lombok International Airport (BIL)' : 'Bandara Internasional Lombok (BIL)'),
+        pickup_location: pickupLocation.trim() || (language === 'en' ? 'Jember / Airport Pickup' : 'Jember / Bandara / Stasiun'),
         transportation: transportation,
         notes: notes.trim(),
         hp_field: honeypot, // Honeypot verification
@@ -140,9 +140,9 @@ export default function BookingModal({
   // WhatsApp click-to-chat formatted message
   const generateWaLink = (booking: Booking) => {
     const text = language === 'en'
-      ? `Hello Lombok_Travelers,\n\nI would like to confirm my booking:\n\nBooking Ref: ${booking.booking_number}\nName: ${booking.customer_name}\nPackage: ${booking.package_name}\nDate: ${booking.travel_date}\nParticipants: ${booking.participants} Guests\nPickup: ${booking.pickup_location}\n\nPlease confirm availability and details.`
-      : `Halo Lombok_Travelers,\n\nSaya ingin konfirmasi booking:\n\nNo. Booking: ${booking.booking_number}\nNama: ${booking.customer_name}\nPaket: ${booking.package_name}\nTanggal: ${booking.travel_date}\nPeserta: ${booking.participants} Orang\nPickup: ${booking.pickup_location}\n\nMohon konfirmasi ketersediaannya.`;
-    return `https://wa.me/6283117110638?text=${encodeURIComponent(text)}`;
+      ? `Hello Travelogy Tour Organizer,\n\nI would like to consult/confirm my trip inquiry:\n\nBooking Ref: ${booking.booking_number}\nName: ${booking.customer_name}\nPackage: ${booking.package_name}\nDate: ${booking.travel_date}\nParticipants: ${booking.participants} Guests\nPickup: ${booking.pickup_location}\n\nPlease confirm availability and details.`
+      : `Halo Travelogy, saya ingin konfirmasi inquiry perjalanan:\n\nNo. Inquiry: ${booking.booking_number}\nNama: ${booking.customer_name}\nPaket: ${booking.package_name}\nTanggal: ${booking.travel_date}\nPeserta: ${booking.participants} Orang\nPickup: ${booking.pickup_location}\n\nMohon informasi selanjutnya. Terima kasih!`;
+    return `https://wa.me/6281333992989?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -186,7 +186,7 @@ export default function BookingModal({
         {/* Modal Header */}
         <div
           style={{
-            background: 'linear-gradient(135deg, #185a38 0%, #002366 100%)',
+            background: 'var(--primary)',
             padding: '20px 24px',
             color: '#ffffff',
             display: 'flex',
@@ -392,7 +392,7 @@ export default function BookingModal({
             /* =======================================================
                BOOKING FORM
                ======================================================= */
-            <form onSubmit={handleSubmit}>
+            <form className="booking-modal-form" onSubmit={handleSubmit}>
               {/* Anti-Spam Bot Trap (Honeypot) */}
               <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
                 <label htmlFor="hp_field_booking">Jangan isi bidang ini</label>

@@ -21,7 +21,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
       },
     ],
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://lomboktravelers.reaksy.com'}/sitemap.xml`,
-    host: process.env.NEXT_PUBLIC_SITE_URL || 'https://lomboktravelers.reaksy.com',
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://travelogy.co.id'}/sitemap.xml`,
+    host: process.env.NEXT_PUBLIC_SITE_URL || 'https://travelogy.co.id',
   };
 }

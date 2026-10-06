@@ -68,7 +68,7 @@ export default function AdminSchedulePage() {
         {sortedBookings.map((b) => {
           const cleanPhone = b.whatsapp.replace(/\D/g, '');
           const phone = cleanPhone.startsWith('0') ? `62${cleanPhone.slice(1)}` : cleanPhone;
-          const reminderMsg = `Halo Kak ${b.customer_name},\n\nSalam dari Lombok_Travelers Tetebatu. Kami mengkonfirmasi penjemputan Anda besok tanggal ${b.travel_date} di *${b.pickup_location}*.\n\nArmada kami *${b.transportation}* bersama supir lokal Sasak kami sudah siap. Mohon nomor HP tetap aktif ya. Terima kasih!`;
+          const reminderMsg = `Halo Kak ${b.customer_name},\n\nSalam dari PT. Travelogy Tour Organizer. Kami mengkonfirmasi penjemputan Anda besok tanggal ${b.travel_date} di *${b.pickup_location}*.\n\nArmada kami *${b.transportation}* bersama tim driver kami sudah siap melayani perjalanan Anda. Mohon nomor HP tetap aktif ya. Terima kasih!`;
           const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(reminderMsg)}`;
 
           return (

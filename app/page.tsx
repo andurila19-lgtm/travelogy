@@ -3,740 +3,1514 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import packagesData from '@/data/packages.json';
-import dailyTrips from '@/data/dailyTrips.json';
-import { TourPackage, DailyTrip } from '@/types';
-import SearchBar from '@/components/SearchBar';
+import { TourPackage } from '@/types';
 import PackageList from '@/components/PackageList';
 import CustomTripForm from '@/components/CustomTripForm';
+import FaqSection from '@/components/FaqSection';
 import ConciergeTrigger from '@/components/ConciergeTrigger';
-import FaqSection, { faqsData } from '@/components/FaqSection';
-import BookingModal from '@/components/BookingModal';
 import { useLanguage } from '@/context/LanguageContext';
-import { getLocalizedTrip } from '@/lib/localization';
 
 export default function HomePage() {
-  const { language, t, convertPriceString } = useLanguage();
+  const { language } = useLanguage();
   const packages: TourPackage[] = packagesData as TourPackage[];
-  const rawTrips: DailyTrip[] = dailyTrips as DailyTrip[];
-  const trips = rawTrips.map((tr) => getLocalizedTrip(tr, language));
+  const isEn = language === 'en';
 
-  // State for Transport Vehicle Booking Modal
-  const [isVehicleBookingOpen, setIsVehicleBookingOpen] = useState(false);
-  const [selectedVehicle, setSelectedVehicle] = useState({ title: '', slug: '' });
 
-  const handleOpenVehicleBooking = (title: string, slug: string) => {
-    setSelectedVehicle({ title, slug });
-    setIsVehicleBookingOpen(true);
-  };
 
-  const featuredFleets = [
+  // Preview destination list
+  const destinations = [
     {
-      id: 'innova',
-      name: 'Toyota Innova Reborn',
-      badge: language === 'en' ? 'Most Popular' : 'Paling Populer',
-      badgeClass: 'home-fleet-badge-pop',
-      category: language === 'en' ? 'Medium MPV Premium' : 'Medium MPV Premium',
-      capacity: '6 - 7 Seat',
-      transmission: 'Automatic',
-      ac: 'Double Blower',
-      price: 'Rp 850.000 / 12 Jam',
-      image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=800&q=80',
-      features: [
-        language === 'en' ? 'Courteous native Sasak driver included' : 'Include Supir Ramah Asli Sasak',
-        language === 'en' ? 'Fuel / BBM completely covered' : 'BBM / Bensin Sudah Termasuk',
-        language === 'en' ? 'Cool dual AC & USB charging port' : 'Full AC Dingin & Port Charger USB',
-      ],
+      id: 'bromo',
+      name: 'Bromo',
+      tagline: isEn ? 'Caldera Sunrise & Sea of Sand' : 'Golden Sunrise & Lautan Pasir',
+      desc: isEn
+        ? 'Witness the mystical golden sunrise over the active caldera of Mount Bromo and Semeru, whispering sand, and lush green savannas.'
+        : 'Saksikan magisnya matahari terbit berlatar kaldera megah Gunung Bromo dan Semeru, lautan pasir berbisik, dan bukit savana hijau.',
+      image: '/images/dest_bromo.jpg',
+      badge: 'Popular Icon'
     },
     {
-      id: 'avanza',
-      name: 'All New Avanza / Xenia',
-      badge: language === 'en' ? 'Best Value' : 'Best Value',
-      badgeClass: 'home-fleet-badge-val',
-      category: language === 'en' ? 'Family MPV Budget' : 'MPV Keluarga Hemat',
-      capacity: '5 - 6 Seat',
-      transmission: 'Manual / Matic',
-      ac: 'Full AC Dingin',
-      price: 'Rp 550.000 / 12 Jam',
-      image: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80',
-      features: [
-        language === 'en' ? 'Punctual experienced driver' : 'Include Supir Berpengalaman',
-        language === 'en' ? 'Fuel / BBM completely covered' : 'BBM / Bensin Sudah Termasuk',
-        language === 'en' ? 'Spacious luggage trunk & clean interior' : 'Bersih, Wangi & Bagasi Koper Luas',
-      ],
+      id: 'bali',
+      name: 'Bali',
+      tagline: isEn ? 'Island of Gods & Rich Heritage' : 'Pesona Pulau Dewata & Budaya',
+      desc: isEn
+        ? 'Experience scenic lakeside temples, lush Ubud rice terraces, majestic Kintamani caldera views, and unforgettable coastal sunsets.'
+        : 'Keagungan Pura Ulun Danu Beratan, sawah terasering Ubud yang menenangkan, panorama Kintamani, dan senja pantai eksotis.',
+      image: '/images/dest_bali.jpg',
+      badge: 'Holiday Escape'
     },
     {
-      id: 'hiace-commuter',
-      name: 'Toyota HiAce Commuter',
-      badge: language === 'en' ? 'Group & Family' : 'Rombongan & Grup',
-      badgeClass: 'home-fleet-badge-grp',
-      category: language === 'en' ? 'Spacious Tour Minibus' : 'Minibus Wisata Luas',
-      capacity: '12 - 14 Seat',
-      transmission: 'Manual',
-      ac: 'Triple Blower Dingin',
-      price: 'Rp 1.250.000 / 12 Jam',
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80',
-      features: [
-        language === 'en' ? 'High roof ceiling, easy walk inside' : 'Kabin Tinggi Nyaman Berdiri',
-        language === 'en' ? 'Generous extra luggage room' : 'Bagasi Ekstra Besar Khusus Tour',
-        language === 'en' ? 'Driver + Fuel included all-day' : 'Include Supir Khusus Tour + BBM',
-      ],
+      id: 'malang',
+      name: 'Malang & Batu',
+      tagline: isEn ? 'Cool Highland & Family Fun' : 'Kesejukan Dataran Tinggi & Wisata',
+      desc: isEn
+        ? 'Crisp mountain air, fresh apple orchard picking, natural waterfalls, and world-class thematic amusement parks for the whole family.'
+        : 'Hawa sejuk pegunungan Kota Batu, keseruan petik apel langsung di kebun petani, Coban Rondo, dan destinasi rekreasi keluarga.',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+      badge: 'Family Favorite'
     },
+    {
+      id: 'yogyakarta',
+      name: 'Yogyakarta',
+      tagline: isEn ? 'Royal Culture & Ancient Temples' : 'Keagungan Warisan Budaya & Sejarah',
+      desc: isEn
+        ? 'Monumental UNESCO world heritage Borobudur & Prambanan temples, historic royal palaces, thrilling Merapi lava jeep, and Malioboro.'
+        : 'Kemegahan mahakarya Candi Borobudur & Prambanan, kearifan Keraton Ngayogyakarta, Jeep Lava Tour Merapi, dan suasana Malioboro.',
+      image: 'https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=800&q=80',
+      badge: 'Cultural Heritage'
+    },
+    {
+      id: 'jember',
+      name: 'Jember',
+      tagline: isEn ? 'Exotic Coastlines & Coffee Estates' : 'Eksotisme Pantai Selatan & Agrowisata',
+      desc: isEn
+        ? 'Explore majestic coastal sea stacks at Tanjung Papuma, romantic heart-shaped Love Bay, and heritage mountain robusta coffee estates.'
+        : 'Pesona batu karang raksasa Pantai Tanjung Papuma, panorama Teluk Love dari bukit Payangan, dan aroma khas kopi lereng Argopuro.',
+      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+      badge: 'Home Base'
+    },
+    {
+      id: 'east-java',
+      name: 'East Java & Ijen',
+      tagline: isEn ? 'Electric Blue Fire & Wild Savannas' : 'Fenomena Kawah Ijen & Savana',
+      desc: isEn
+        ? 'Rare midnight trekking to witness electric blue flames, turquoise acidic crater lakes, Tumpak Sewu waterfall, and African-like Baluran.'
+        : 'Pendakian malam menyaksikan fenomena langka Blue Fire Kawah Ijen, danau belerang toska, air terjun Tumpak Sewu, dan savana Baluran.',
+      image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80',
+      badge: 'Expedition'
+    }
   ];
 
-  const servicePillars = [
+  // Transport Fleet Services
+  const transportServices = [
     {
-      icon: 'fa-plane',
-      title: language === 'en' ? 'Airport Transfer On-Time' : 'Airport Transfer Tepat Waktu',
-      desc: language === 'en'
-        ? 'Punctual pick-up/drop-off BIL Airport to Tetebatu, Mataram, Senggigi, Kuta & Bangsal.'
-        : 'Antar-jemput tepat waktu Bandara Lombok (BIL) ke Tetebatu, Mataram, Senggigi & Kuta.',
+      id: 'private-transport',
+      title: isEn ? 'Private Transport' : 'Private Transport',
+      tag: isEn ? 'Family & Personal' : 'Keluarga & Personal',
+      desc: isEn
+        ? 'Comfortable, pristine AC vehicles (Toyota Avanza, Innova Reborn, Fortuner) with courteous, experienced local drivers.'
+        : 'Armada privat ber-AC bersih & wangi (Toyota Avanza, Innova Reborn, Fortuner) didampingi supir ramah dan profesional.',
+      image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80',
+      features: [
+        isEn ? 'Dedicated driver & fuel included' : 'Sudah termasuk supir & BBM',
+        isEn ? 'Clean, sanitized & cold air conditioning' : 'Unit bersih, higienis, AC dingin',
+        isEn ? 'Flexible pick-up time & stops' : 'Waktu penjemputan fleksibel'
+      ]
     },
     {
-      icon: 'fa-tint',
-      title: language === 'en' ? 'All-Inclusive (Driver + BBM)' : 'Paket All-In (Driver + BBM)',
-      desc: language === 'en'
-        ? 'No hidden surprises. Car, experienced driver, and fuel are 100% included in the rate.'
-        : 'Bebas biaya tersembunyi, BBM dan supir ramah asli Sasak sudah termasuk dalam tarif sewa.',
+      id: 'group-transport',
+      title: isEn ? 'Group Transport' : 'Group Transport',
+      tag: isEn ? 'Minibus & Group' : 'Rombongan Wisata',
+      desc: isEn
+        ? 'Spacious high-roof minibuses (Toyota HiAce Commuter / Premio, Isuzu Elf) designed for group tours and company gatherings.'
+        : 'Kabin lega beratap tinggi (Toyota HiAce Commuter / Premio, Isuzu Elf) untuk perjalanan rombongan keluarga besar atau kantor.',
+      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=600&q=80',
+      features: [
+        isEn ? '10 to 15 comfortable passenger seats' : 'Kapasitas 10 - 15 penumpang nyaman',
+        isEn ? 'Ample luggage space for bags' : 'Ruang bagasi koper luas',
+        isEn ? 'Experienced long-distance driver' : 'Supir rute wisata luar kota berpengalaman'
+      ]
     },
     {
-      icon: 'fa-id-card-o',
-      title: language === 'en' ? 'Driver as Local Guide' : 'Driver Merangkap Guide',
-      desc: language === 'en'
-        ? 'Courteous native Sasak drivers guiding you along scenic routes at an unhurried pace.'
-        : 'Supir lokal yang santun, informatif, dan siap memandu rute wisata terbaik tanpa buru-buru.',
+      id: 'transfer-service',
+      title: isEn ? 'Airport & Station Transfer' : 'Airport & Station Transfer',
+      tag: isEn ? 'Punctual & Direct' : 'Tepat Waktu & Praktis',
+      desc: isEn
+        ? 'Prompt, reliable drop-off and pickup services connecting Jember Station, Banyuwangi Airport (BWX), and Surabaya Juanda (SUB).'
+        : 'Layanan antar-jemput tepat waktu menghubungkan Stasiun Jember, Bandara Banyuwangi (BWX), hingga Bandara Juanda Surabaya (SUB).',
+      image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=600&q=80',
+      features: [
+        isEn ? 'Flight & train arrival schedule tracking' : 'Monitoring jadwal kedatangan kereta & pesawat',
+        isEn ? 'Direct drop-off to hotel or meeting location' : 'Pengantaran langsung ke hotel / kantor',
+        isEn ? 'Luggage assistance by driver' : 'Bantuan bagasi oleh tim driver'
+      ]
     },
     {
-      icon: 'fa-shield',
-      title: language === 'en' ? '100% Private & Spotless' : '100% Private & Higienis',
-      desc: language === 'en'
-        ? 'Sanitized, cool AC vehicles exclusively for your group, never mixed with others.'
-        : 'Mobil bersih, ber-AC dingin, wangi, dan khusus rombongan Anda tanpa dicampur orang lain.',
-    },
+      id: 'tour-transport',
+      title: isEn ? 'Tour Transportation' : 'Tour Transportation',
+      tag: isEn ? 'Daily All-In Tour' : 'Sewa Keliling Wisata',
+      desc: isEn
+        ? 'Full-day vehicle charter with driver and fuel, ready to accompany your itinerary to any destination with ease.'
+        : 'Sewa armada harian paket lengkap (Mobil + Supir + BBM) siap mengantar rute liburan Anda ke berbagai obyek wisata tanpa repot.',
+      image: 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80',
+      features: [
+        isEn ? 'Flexible stops along the scenic route' : 'Bebas mampir di spot foto & resto favorit',
+        isEn ? 'Driver acts as knowledgeable local guide' : 'Supir paham rute jalan & rekomendasi lokal',
+        isEn ? 'No hidden surprise costs' : 'Tanpa biaya tersembunyi di lapangan'
+      ]
+    }
   ];
 
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqsData.map((item) => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.a,
-      },
-    })),
-  };
+  // Additional 3 Services: Travel & Tour, Hotel, Event Planning
+  const additionalServices = [
+    {
+      title: isEn ? 'Travel & Tour' : 'Travel & Tour',
+      tagline: isEn ? 'Curated Trips & Seamless Planning' : 'Paket Wisata Terencana & Nyaman',
+      desc: isEn
+        ? 'Carefully planned tour itineraries, attraction admissions, friendly guides, and memorable experiences tailored to your travel style.'
+        : 'Perencanaan paket wisata lengkap, itinerary fleksibel, koordinasi tiket destinasi, dan pemandu ramah yang membuat perjalanan Anda berkesan.',
+      icon: 'fa-globe'
+    },
+    {
+      title: isEn ? 'Hotel & Lodging' : 'Hotel & Akomodasi',
+      tagline: isEn ? 'Handpicked Hotels, Resorts & Villas' : 'Reservasi Hotel, Resort & Villa Rekanan',
+      desc: isEn
+        ? 'Official partnerships with vetted 3-star, 4-star hotels, luxury resorts, and private villas to ensure top resting comfort at favorable rates.'
+        : 'Kerja sama resmi dengan hotel bintang 3, 4, resort, dan villa privat rekanan dengan jaminan harga transparan dan kenyamanan istirahat maksimal.',
+      icon: 'fa-building-o'
+    },
+    {
+      title: isEn ? 'Event Planning' : 'Event Organizer (EO)',
+      tagline: isEn ? 'Corporate Gatherings, Outings & Meetings' : 'Corporate Gathering, Outing & Outbound',
+      desc: isEn
+        ? 'Professional event organizer services for corporate gatherings, team building outbounds, company meetings, and celebratory milestones.'
+        : 'Penyelenggaraan acara profesional untuk company gathering, family outing, outbound team building, meeting perusahaan, dan perayaan spesial.',
+      icon: 'fa-users'
+    }
+  ];
+
+  // Why Travelogy Value Propositions
+  const whyPoints = [
+    {
+      icon: 'fa-compass',
+      title: isEn ? 'Personalized Journey' : 'Personalized Journey',
+      desc: isEn
+        ? 'Every trip is customized around your unique desires, schedule pace, and holiday preferences.'
+        : 'Setiap perjalanan dapat disesuaikan dengan kebutuhan, preferensi waktu, dan gaya liburan customer.'
+    },
+    {
+      icon: 'fa-check-circle-o',
+      title: isEn ? 'End-to-End Planning' : 'End-to-End Planning',
+      desc: isEn
+        ? 'Comprehensive assistance from initial itinerary conceptualization, reservations, through trip completion.'
+        : 'Bantuan menyeluruh mulai dari konsultasi awal, rancangan rute, reservasi, hingga pendampingan perjalanan.'
+    },
+    {
+      icon: 'fa-sliders',
+      title: isEn ? 'Flexible Travel Solutions' : 'Flexible Travel Solutions',
+      desc: isEn
+        ? 'One-stop integrated solutions for leisure tours, vehicle rentals, hotel bookings, and event planning.'
+        : 'Solusi terpadu untuk pilihan tour, armada transportasi, akomodasi rekanan, dan event dalam satu pintu.'
+    },
+    {
+      icon: 'fa-comments-o',
+      title: isEn ? 'Dedicated Support' : 'Dedicated Support',
+      desc: isEn
+        ? 'Direct, prompt, and friendly consultation with the Travelogy professional team at all times.'
+        : 'Customer dapat berkonsultasi langsung dengan tim profesional Travelogy yang ramah, solutif, dan responsif.'
+    }
+  ];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-      {/* 2. HERO SLIDER BANNER (Matching Screenshot Exactly) */}
+      {/* =================================================================
+          1. HERO SECTION (Very visual, cinematic background, clear CTAs)
+          ================================================================= */}
+      {/* =================================================================
+          1. HERO SECTION (High-Conversion, Professional Customer-Centric Hero)
+          ================================================================= */}
       <section
-        className="hero-benchmark-wrapper"
-        style={{ backgroundImage: "url('/images/rinjani_hero.jpg')" }}
+        id="home"
+        className="hero-travelogy"
+        style={{ backgroundImage: "url('/images/travelogy_hero.jpg')" }}
       >
-        <div className="hero-benchmark-overlay"></div>
-        <div className="dschome">
-          <strong>{t.hero.headline}</strong>
-          <span className="hero-dest-line">{t.hero.subline}</span>
-          <span>{t.hero.description}</span>
+        <div className="hero-travelogy-overlay"></div>
+
+        <div className="hero-inner-container">
+          {/* Official Trust & Rating Pill */}
+          <div className="hero-eyebrow-pill">
+            <span style={{ color: '#fbbf24', letterSpacing: '1px' }}>★★★★★</span>
+            <span>PT. TRAVELOGY TOUR ORGANIZER &bull; JEMBER</span>
+          </div>
+
+          {/* Inspirational Customer-Focused Headline */}
+          <h1 className="hero-headline-title">
+            {isEn ? 'Experience Extraordinary' : 'Wujudkan Liburan Impian'}
+            <span>&ldquo;Bringing Happiness in Every Journey&rdquo;</span>
+          </h1>
+
+          {/* Value Proposition Description */}
+          <p className="hero-description-text">
+            {isEn
+              ? 'Curated private tour packages to Bromo, Kawah Ijen, Malang, Bali & comfortable vehicle rentals with expert drivers from Jember.'
+              : 'Spesialis paket wisata privat Bromo, Kawah Ijen, Malang, Bali & sewa armada nyaman dengan supir berpengalaman dari Jember.'}
+          </p>
+
+          {/* Balanced Action CTAs: 2 Luxury Hero Buttons */}
+          <div className="hero-actions-row">
+            <Link href="/paket" className="hero-btn-primary">
+              <span>{isEn ? 'Explore Tour Packages' : 'Lihat Semua Paket Wisata'}</span>
+              <i className="fa fa-arrow-right hero-btn-arrow"></i>
+            </Link>
+
+            <a
+              href={`https://wa.me/6281333992989?text=${encodeURIComponent(
+                isEn
+                  ? 'Hello PT. Travelogy Tour Organizer, I would like to consult a tour or transport package from Jember.'
+                  : 'Halo PT. Travelogy Tour Organizer, saya ingin konsultasi paket wisata / sewa armada dari Jember.'
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-btn-wa"
+            >
+              <i className="fa fa-whatsapp hero-btn-wa-icon"></i>
+              <span>{isEn ? 'WhatsApp Consult' : 'Konsultasi WhatsApp'}</span>
+            </a>
+          </div>
+
+          {/* Elegant Inline Destination Text Links (No Clunky Pills) */}
+          <div className="hero-dest-subtext">
+            <span className="dest-subtext-label">
+              <i className="fa fa-compass" style={{ marginRight: '4px' }}></i>
+              {isEn ? 'Popular:' : 'Destinasi Favorit:'}
+            </span>
+            <Link href="/paket?dest=bromo">Bromo Sunrise</Link>
+            <span className="dot">•</span>
+            <Link href="/paket?dest=ijen">Kawah Ijen</Link>
+            <span className="dot">•</span>
+            <Link href="/paket?dest=malang">Malang Batu</Link>
+            <span className="dot">•</span>
+            <Link href="/paket?dest=bali">Pulau Bali</Link>
+            <span className="dot">•</span>
+            <Link href="/transport">Sewa HiAce</Link>
+          </div>
+
+          {/* Minimalist Trust & Social Proof Strip */}
+          <div className="hero-trust-minimal">
+            <span><i className="fa fa-shield" style={{ color: '#34d399', marginRight: '4px' }}></i> {isEn ? 'Licensed Agency' : 'PT Resmi Berizin'}</span>
+            <span className="dot">•</span>
+            <span><i className="fa fa-star" style={{ color: '#fbbf24', marginRight: '4px' }}></i> {isEn ? '4.9/5 Rating (500+ Guests)' : 'Rating 4.9/5.0 (500+ Wisatawan)'}</span>
+            <span className="dot">•</span>
+            <span><i className="fa fa-car" style={{ color: '#60a5fa', marginRight: '4px' }}></i> {isEn ? 'Prime Fleet & Drivers' : 'Armada Prima & Supir Ramah'}</span>
+          </div>
         </div>
       </section>
 
-      {/* SEARCH BAR (#srchome Deep Blue matching screenshot) */}
-      <SearchBar />
-
-      {/* 3. WHY CHOOSE US (#why with purple circular icons matching screenshot) */}
-      <section id="why">
-        <div className="box1140">
-          <div className="why-title-wrap">
-            <h2>
-              {t.why.title1}<br />{t.why.title2}
+      {/* =================================================================
+          2. DESTINATIONS SECTION ("Where Will Your Journey Take You?")
+          ================================================================= */}
+      <section id="destinations" style={{ padding: '88px 0 72px', backgroundColor: '#ffffff' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          {/* Header */}
+          <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 52px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                backgroundColor: 'var(--primary-soft)',
+                color: 'var(--primary)',
+                padding: '6px 16px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                marginBottom: '12px'
+              }}
+            >
+              Experience The Wonders
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 700,
+                color: 'var(--dark)',
+                marginBottom: '14px',
+                lineHeight: 1.2
+              }}
+            >
+              Where Will Your Journey Take You?
             </h2>
-          </div>
-
-          <div className="why-container-grid">
-            {/* Feature 1 */}
-            <div className="why">
-              <div className="why-icon-circle">
-                <i className="fa fa-cogs" aria-hidden="true"></i>
-              </div>
-              <h3>{t.why.features[0]?.title}</h3>
-              <p>{t.why.features[0]?.desc}</p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="why">
-              <div className="why-icon-circle">
-                <i className="fa fa-users" aria-hidden="true"></i>
-              </div>
-              <h3>{t.why.features[1]?.title}</h3>
-              <p>{t.why.features[1]?.desc}</p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="why">
-              <div className="why-icon-circle">
-                <i className="fa fa-camera" aria-hidden="true"></i>
-              </div>
-              <h3>{t.why.features[2]?.title}</h3>
-              <p>{t.why.features[2]?.desc}</p>
-            </div>
-
-            {/* Feature 4 */}
-            <div className="why">
-              <div className="why-icon-circle">
-                <i className="fa fa-camera-retro" aria-hidden="true"></i>
-              </div>
-              <h3>{t.why.features[3]?.title}</h3>
-              <p>{t.why.features[3]?.desc}</p>
-            </div>
-
-            {/* Feature 5 */}
-            <div className="why">
-              <div className="why-icon-circle">
-                <i className="fa fa-shield" aria-hidden="true"></i>
-              </div>
-              <h3>{t.why.features[4]?.title}</h3>
-              <p>{t.why.features[4]?.desc}</p>
+            <p style={{ fontSize: '15.5px', color: 'var(--muted)', lineHeight: 1.6 }}>
+              {isEn
+                ? 'Discover captivating destinations curated for your perfect getaway. From dramatic volcanoes to tranquil tropical waters.'
+                : 'Temukan pilihan destinasi favorit bersama Travelogy. Dari panorama alam magis gunung berapi, kesejukan dataran tinggi, hingga eksotisme pesisir pantai.'}
+            </p>
+            <div
+              style={{
+                marginTop: '12px',
+                fontSize: '12px',
+                color: 'var(--secondary)',
+                fontWeight: 600,
+                fontStyle: 'italic'
+              }}
+            >
+              * Data destinasi di bawah ini merupakan preview data kurasi Travelogy Tour Organizer.
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 4. PAKET WISATA LOMBOK (#paket) */}
-      <section className="packages-section" id="paket-wisata">
-        <div className="box1140">
-          <div className="section-header">
-            <span className="section-tag">{t.packages.tag}</span>
-            <h2 className="section-title">{t.packages.title}</h2>
-            <p className="section-subtitle">{t.packages.subtitle}</p>
-          </div>
+          {/* Destinations Grid (6 Cards) */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '28px'
+            }}
+          >
+            {destinations.map((dest) => {
+              const waDestMsg = encodeURIComponent(
+                `Halo Travelogy, saya ingin menanyakan informasi perjalanan untuk destinasi ${dest.name}.`
+              );
 
-          {/* Interactive Package Cards with Category Tabs */}
-          <PackageList packages={packages} />
-        </div>
-      </section>
+              return (
+                <div
+                  key={dest.id}
+                  style={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border)',
+                    boxShadow: '0 8px 24px rgba(27, 67, 50, 0.05)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                  }}
+                >
+                  {/* Destination Photo */}
+                  <div style={{ height: '220px', position: 'relative', overflow: 'hidden' }}>
+                    <img
+                      src={dest.image}
+                      alt={dest.name}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        left: '12px',
+                        backgroundColor: 'rgba(15, 40, 30, 0.85)',
+                        color: '#ffffff',
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        backdropFilter: 'blur(4px)'
+                      }}
+                    >
+                      {dest.badge}
+                    </span>
+                  </div>
 
-      {/* 5. TRIP HARIAN (#pharian 8 Cards Grid) */}
-      <section className="harian-section" id="pharian">
-        <div className="box1140">
-          <div className="section-header">
-            <span className="section-tag">{t.daily.tag}</span>
-            <h2 className="section-title">{t.daily.title}</h2>
-            <p className="section-subtitle">{t.daily.subtitle}</p>
-          </div>
+                  {/* Destination Content */}
+                  <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    <h3
+                      style={{
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: '22px',
+                        fontWeight: 700,
+                        color: 'var(--dark)',
+                        marginBottom: '4px'
+                      }}
+                    >
+                      {dest.name}
+                    </h3>
 
-          <div className="harian-grid">
-            {trips.map((trip) => (
-              <div key={trip.id} className="harian-card">
-                <div className="harian-img-box">
-                  <img src={trip.image} alt={trip.title} />
-                  <span className="harian-duration-tag">
-                    {language === 'en' ? 'Duration' : 'Durasi'}: {trip.duration}
-                  </span>
-                </div>
-                <div className="harian-body">
-                  <h3 className="harian-title">{trip.title}</h3>
-                  <p className="harian-desc">{trip.desc}</p>
-                  <div className="harian-footer">
-                    <div>
-                      <span className="harian-price-text">
-                        {t.packages.perPerson}
-                      </span>
-                      <span className="harian-price-val">{convertPriceString(trip.price)}</span>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--primary)', marginBottom: '12px' }}>
+                      {dest.tagline}
                     </div>
-                    <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+
+                    <p style={{ fontSize: '13.5px', color: 'var(--muted)', lineHeight: 1.55, marginBottom: '20px', flex: 1 }}>
+                      {dest.desc}
+                    </p>
+
+                    <div style={{ display: 'flex', gap: '10px' }}>
                       <Link
-                        href="/trip-harian"
-                        className="btn-card-secondary"
+                        href="/destinasi"
+                        style={{
+                          flex: 1,
+                          textAlign: 'center',
+                          backgroundColor: 'var(--primary)',
+                          color: '#ffffff',
+                          padding: '11px 16px',
+                          borderRadius: '24px',
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px'
+                        }}
                       >
-                        {t.buttons.detail}
+                        <span>Lihat Destinasi</span>
+                        <i className="fa fa-arrow-right" style={{ fontSize: '11px' }}></i>
                       </Link>
                       <a
-                        href={`https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20ingin%20tanya%20Trip%20Harian:%20${encodeURIComponent(trip.title)}.`}
+                        href={`https://wa.me/6281333992989?text=${waDestMsg}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-card-primary"
+                        style={{
+                          width: '42px',
+                          height: '42px',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: '#25d366',
+                          color: '#ffffff',
+                          borderRadius: '50%',
+                          fontSize: '16px',
+                          textDecoration: 'none',
+                          flexShrink: 0
+                        }}
+                        title="Tanya via WhatsApp"
                       >
-                        <i className="fa fa-calendar-check-o"></i> {t.buttons.book}
+                        <i className="fa fa-whatsapp"></i>
                       </a>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
+          </div>
+
+          {/* View All Destinations Multi-Page CTA */}
+          <div style={{ textAlign: 'center', marginTop: '44px' }}>
+            <Link
+              href="/destinasi"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                backgroundColor: 'var(--primary)',
+                color: '#ffffff',
+                padding: '14px 32px',
+                borderRadius: '30px',
+                fontSize: '15px',
+                fontWeight: 700,
+                textDecoration: 'none',
+                boxShadow: '0 6px 20px rgba(28, 96, 97, 0.25)',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <span>Jelajahi Semua Destinasi & Panduan Lengkap</span>
+              <i className="fa fa-arrow-right" style={{ fontSize: '13px' }}></i>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 6. DESTINASI PILIHAN LOMBOK (Visual Grid) */}
-      <section className="destinations-section" id="destinasi">
-        <div className="box1140">
-          <div className="section-header">
-            <span className="section-tag">{t.destinations.tag}</span>
-            <h2 className="section-title">{t.destinations.title}</h2>
-            <p className="section-subtitle">{t.destinations.subtitle}</p>
+      {/* =================================================================
+          3. TOUR PACKAGES ("Explore Our Journeys")
+          ================================================================= */}
+      <section id="packages" style={{ padding: '88px 0', backgroundColor: '#f3f7f4' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          {/* Section Header */}
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 44px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                backgroundColor: 'var(--primary-soft)',
+                color: 'var(--primary)',
+                padding: '6px 16px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                marginBottom: '12px'
+              }}
+            >
+              Curated Itineraries
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 700,
+                color: 'var(--dark)',
+                marginBottom: '14px',
+                lineHeight: 1.2
+              }}
+            >
+              Explore Our Journeys
+            </h2>
+            <p style={{ fontSize: '15.5px', color: 'var(--muted)', lineHeight: 1.6 }}>
+              {isEn
+                ? 'Carefully crafted travel packages designed for comfort, authentic culture, and breathtaking natural wonders.'
+                : 'Pilihan paket perjalanan kurasi terbaik Travelogy untuk liburan santai, petualangan alam, hingga momen berharga bersama orang tercinta.'}
+            </p>
+            <div
+              style={{
+                marginTop: '10px',
+                fontSize: '12px',
+                color: 'var(--primary-dark)',
+                fontWeight: 600
+              }}
+            >
+              &bull; Format Proposal / Preview Data Paket Wisata PT. Travelogy Tour Organizer &bull;
+            </div>
           </div>
 
-          <div className="destinations-grid">
-            <div className="destination-card">
-              <img src="/images/hero_tetebatu.png" alt="Tetebatu" />
-              <div className="destination-overlay">
-                <h3>Tetebatu</h3>
-                <p>{language === 'en' ? 'Lush rice terraces & cool mountain breeze at Rinjani foot' : 'Terasering sawah asri & udara sejuk kaki Rinjani'}</p>
-              </div>
-            </div>
+          {/* Interactive Package Cards with Category Filter */}
+          <PackageList packages={packages} />
 
-            <div className="destination-card">
-              <img src="/images/sembalun_bukit_selong.jpg" alt="Sembalun" />
-              <div className="destination-overlay">
-                <h3>Sembalun</h3>
-                <p>{language === 'en' ? 'Spectacular volcanic valley & highland strawberry farms' : 'Lembah spektakuler & perkebunan stroberi'}</p>
-              </div>
-            </div>
-
-            <div className="destination-card">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr6U-cNCJReQAZiOIE9vEdk8RuA0b1ETWGkY9n0Dl4Y1S3aIvXg3BU-q6qa9DkD0AInIqEeQDraSgIyWfIndC_mmvKgO53RDefYqG8hrmIBgDxOpDYauPw7ljyl56Lk_SkJdVttpxGLZBTM35qlNCtc4MpNHuJfqpXiP5n8-lZQUezllR6qzmTf5Hrxp-akG7lvK6kXQ4Vh5mgvF4aQeI6zWqBHXNNnYaZKzifeQ0w0T3hFJ-dqG6g" alt="Kuta Mandalika" />
-              <div className="destination-overlay">
-                <h3>Kuta Mandalika</h3>
-                <p>{language === 'en' ? 'Exotic beaches & international MotoGP racing circuit' : 'Pantai eksotis & sirkuit bertaraf internasional'}</p>
-              </div>
-            </div>
-
-            <div className="destination-card">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTbrGKinn1UKKBKH5wRoFYMO3R8yEVpHdEpf7bBfdTu1nUYYcTDECjmX12CZ_8eXyhRDJTK7jeZ11Fvs6hUY1rjly963y0tNadfutl_Ulv4cBK0mf3-gJkIaQHKav7mfW4VHPl3xOi-xjEhR7cHtaRfd_D0wC1wQrmXHMkRG-_hjmSGsYlAEv3v4wd3m9y_i2mQmxWZ_N_7_lHESWsTLMh79ooo4HaVGxc33YlnLlZDIyoI0Ajhya_" alt="Pink Beach" />
-              <div className="destination-overlay">
-                <h3>Pink Beach</h3>
-                <p>{language === 'en' ? 'Rare pink coral sand & crystal clear bay in East Lombok' : 'Keunikan pasir merah muda di Lombok Timur'}</p>
-              </div>
-            </div>
-
-            <div className="destination-card">
-              <img src="/images/gili_snorkeling.jpg" alt="Gili Trawangan" />
-              <div className="destination-overlay">
-                <h3>Gili Trawangan</h3>
-                <p>{language === 'en' ? 'Turquoise water, wild sea turtles & serene car-free sunsets' : 'Air jernih, penyu laut & sunset tanpa polusi'}</p>
-              </div>
-            </div>
-
-            <div className="destination-card">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXFiA-A1V3lxkRRq1TLYKAH--twJKYdv7yCAGetDcM84zUeDJarsMPI2qvt39BjQE76dYaIIf-EMmuak1VoQdhMdLyQq5w9OqNpwGFLKCnFYWuqvgrpupnt3StPM1Jk9N-5fRlRdaSnboo6KiuDoRoF_9tTyAN9r0-HUfh8_G2KUrUauRC90tK01QtnyKOHEHKmS2BrJzKu6PFV8ocCjXiYvb2xC21czJCcPdmhzzhbCkz5W-06V0o" alt="Gili Nanggu" />
-              <div className="destination-overlay">
-                <h3>Gili Nanggu</h3>
-                <p>{language === 'en' ? 'Peaceful natural marine aquarium with colorful reef fish' : 'Snorkeling aquarium alami yang tenang di selatan'}</p>
-              </div>
-            </div>
-
-            <div className="destination-card">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrdhTpDoO05VhKgf5uHhx2JjbLtWULHXfgSyWL9rMRw-hFYF76-JmxErOFqEpEwl1ZZAMgZMe_Ozyn6mGabgWSEZqiHbfqQEqx5_Q3VZyTyIRgujTXtGIKn1C-asysxMLe59NN3Fm8pb4GdjSaHBM2Z8aPg2PttvZ8uaJimjRXRJV69j9T05sb_H4Z61ndjaOTHFg9eNg3zA2ZVg0SvLAPwRle3pep5MdanbQtu8ZHod5AuYWCfpm3" alt="Senaru Waterfalls" />
-              <div className="destination-overlay">
-                <h3>Senaru & Rinjani Gate</h3>
-                <p>{language === 'en' ? 'Sendang Gile & Tiu Kelep twin jungle waterfalls' : 'Air terjun magis Sendang Gile & Tiu Kelep'}</p>
-              </div>
-            </div>
-
-            <div className="destination-card">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBrPkUh5toEjBLPEVl-9WAF3WSi2xhWxzA0oFfnqnkG1SeJfgVj5uCS6mBef2FT9BYn_H57hM8k3VOZVB5wnenbI3970YR6MMgBB0BTzDf7bsqlmzljmnsOBteQZ1a0RIM76c9cOGnJnCYWzGQpbmsUDH2E80qFM0jcN0HC_fHQ6AKxB_XmCnJGheW0a8ZB0cg6FYBqvvzYmDyOkM0icuwdT_4YQJa85GhT6DIDmyUM26u01qlumJ1" alt="East Lombok" />
-              <div className="destination-overlay">
-                <h3>East Lombok Heritage</h3>
-                <p>{language === 'en' ? 'Gili Kondo, ancient giant trees & traditional coastal life' : 'Gili Kondo, Pohon Purba & kehidupan bahari lokal'}</p>
-              </div>
-            </div>
+          {/* Multi-Page Full Catalog Link */}
+          <div style={{ textAlign: 'center', marginTop: '40px' }}>
+            <Link
+              href="/paket"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                backgroundColor: 'var(--primary)',
+                color: '#ffffff',
+                padding: '14px 32px',
+                borderRadius: '30px',
+                fontSize: '15px',
+                fontWeight: 700,
+                textDecoration: 'none',
+                boxShadow: '0 6px 20px rgba(28, 96, 97, 0.25)',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <span>Buka Halaman Katalog Paket Wisata Lengkap</span>
+              <i className="fa fa-arrow-right" style={{ fontSize: '13px' }}></i>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 7. CUSTOM TRIP (Punya Rencana Perjalanan Sendiri?) */}
-      <section className="custom-trip-section" id="custom-trip">
-        <div className="box1140">
-          <div className="custom-trip-container">
-            <div className="custom-trip-info">
-              <span className="section-tag">{t.customTrip.tag}</span>
-              <h2 className="font-editorial">{t.customTrip.title}</h2>
-              <p>{t.customTrip.subtitle}</p>
+      {/* =================================================================
+          4. CUSTOM TRIP SECTION ("Your Trip, Your Way")
+          ================================================================= */}
+      <section id="custom-trip" style={{ padding: '96px 0', backgroundColor: '#ffffff' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '48px',
+              alignItems: 'center'
+            }}
+          >
+            {/* Left Narrative Column */}
+            <div>
+              <span
+                style={{
+                  display: 'inline-block',
+                  backgroundColor: 'var(--primary-soft)',
+                  color: 'var(--primary)',
+                  padding: '6px 16px',
+                  borderRadius: '20px',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  marginBottom: '14px'
+                }}
+              >
+                Tailor-Made Journey
+              </span>
+              <h2
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: 'clamp(30px, 4.2vw, 46px)',
+                  fontWeight: 700,
+                  color: 'var(--dark)',
+                  lineHeight: 1.2,
+                  marginBottom: '20px'
+                }}
+              >
+                Your Trip, Your Way
+              </h2>
+              <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'var(--dark-soft)', marginBottom: '24px' }}>
+                {isEn
+                  ? 'Have a destination in mind but need a trip designed around you? Tell us what you need and let our team build the journey.'
+                  : 'Have a destination in mind but need a trip designed around you? Tell us what you need and let our team build the journey.'}
+              </p>
 
-              <div className="custom-features-list">
-                <div className="custom-feature-item">
-                  <i className="fa fa-calendar-check-o"></i>{' '}
-                  {language === 'en' ? 'Flexible travel dates & customized durations' : 'Fleksibel menentukan tanggal & durasi trip'}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--primary-soft)',
+                      color: 'var(--primary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 700,
+                      flexShrink: 0
+                    }}
+                  >
+                    1
+                  </div>
+                  <div>
+                    <strong style={{ display: 'block', fontSize: '15px', color: 'var(--dark)' }}>
+                      Tentukan Preferensi Anda
+                    </strong>
+                    <span style={{ fontSize: '13.5px', color: 'var(--muted)' }}>
+                      Pilih destinasi, tanggal, jumlah peserta, serta kebutuhan armada dan hotel yang diinginkan.
+                    </span>
+                  </div>
                 </div>
-                <div className="custom-feature-item">
-                  <i className="fa fa-car"></i>{' '}
-                  {language === 'en' ? 'Pick-up anywhere (Airport, Harbor, Hotel)' : 'Penjemputan di mana saja (Bandara, Pelabuhan, Hotel)'}
+
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--primary-soft)',
+                      color: 'var(--primary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 700,
+                      flexShrink: 0
+                    }}
+                  >
+                    2
+                  </div>
+                  <div>
+                    <strong style={{ display: 'block', fontSize: '15px', color: 'var(--dark)' }}>
+                      Konsultasi Bersama Tim Travelogy
+                    </strong>
+                    <span style={{ fontSize: '13.5px', color: 'var(--muted)' }}>
+                      Formulir langsung terhubung ke WhatsApp resmi untuk menyusun rute terbaik tanpa buang waktu.
+                    </span>
+                  </div>
                 </div>
-                <div className="custom-feature-item">
-                  <i className="fa fa-map-marker"></i>{' '}
-                  {language === 'en' ? 'Freely mix & match destinations of your interest' : 'Kombinasi destinasi bebas sesuai minat Anda'}
-                </div>
-                <div className="custom-feature-item">
-                  <i className="fa fa-users"></i>{' '}
-                  {language === 'en' ? 'Perfect for solo travelers, couples, families & corporate groups' : 'Cocok untuk solo traveler, pasangan, keluarga & grup kantor'}
+
+                <div style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      backgroundColor: 'var(--primary-soft)',
+                      color: 'var(--primary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 700,
+                      flexShrink: 0
+                    }}
+                  >
+                    3
+                  </div>
+                  <div>
+                    <strong style={{ display: 'block', fontSize: '15px', color: 'var(--dark)' }}>
+                      Nikmati Liburan Nyaman & Berkesan
+                    </strong>
+                    <span style={{ fontSize: '13.5px', color: 'var(--muted)' }}>
+                      Tim Travelogy siap mendampingi dari penjemputan hingga kepulangan Anda dengan penuh senyum.
+                    </span>
+                  </div>
                 </div>
               </div>
 
-              <div style={{ background: 'rgba(24, 90, 56, 0.08)', padding: '14px 18px', borderRadius: '8px', borderLeft: '3px solid var(--primary)' }}>
-                <strong style={{ color: 'var(--primary)', fontSize: '13.5px', display: 'block', marginBottom: '2px' }}>
-                  {language === 'en' ? 'Free Instant WhatsApp Consultation' : 'Konsultasi Gratis Langsung via WhatsApp'}
-                </strong>
-                <span style={{ fontSize: '12.5px', color: 'var(--dark-soft)' }}>
-                  {language === 'en'
-                    ? 'Our local team responds promptly with clear schedules and transparent pricing.'
-                    : 'Tim lokal kami akan merespons dengan rincian jadwal dan estimasi biaya transparan.'}
+              {/* Quick WhatsApp Consultation CTA */}
+              <div style={{ padding: '16px 20px', backgroundColor: '#f3f7f4', borderRadius: '12px', border: '1px solid var(--border)' }}>
+                <span style={{ fontSize: '13px', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
+                  Ingin bertanya langsung tanpa mengisi form?
                 </span>
+                <a
+                  href="https://wa.me/6281333992989?text=Halo%20Travelogy,%20saya%20ingin%20konsultasi%20mengenai%20custom%20trip."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: 'var(--primary)',
+                    fontWeight: 700,
+                    fontSize: '14px',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  <i className="fa fa-whatsapp" style={{ fontSize: '16px' }}></i>
+                  <span>Chat Langsung: +62 813-3399-2989 &rsaquo;</span>
+                </a>
               </div>
             </div>
 
-            <CustomTripForm />
+            {/* Right Form Column */}
+            <div>
+              <CustomTripForm />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 8. TRANSPORTASI LOMBOK (Redesigned: High-Converting Featured Fleet & 4 Value Pillars) */}
-      <section className="transport-section" id="transport">
-        <div className="box1140">
-          <div className="section-header">
-            <span className="section-tag">{t.transport.tag}</span>
-            <h2 className="section-title">{t.transport.title}</h2>
-            <p className="section-subtitle">
-              {language === 'en'
-                ? 'Spotless vehicles inclusive of friendly local Sasak driver + fuel for your ultimate holiday comfort across Lombok.'
-                : 'Pilihan armada bersih dan terawat dengan layanan All-Inclusive (Mobil + Supir Lokal Ramah + BBM) siap mengantar liburan Anda keliling Lombok.'}
+      {/* =================================================================
+          5. TRANSPORT SECTION ("Travel With Comfort")
+          ================================================================= */}
+      <section id="transport" style={{ padding: '88px 0', backgroundColor: '#f3f7f4' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          {/* Header */}
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 52px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                backgroundColor: 'var(--primary-soft)',
+                color: 'var(--primary)',
+                padding: '6px 16px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                marginBottom: '12px'
+              }}
+            >
+              Reliable Fleets & Drivers
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 700,
+                color: 'var(--dark)',
+                marginBottom: '14px',
+                lineHeight: 1.2
+              }}
+            >
+              Travel With Comfort
+            </h2>
+            <p style={{ fontSize: '15.5px', color: 'var(--muted)', lineHeight: 1.6 }}>
+              {isEn
+                ? 'Travelogy provides seamless private, group, and transfer transport services with well-maintained vehicles and courteous drivers.'
+                : 'Layanan transportasi perjalanan terpercaya dari Jember dengan armada prima, supir profesional, dan kenyamanan maksimal untuk setiap kebutuhan.'}
             </p>
           </div>
 
-          {/* 3 Featured Best-Seller Fleets */}
-          <div className="home-fleet-grid">
-            {featuredFleets.map((car) => (
-              <div key={car.id} className="home-fleet-card">
-                <div className="home-fleet-img-box">
-                  <img src={car.image} alt={car.name} loading="lazy" />
-                  <span className="home-fleet-badge-top">{language === 'en' ? 'All-In Driver & Fuel' : 'All-In Driver & BBM'}</span>
-                  <span className={car.badgeClass}>{car.badge}</span>
+          {/* 4 Transport Services Cards */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '24px',
+              marginBottom: '40px'
+            }}
+          >
+            {transportServices.map((srv) => (
+              <div
+                key={srv.id}
+                style={{
+                  backgroundColor: '#ffffff',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  border: '1px solid var(--border)',
+                  boxShadow: '0 6px 20px rgba(27, 67, 50, 0.05)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <div style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
+                  <img src={srv.image} alt={srv.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '12px',
+                      left: '12px',
+                      backgroundColor: 'rgba(15, 40, 30, 0.85)',
+                      color: '#ffffff',
+                      padding: '4px 10px',
+                      borderRadius: '16px',
+                      fontSize: '11px',
+                      fontWeight: 700
+                    }}
+                  >
+                    {srv.tag}
+                  </span>
                 </div>
 
-                <div className="home-fleet-body">
-                  <h3 className="home-fleet-title">{car.name}</h3>
-                  <span className="home-fleet-cat">{car.category}</span>
+                <div style={{ padding: '22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <h3
+                    style={{
+                      fontFamily: "'Playfair Display', serif",
+                      fontSize: '19px',
+                      fontWeight: 700,
+                      color: 'var(--dark)',
+                      marginBottom: '8px'
+                    }}
+                  >
+                    {srv.title}
+                  </h3>
+                  <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.55, marginBottom: '16px', flex: 1 }}>
+                    {srv.desc}
+                  </p>
 
-                  <div className="home-fleet-specs">
-                    <span className="home-fleet-spec-pill">
-                      <i className="fa fa-users"></i> {car.capacity}
-                    </span>
-                    <span className="home-fleet-spec-pill">
-                      <i className="fa fa-cog"></i> {car.transmission}
-                    </span>
-                    <span className="home-fleet-spec-pill">
-                      <i className="fa fa-snowflake-o"></i> {car.ac}
-                    </span>
-                  </div>
-
-                  <ul className="home-fleet-features">
-                    {car.features.map((feat, idx) => (
-                      <li key={idx}>
-                        <i className="fa fa-check-circle"></i>
-                        <span>{feat}</span>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '12.5px', color: 'var(--dark-soft)', marginBottom: '18px' }}>
+                    {srv.features.map((f, i) => (
+                      <li key={i} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <i className="fa fa-check" style={{ color: 'var(--primary)', fontSize: '12px' }}></i>
+                        <span>{f}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="home-fleet-price-row">
-                    <span className="home-fleet-price-label">{language === 'en' ? 'Rental Rate:' : 'Tarif Sewa:'}</span>
-                    <span className="home-fleet-price-val">{convertPriceString(car.price)}</span>
-                  </div>
-
-                  <div className="home-fleet-actions">
-                    <button
-                      type="button"
-                      className="home-fleet-btn-book"
-                      onClick={() => handleOpenVehicleBooking(`Sewa ${car.name}`, `sewa-${car.id}`)}
-                    >
-                      <i className="fa fa-calendar-check-o"></i>
-                      <span>{language === 'en' ? 'Book Now' : 'Booking'}</span>
-                    </button>
-                    <a
-                      href={`https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20tertarik%20sewa%20mobil%20${encodeURIComponent(car.name)}%20(${encodeURIComponent(car.price)}).%20Mohon%20info%20ketersediaan.`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="home-fleet-btn-wa"
-                    >
-                      <i className="fa fa-whatsapp"></i>
-                      <span>Chat WA</span>
-                    </a>
-                  </div>
+                  <a
+                    href="https://wa.me/6281333992989?text=Halo%20Travelogy,%20saya%20ingin%20menanyakan%20layanan%20transportasi."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      textAlign: 'center',
+                      backgroundColor: 'var(--primary-soft)',
+                      color: 'var(--primary)',
+                      padding: '10px 16px',
+                      borderRadius: '24px',
+                      fontSize: '13px',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                      border: '1px solid var(--border)'
+                    }}
+                  >
+                    <i className="fa fa-whatsapp" style={{ marginRight: '6px' }}></i>
+                    Ask About Transport
+                  </a>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* 4 Balanced Service Guarantees */}
-          <div className="transport-pillars-grid">
-            {servicePillars.map((pillar, i) => (
-              <div key={i} className="transport-pillar-card">
-                <div className="transport-pillar-icon">
-                  <i className={`fa ${pillar.icon}`}></i>
-                </div>
-                <h4>{pillar.title}</h4>
-                <p>{pillar.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Dual Action Buttons */}
-          <div className="transport-action-bar">
-            <Link href="/transport" className="btn-transport-all">
-              <i className="fa fa-car"></i>
-              <span>{language === 'en' ? 'View All 6 Fleets & Full Pricelist' : 'Lihat Semua 6 Armada & Daftar Tarif Lengkap'}</span>
-              <i className="fa fa-arrow-right" style={{ fontSize: '12px' }}></i>
-            </Link>
-            <a
-              href="https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20ingin%20konsultasi%20rute%20dan%20sewa%20mobil%20di%20Lombok."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-transport-wa-all"
-            >
-              <i className="fa fa-whatsapp" style={{ color: '#25d366', fontSize: '16px' }}></i>
-              <span>{language === 'en' ? 'Custom Route Consultation (Free)' : 'Konsultasi Rute Sewa (Gratis via WA)'}</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. CUSTOMER / GALLERY (Moments From Lombok) */}
-      <section className="gallery-section" id="gallery">
-        <div className="box1140">
-          <div className="section-header">
-            <span className="section-tag">{t.gallery.tag}</span>
-            <h2 className="section-title">{t.gallery.title}</h2>
-            <p className="section-subtitle">{t.gallery.subtitle}</p>
-          </div>
-
-          <div className="gallery-grid">
-            <div className="gallery-item span-2">
-              <img src="/images/hero_tetebatu.png" alt="Traveler di Tetebatu" />
-              <div className="gallery-caption">
-                {language === 'en' ? 'Morning Walk in Tetebatu Rice Terraces' : 'Trekking Pagi di Terasering Tetebatu'}
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <img src="/images/gili_snorkeling.jpg" alt="Snorkeling Gili Trawangan" />
-              <div className="gallery-caption">
-                {language === 'en' ? 'Sea Turtle Snorkeling at Gili Meno' : 'Snorkeling Penyu di Gili Meno'}
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrdhTpDoO05VhKgf5uHhx2JjbLtWULHXfgSyWL9rMRw-hFYF76-JmxErOFqEpEwl1ZZAMgZMe_Ozyn6mGabgWSEZqiHbfqQEqx5_Q3VZyTyIRgujTXtGIKn1C-asysxMLe59NN3Fm8pb4GdjSaHBM2Z8aPg2PttvZ8uaJimjRXRJV69j9T05sb_H4Z61ndjaOTHFg9eNg3zA2ZVg0SvLAPwRle3pep5MdanbQtu8ZHod5AuYWCfpm3" alt="Air Terjun Lombok" />
-              <div className="gallery-caption">
-                {language === 'en' ? 'Refreshing Waterfalls at Rinjani Foot' : 'Segarnya Air Terjun Kaki Rinjani'}
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <img src="/images/sembalun_bukit_selong.jpg" alt="Panorama Sembalun" />
-              <div className="gallery-caption">
-                {language === 'en' ? 'Panoramic Splendor of Bukit Selong Sembalun' : 'Keindahan Bukit Selong Sembalun'}
-              </div>
-            </div>
-
-            <div className="gallery-item">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD20oVTklMxySleHhwOdOVE5unl6u6NT6UVKKyMH1RY6ztOgmAvSWbgozoljKK4sbHXeQLGH2DSZJlFBrJLMaovcbubo8WazM5JZgAgm6mXcCfXqOmHnqwl_3lmrfONEAzPlDU_DQA8nxUUzjOfEy_2jlY9KpIEsPB1VFvSR1ArSJXR7YnRTtyAh9J8og4Hnk2Gwx-D4i4FvaMmIa1bBPDVDdq36xzTwPAoSPoQIjb2H2o2qcXB8x5P" alt="Tenun Sukarara" />
-              <div className="gallery-caption">
-                {language === 'en' ? 'Traditional Sasak Handweaving in Sukarara' : 'Belajar Menenun di Desa Sukarara'}
-              </div>
-            </div>
-
-            <div className="gallery-item span-2">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr6U-cNCJReQAZiOIE9vEdk8RuA0b1ETWGkY9n0Dl4Y1S3aIvXg3BU-q6qa9DkD0AInIqEeQDraSgIyWfIndC_mmvKgO53RDefYqG8hrmIBgDxOpDYauPw7ljyl56Lk_SkJdVttpxGLZBTM35qlNCtc4MpNHuJfqpXiP5n8-lZQUezllR6qzmTf5Hrxp-akG7lvK6kXQ4Vh5mgvF4aQeI6zWqBHXNNnYaZKzifeQ0w0T3hFJ-dqG6g" alt="Sunset Bukit Merese" />
-              <div className="gallery-caption">
-                {language === 'en' ? 'Golden Hour over Bukit Merese Mandalika' : 'Golden Hour di Bukit Merese Mandalika'}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. TESTIMONIAL (Testimonial dari Tamu Kami) */}
-      <section className="testimonial-section" id="testimonial">
-        <div className="box1140">
-          <div className="section-header">
-            <span className="section-tag">{t.testimonials.tag}</span>
-            <h2 className="section-title">{t.testimonials.title}</h2>
-            <p className="section-subtitle">{t.testimonials.subtitle}</p>
-          </div>
-
-          <div className="testimonial-grid">
-            <div className="testimonial-card">
-              <div>
-                <div className="testi-stars">
-                  <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i>
-                </div>
-                <p className="testi-text">
-                  {language === 'en'
-                    ? '"Our 3D2N private trip with Lombok_Travelers was truly unforgettable! The local guide was a native of Tetebatu, super friendly, knew all the best photo spots, and our children were very comfortable throughout the journey."'
-                    : '"Private trip 3H2M bersama Lombok_Travelers sangat berkesan! Guide lokalnya asli Tetebatu, sangat ramah, paham spot foto terbaik, dan anak-anak kami sangat nyaman selama di jalan."'}
-                </p>
-              </div>
-              <div className="testi-author">
-                <div className="author-avatar">R</div>
-                <div className="author-info">
-                  <h4>Rian & Keluarga</h4>
-                  <span>{language === 'en' ? 'Family Trip Jakarta • 3D2N Package' : 'Family Trip Jakarta • Paket 3H2M'}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="testimonial-card">
-              <div>
-                <div className="testi-stars">
-                  <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i>
-                </div>
-                <p className="testi-text">
-                  {language === 'en'
-                    ? '"Trekking through Tetebatu rice terraces and snorkeling in Gili Trawangan were the highlights of our honeymoon. The service was heartfelt, the vehicle clean and punctual. Highly recommended!"'
-                    : '"Trekking sawah di Tetebatu dan snorkeling di Gili Trawangan jadi highlight liburan honeymoon kami. Pelayanannya sangat personal, mobil bersih, dan tepat waktu. Recommended banget!"'}
-                </p>
-              </div>
-              <div className="testi-author">
-                <div className="author-avatar">N</div>
-                <div className="author-info">
-                  <h4>Nadia & Fikri</h4>
-                  <span>{language === 'en' ? 'Honeymoon Surabaya • Private Trip' : 'Honeymoon Surabaya • Paket Private Trip'}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="testimonial-card">
-              <div>
-                <div className="testi-stars">
-                  <i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i><i className="fa fa-star"></i>
-                </div>
-                <p className="testi-text">
-                  {language === 'en'
-                    ? '"My first visit to Lombok and so glad I booked with this local team. From airport arrival to Taliwang culinary suggestions, everything was top-notch with zero hidden costs."'
-                    : '"Pertama kali ke Lombok dan senang sekali pilih travel lokal ini. Mulai dari penjemputan bandara sampai rekomendasi kuliner Ayam Taliwang semuanya memuaskan tanpa biaya tersembunyi."'}
-                </p>
-              </div>
-              <div className="testi-author">
-                <div className="author-avatar">B</div>
-                <div className="author-info">
-                  <h4>Bramantyo</h4>
-                  <span>{language === 'en' ? 'Solo Traveler Bandung • Daily Trip Tetebatu & Sembalun' : 'Solo Traveler Bandung • Trip Harian Tetebatu & Sembalun'}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 11. ABOUT LOMBOK_TRAVELERS */}
-      <section className="about-section" id="tentang-kami">
-        <div className="box1140">
-          <div className="about-container">
-            <div className="about-images-cluster">
-              <div className="about-img-main">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv_jQ5aaka3AU2xEIgxtfafMHJ2DhEc9_FbDCOi0270rETaVq2b-35tGEe55qB8Yb8LbNlszLF9E0NZAQJLszzZNojbG019AuwYTtW8NLOCw5Vz2X35ckmlqAO7b9J1fF1EsOU4vLtUJljMYcg_OsHwFjcWqp7ENwfXpWGls-Wof84WH9iY9Adqq84wYGKzFX1tQHJBVxsXXlSLAd1Wkk6bh10q-3ShsBIy6YFf4Zh4nA0vKeeAfxH"
-                  alt="Guide Lombok_Travelers"
-                />
-              </div>
-              <div className="about-badge-floating">
-                <i className="fa fa-map-marker"></i>
-                <div className="about-badge-text">
-                  <strong>Tetebatu, Lombok Timur</strong>
-                  <span>{language === 'en' ? 'Cultural Heart & Rinjani Foothills' : 'Pusat Budaya & Lembah Rinjani'}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="about-content">
-              <span className="section-tag">{language === 'en' ? 'About Us' : 'Tentang Kami'}</span>
-              <h2 className="font-editorial">{language === 'en' ? 'About Lombok_Travelers' : 'Tentang Lombok_Travelers'}</h2>
-              <p>
-                {language === 'en'
-                  ? 'Lombok_Travelers is an official local travel partner headquartered in Tetebatu, East Lombok, assisting travelers from around the world through tailored tour packages, private trips, car rentals, and custom itineraries.'
-                  : 'Lombok_Travelers merupakan biro perjalanan wisata lokal berpusat di Tetebatu, Lombok Timur, yang membantu wisatawan menjelajahi Lombok melalui paket wisata, private trip, transportasi, dan perjalanan yang dapat disesuaikan.'}
+          {/* Transport CTA Banner */}
+          <div
+            style={{
+              backgroundColor: 'var(--primary)',
+              borderRadius: '20px',
+              padding: '32px 36px',
+              color: '#ffffff',
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '20px',
+              boxShadow: '0 12px 30px rgba(27, 67, 50, 0.2)'
+            }}
+          >
+            <div style={{ maxWidth: '640px' }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, marginBottom: '8px' }}>
+                Butuh Sewa Mobil atau Antar-Jemput di Jember & Sekitarnya?
+              </h3>
+              <p style={{ fontSize: '14px', color: '#d3e4d9', lineHeight: 1.5 }}>
+                Konsultasikan armada yang tepat sesuai jumlah peserta dan kebutuhan rute Anda langsung bersama tim Travelogy.
               </p>
-              <p>
-                {language === 'en'
-                  ? 'To us, Lombok is more than a holiday destination—it is our ancestral home rich in natural wonders, sacred Rinjani vistas, and hospitable Sasak heritage. We are dedicated to providing warm, honest, and unforgettable travel memories for every guest.'
-                  : 'Bagi kami, Lombok bukan sekadar destinasi liburan, melainkan tanah kelahiran yang kaya akan pesona alam, kesakralan Gunung Rinjani, dan tradisi suku Sasak yang ramah. Kami berkomitmen memberikan pengalaman liburan yang hangat, jujur, dan berkesan bagi setiap tamu.'}
-              </p>
-
-              <div className="about-stats">
-                <div className="stat-item">
-                  <span className="stat-num">100%</span>
-                  <span className="stat-label">{language === 'en' ? 'Native Local Team' : 'Tim Lokal Asli'}</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-num">20+</span>
-                  <span className="stat-label">{language === 'en' ? 'Handpicked Spots' : 'Destinasi Pilihan'}</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-num">5.0</span>
-                  <span className="stat-label">{language === 'en' ? 'Guest Satisfaction' : 'Kepuasan Tamu'}</span>
-                </div>
-              </div>
-
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center' }}>
+              <Link
+                href="/transport"
+                style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  color: '#ffffff',
+                  border: '1px solid rgba(255, 255, 255, 0.35)',
+                  padding: '14px 26px',
+                  borderRadius: '30px',
+                  fontSize: '14.5px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  backdropFilter: 'blur(4px)'
+                }}
+              >
+                <span>Lihat Info Transport Lengkap</span>
+                <i className="fa fa-arrow-right" style={{ fontSize: '13px' }}></i>
+              </Link>
               <a
-                href="https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20ingin%20tahu%20lebih%20banyak%20tentang%20paket%20wisata%20Lombok."
+                href="https://wa.me/6281333992989?text=Halo%20Travelogy,%20saya%20ingin%20menanyakan%20layanan%20transportasi."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary"
+                style={{
+                  backgroundColor: '#ffffff',
+                  color: 'var(--primary-dark)',
+                  padding: '14px 28px',
+                  borderRadius: '30px',
+                  fontSize: '14.5px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
+                }}
               >
-                <i className="fa fa-handshake-o"></i>{' '}
-                {language === 'en' ? 'Connect With Us & Inquire' : 'Kenal Lebih Dekat & Konsultasi Trip'}
+                <i className="fa fa-whatsapp" style={{ fontSize: '18px', color: '#25d366' }}></i>
+                <span>Hubungi Admin</span>
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ SECTION (AEO & GEO Ready) */}
-      <FaqSection />
-
-      {/* AI TRAVEL CONCIERGE */}
-      <ConciergeTrigger />
-
-      {/* 12. FINAL CTA */}
-      <section className="final-cta-section" style={{ backgroundImage: "url('/images/rinjani_hero.jpg')" }}>
-        <div className="final-cta-overlay"></div>
-        <div className="final-cta-content">
-          <h2 className="font-editorial">
-            {language === 'en' ? 'Ready to Explore Lombok?' : 'Siap Menjelajahi Lombok?'}
-          </h2>
-          <p>
-            {language === 'en'
-              ? 'Tell us your travel vision, and we will craft a seamless, stress-free holiday.'
-              : 'Ceritakan rencana perjalanan Anda, kami bantu menyiapkannya dengan nyaman dan tanpa repot.'}
-          </p>
-          <div className="hero-buttons" style={{ display: 'flex', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <Link href="/paket/paket-lombok-3-hari-2-malam" className="btn-primary">
-              <i className="fa fa-calendar-check-o"></i> {language === 'en' ? 'Book Package' : 'Pesan Sekarang'}
-            </Link>
-            <a
-              href="https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20siap%20merencanakan%20liburan%20ke%20Lombok."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
+      {/* =================================================================
+          6. HOTEL & EVENT SECTION ("More Than Just A Trip")
+          ================================================================= */}
+      <section style={{ padding: '88px 0', backgroundColor: '#ffffff' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          {/* Header */}
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 52px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                backgroundColor: 'var(--primary-soft)',
+                color: 'var(--primary)',
+                padding: '6px 16px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                marginBottom: '12px'
+              }}
             >
-              <i className="fa fa-whatsapp" style={{ color: '#25d366', fontSize: '18px' }}></i>{' '}
-              {language === 'en' ? 'Chat WhatsApp' : 'Chat WhatsApp'}
-            </a>
+              Integrated Services
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 700,
+                color: 'var(--dark)',
+                marginBottom: '14px',
+                lineHeight: 1.2
+              }}
+            >
+              More Than Just A Trip
+            </h2>
+            <p style={{ fontSize: '15.5px', color: 'var(--muted)', lineHeight: 1.6 }}>
+              {isEn
+                ? 'PT. Travelogy Tour Organizer provides end-to-end travel, accommodation, and event planning solutions in one seamless gateway.'
+                : 'PT. Travelogy Tour Organizer menghadirkan solusi terpadu untuk perjalanan, akomodasi penginapan rekanan, hingga manajemen event profesional.'}
+            </p>
+          </div>
+
+          {/* 3 Service Cards */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '30px'
+            }}
+          >
+            {additionalServices.map((srv, idx) => (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: '#ffffff',
+                  borderRadius: '18px',
+                  padding: '36px 30px',
+                  border: '1px solid var(--border)',
+                  boxShadow: '0 8px 24px rgba(27, 67, 50, 0.05)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'transform 0.25s ease'
+                }}
+              >
+                <div
+                  style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '14px',
+                    backgroundColor: 'var(--primary-soft)',
+                    color: 'var(--primary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '24px',
+                    marginBottom: '20px'
+                  }}
+                >
+                  <i className={`fa ${srv.icon}`}></i>
+                </div>
+
+                <h3
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: '22px',
+                    fontWeight: 700,
+                    color: 'var(--dark)',
+                    marginBottom: '6px'
+                  }}
+                >
+                  {srv.title}
+                </h3>
+
+                <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--secondary)', marginBottom: '14px' }}>
+                  {srv.tagline}
+                </div>
+
+                <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '24px', flex: 1 }}>
+                  {srv.desc}
+                </p>
+
+                <a
+                  href={`https://wa.me/6281333992989?text=Halo%20Travelogy,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20${encodeURIComponent(srv.title)}.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    textAlign: 'center',
+                    backgroundColor: '#f3f7f4',
+                    color: 'var(--primary)',
+                    padding: '12px 20px',
+                    borderRadius: '24px',
+                    fontSize: '13.5px',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    border: '1px solid var(--border)'
+                  }}
+                >
+                  <i className="fa fa-whatsapp" style={{ marginRight: '6px' }}></i>
+                  Konsultasi Layanan
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-      {/* VEHICLE BOOKING MODAL */}
-      <BookingModal
-        isOpen={isVehicleBookingOpen}
-        onClose={() => setIsVehicleBookingOpen(false)}
-        packageTitle={selectedVehicle.title}
-        packageSlug={selectedVehicle.slug}
-      />
+
+      {/* =================================================================
+          7. WHY TRAVELOGY ("Why Travel With Travelogy?")
+          ================================================================= */}
+      <section style={{ padding: '88px 0', backgroundColor: '#f3f7f4' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          {/* Header */}
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 52px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                backgroundColor: 'var(--primary-soft)',
+                color: 'var(--primary)',
+                padding: '6px 16px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                marginBottom: '12px'
+              }}
+            >
+              Our Core Principles
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 700,
+                color: 'var(--dark)',
+                marginBottom: '14px',
+                lineHeight: 1.2
+              }}
+            >
+              Why Travel With Travelogy?
+            </h2>
+            <p style={{ fontSize: '15.5px', color: 'var(--muted)', lineHeight: 1.6 }}>
+              {isEn
+                ? 'We believe every travel experience should be enjoyable, transparent, and tailored around what matters to you.'
+                : 'Komitmen kami menghadirkan standar layanan perjalanan yang ramah, profesional, transparan, dan berkesan.'}
+            </p>
+          </div>
+
+          {/* 4 Value Proposition Cards */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '24px'
+            }}
+          >
+            {whyPoints.map((pt, idx) => (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: '#ffffff',
+                  borderRadius: '16px',
+                  padding: '30px 24px',
+                  border: '1px solid var(--border)',
+                  boxShadow: '0 6px 18px rgba(27, 67, 50, 0.04)'
+                }}
+              >
+                <div
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    backgroundColor: 'var(--primary-soft)',
+                    color: 'var(--primary)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '20px',
+                    marginBottom: '16px'
+                  }}
+                >
+                  <i className={`fa ${pt.icon}`}></i>
+                </div>
+
+                <h3
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: '18px',
+                    fontWeight: 700,
+                    color: 'var(--dark)',
+                    marginBottom: '10px'
+                  }}
+                >
+                  {pt.title}
+                </h3>
+
+                <p style={{ fontSize: '13.5px', color: 'var(--muted)', lineHeight: 1.6 }}>
+                  {pt.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================================
+          8. ABOUT TRAVELOGY SECTION
+          ================================================================= */}
+      <section id="about" style={{ padding: '96px 0', backgroundColor: '#ffffff' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '48px',
+              alignItems: 'center'
+            }}
+          >
+            {/* Visual Column */}
+            <div style={{ position: 'relative' }}>
+              <div
+                style={{
+                  borderRadius: '24px',
+                  overflow: 'hidden',
+                  boxShadow: '0 20px 48px rgba(27, 67, 50, 0.15)',
+                  border: '1px solid var(--border)'
+                }}
+              >
+                <img
+                  src="/images/dest_bali.jpg"
+                  alt="Travelogy Tour Organizer Experience"
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </div>
+
+              {/* Float Tag */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '-20px',
+                  left: '24px',
+                  backgroundColor: '#ffffff',
+                  padding: '16px 24px',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 30px rgba(0,0,0,0.12)',
+                  border: '1px solid var(--border)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px'
+                }}
+              >
+                <img
+                  src="/images/travelogy_logo.png"
+                  alt="Travelogy Tour Organizer"
+                  style={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '10px',
+                    objectFit: 'cover',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
+                  }}
+                />
+                <div>
+                  <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>
+                    Jember, Jawa Timur
+                  </strong>
+                  <span style={{ fontSize: '12px', color: 'var(--muted)' }}>
+                    Kantor Pusat Travelogy
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Column */}
+            <div>
+              <span
+                style={{
+                  display: 'inline-block',
+                  backgroundColor: 'var(--primary-soft)',
+                  color: 'var(--primary)',
+                  padding: '6px 16px',
+                  borderRadius: '20px',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  marginBottom: '14px'
+                }}
+              >
+                About Travelogy
+              </span>
+
+              <h2
+                style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: 'clamp(28px, 4vw, 42px)',
+                  fontWeight: 700,
+                  color: 'var(--dark)',
+                  lineHeight: 1.25,
+                  marginBottom: '20px'
+                }}
+              >
+                &ldquo;Bringing Happiness in Every Journey&rdquo;
+              </h2>
+
+              <p style={{ fontSize: '15.5px', lineHeight: 1.7, color: 'var(--dark-soft)', marginBottom: '16px' }}>
+                Travelogy Tour Organizer hadir untuk membantu customer menikmati perjalanan dengan lebih mudah, nyaman, dan terencana. Berbasis di Jember, Jawa Timur, kami mengerti bahwa liburan adalah momen berharga yang tak tergantikan.
+              </p>
+
+              <p style={{ fontSize: '15px', lineHeight: 1.7, color: 'var(--muted)', marginBottom: '28px' }}>
+                Melalui integrasi layanan Tour & Travel, armada Transportasi berstandar prima, reservasi Hotel rekanan, dan Event Planning, tim PT. Travelogy Tour Organizer berkomitmen menjadi mitra perjalanan terpercaya bagi wisatawan perseorangan, rombongan keluarga, komunitas, maupun institusi korporasi.
+              </p>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+                <a
+                  href="https://wa.me/6281333992989?text=Halo%20Travelogy,%20saya%20ingin%20berkenalan%20dan%20tanya%20layanan%20tour."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    backgroundColor: 'var(--primary)',
+                    color: '#ffffff',
+                    padding: '14px 28px',
+                    borderRadius: '30px',
+                    fontSize: '14.5px',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <i className="fa fa-whatsapp" style={{ fontSize: '17px' }}></i>
+                  <span>Hubungi Travelogy</span>
+                </a>
+
+                <a
+                  href="#contact"
+                  style={{
+                    backgroundColor: '#f3f7f4',
+                    color: 'var(--primary)',
+                    padding: '14px 28px',
+                    borderRadius: '30px',
+                    fontSize: '14.5px',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    border: '1px solid var(--border)'
+                  }}
+                >
+                  Lokasi Kantor
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================================
+          9. TRIP ASSISTANT / CONCIERGE BANNER
+          ================================================================= */}
+      <ConciergeTrigger />
+
+      {/* =================================================================
+          10. FAQ SECTION
+          ================================================================= */}
+      <FaqSection />
+
+      {/* =================================================================
+          11. CONTACT & GOOGLE MAPS SECTION
+          ================================================================= */}
+      <section id="contact" style={{ padding: '88px 0', backgroundColor: '#ffffff' }}>
+        <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 52px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                backgroundColor: 'var(--primary-soft)',
+                color: 'var(--primary)',
+                padding: '6px 16px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                marginBottom: '12px'
+              }}
+            >
+              Get In Touch
+            </span>
+            <h2
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                fontWeight: 700,
+                color: 'var(--dark)',
+                marginBottom: '14px',
+                lineHeight: 1.2
+              }}
+            >
+              Hubungi & Temui Travelogy
+            </h2>
+            <p style={{ fontSize: '15.5px', color: 'var(--muted)', lineHeight: 1.6 }}>
+              Kunjungi kantor operasional kami di Jember atau hubungi layanan WhatsApp untuk konsultasi perjalanan Anda kapan saja.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '36px',
+              alignItems: 'stretch'
+            }}
+          >
+            {/* Contact Details Card */}
+            <div
+              style={{
+                backgroundColor: '#f8faf8',
+                borderRadius: '20px',
+                padding: '36px',
+                border: '1px solid var(--border)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                gap: '24px'
+              }}
+            >
+              <div>
+                <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--primary)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                  Legal Company Info
+                </span>
+                <h3
+                  style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: '24px',
+                    fontWeight: 700,
+                    color: 'var(--dark)',
+                    marginTop: '4px',
+                    marginBottom: '16px'
+                  }}
+                >
+                  PT. Travelogy Tour Organizer
+                </h3>
+                <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '24px' }}>
+                  Biro perjalanan wisata resmi yang melayani Tour & Travel, Sewa Transportasi, Reservasi Hotel, serta Event Planning berbasis di Jember, Jawa Timur.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                  {/* Address */}
+                  <div style={{ display: 'flex', gap: '14px' }}>
+                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '16px' }}>
+                      <i className="fa fa-map-marker"></i>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>Alamat Kantor:</strong>
+                      <span style={{ fontSize: '13.5px', color: 'var(--dark-soft)', lineHeight: 1.5 }}>
+                        Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* WhatsApp */}
+                  <div style={{ display: 'flex', gap: '14px' }}>
+                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: '#25d366', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '18px' }}>
+                      <i className="fa fa-whatsapp"></i>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>WhatsApp Resmi:</strong>
+                      <a href="https://wa.me/6281333992989" target="_blank" rel="noopener noreferrer" style={{ fontSize: '14px', color: 'var(--primary)', fontWeight: 700, textDecoration: 'none' }}>
+                        +62 813-3399-2989
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div style={{ display: 'flex', gap: '14px' }}>
+                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '16px' }}>
+                      <i className="fa fa-envelope-o"></i>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>Email:</strong>
+                      <a href="mailto:travelogycorp@gmail.com" style={{ fontSize: '14px', color: 'var(--dark-soft)', textDecoration: 'none' }}>
+                        travelogycorp@gmail.com
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Operational Hours */}
+                  <div style={{ display: 'flex', gap: '14px' }}>
+                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: '16px' }}>
+                      <i className="fa fa-clock-o"></i>
+                    </div>
+                    <div>
+                      <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>Jam Operasional Kantor:</strong>
+                      <span style={{ fontSize: '13.5px', color: 'var(--dark-soft)' }}>
+                        09:00 - 13:00 WIB (Setiap Hari Kerja)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://wa.me/6281333992989?text=Halo%20Travelogy,%20saya%20ingin%20berkonsultasi%20mengenai%20perjalanan."
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textAlign: 'center',
+                  backgroundColor: 'var(--primary)',
+                  color: '#ffffff',
+                  padding: '14px 24px',
+                  borderRadius: '30px',
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px'
+                }}
+              >
+                <i className="fa fa-whatsapp" style={{ fontSize: '18px' }}></i>
+                <span>Chat Konsultasi Sekarang</span>
+              </a>
+            </div>
+
+            {/* Google Maps Embed Card */}
+            <div
+              style={{
+                borderRadius: '20px',
+                overflow: 'hidden',
+                border: '1px solid var(--border)',
+                boxShadow: '0 8px 24px rgba(27, 67, 50, 0.05)',
+                minHeight: '380px',
+                backgroundColor: '#f1f5f2'
+              }}
+            >
+              <iframe
+                title="Kantor PT. Travelogy Tour Organizer Jember"
+                src="https://maps.google.com/maps?q=Jl.+Mastrip+No.71,+Sumbersari,+Jember,+Jawa+Timur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: '380px', display: 'block' }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

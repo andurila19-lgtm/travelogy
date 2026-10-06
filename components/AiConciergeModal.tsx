@@ -18,7 +18,7 @@ interface Recommendation {
 
 export default function AiConciergeModal({ isOpen, onClose }: AiConciergeModalProps) {
   const [durasi, setDurasi] = useState('3h2m');
-  const [gaya, setGaya] = useState('nature');
+  const [tema, setTema] = useState('bromo');
   const [pax, setPax] = useState('2');
   const [recommendation, setRecommendation] = useState<Recommendation | null>(null);
   const { language, t } = useLanguage();
@@ -30,71 +30,59 @@ export default function AiConciergeModal({ isOpen, onClose }: AiConciergeModalPr
     e.preventDefault();
 
     let rec: Recommendation = {
-      title: isEn
-        ? 'Lombok 3 Days 2 Nights Package (Sasak, Mandalika & 3 Gilis)'
-        : 'Paket Lombok 3 Hari 2 Malam (Sasak, Mandalika & 3 Gili)',
+      title: '3D2N Bromo Escape',
       desc: isEn
-        ? 'Ideal blend of Sasak heritage, exotic south beaches, and vibrant marine life at Gili Trawangan.'
-        : 'Kombinasi ideal antara budaya Sasak, pantai eksotis selatan, dan keindahan bawah laut Gili Trawangan.',
-      link: '/paket/paket-lombok-3-hari-2-malam',
+        ? 'Majestic golden sunrise over Tengger caldera, 4x4 Jeep adventure across whispering sands, and active crater rim exploration.'
+        : 'Saksikan magisnya golden sunrise di atas kaldera Tengger, petualangan Jeep 4x4 melintasi pasir berbisik, dan kawah aktif Bromo.',
+      link: '/paket/3d2n-bromo-escape',
       waText: isEn
-        ? 'Hello Lombok_Travelers, I would like to consult about the Lombok 3D2N Package recommended by your Travel Assistant.'
-        : 'Halo Lombok_Travelers, saya ingin konsultasi Paket Lombok 3H2M rekomendasi Travel Assistant.'
+        ? 'Hello Travelogy, I would like to consult about the 3D2N Bromo Escape package.'
+        : 'Halo Travelogy, saya tertarik dengan paket 3D2N Bromo Escape. Mohon informasi lebih lanjut.'
     };
 
-    if (durasi === '1h') {
-      if (gaya === 'snorkeling') {
-        rec = {
-          title: isEn
-            ? 'Daily Trip: Gili Trawangan & 3 Gilis Snorkeling'
-            : 'Trip Harian: Gili Trawangan & 3 Gili Snorkeling',
-          desc: isEn
-            ? 'Full-day trip swimming with sea turtles and exploring vibrant coral reefs in Gili Air, Meno & Trawangan.'
-            : 'One-day trip berenang bersama penyu laut dan menjelajahi terumbu karang Gili Air, Meno & Trawangan.',
-          link: '/#pharian',
-          waText: isEn
-            ? 'Hello Lombok_Travelers, I would like to book the 3 Gilis Snorkeling Daily Trip.'
-            : 'Halo Lombok_Travelers, saya ingin booking Trip Harian Snorkeling 3 Gili.'
-        };
-      } else {
-        rec = {
-          title: isEn
-            ? 'Daily Trip: Tetebatu Nature & Waterfall Trip'
-            : 'Trip Harian: Tetebatu Nature & Waterfall Trip',
-          desc: isEn
-            ? 'Enjoy lush rice terraces, the Black Monkey Forest, and refreshing waterfalls at the foot of Mount Rinjani.'
-            : 'Menikmati terasiring sawah Tetebatu, Black Monkey Forest, dan air terjun alami kaki Gunung Rinjani.',
-          link: '/#pharian',
-          waText: isEn
-            ? 'Hello Lombok_Travelers, I would like to book the Tetebatu Nature Daily Trip.'
-            : 'Halo Lombok_Travelers, saya ingin booking Trip Harian Tetebatu Nature.'
-        };
-      }
-    } else if (durasi === '4h5h') {
+    if (tema === 'bali') {
       rec = {
-        title: isEn
-          ? 'Lombok 4 Days 3 Nights / 5 Days 4 Nights Package'
-          : 'Paket Lombok 4 Hari 3 Malam / 5 Hari 4 Malam',
+        title: '4D3N Bali Experience',
         desc: isEn
-          ? 'Most comprehensive exploration: Tetebatu highlands, Sembalun Rinjani, Pink Beach, and Gili Trawangan with a relaxed pace.'
-          : 'Eksplorasi terlengkap: Tetebatu highland, Sembalun Rinjani, Pink Beach, dan Gili Trawangan dengan ritme santai.',
-        link: '/paket/paket-lombok-4-hari-3-malam',
+          ? 'Comprehensive Island of Gods journey: Ulun Danu Beratan water temple, Ubud art villages, Kintamani vistas, and coastal sunsets.'
+          : 'Eksplorasi lengkap Pulau Dewata: Danau Beratan Bedugul, seni budaya Ubud, pemandangan Kintamani, dan sunset pantai.',
+        link: '/paket/4d3n-bali-experience',
         waText: isEn
-          ? 'Hello Lombok_Travelers, I am interested in the Lombok 4D3N/5D4N Package.'
-          : 'Halo Lombok_Travelers, saya tertarik dengan Paket 4H3M/5H4M Lombok.'
+          ? 'Hello Travelogy, I would like to consult about the 4D3N Bali Experience package.'
+          : 'Halo Travelogy, saya tertarik dengan paket 4D3N Bali Experience. Mohon informasi lebih lanjut.'
       };
-    } else if (gaya === 'honeymoon') {
+    } else if (tema === 'malang') {
       rec = {
-        title: isEn
-          ? 'Private Romantic Lombok Honeymoon Package'
-          : 'Paket Private Honeymoon Lombok Romantis',
+        title: 'Malang Adventure & Highland Escape',
         desc: isEn
-          ? 'Peaceful romantic escape with private transport, private boat, and candlelight dinner.'
-          : 'Pengalaman liburan berdua yang tenang dengan private transport, private boat, dan candle light dinner.',
-        link: '/paket/private-lombok-honeymoon-trip',
+          ? 'Fresh highland air in Batu, fresh apple picking at local orchards, Coban Rondo waterfall, and theme park excitement.'
+          : 'Kesejukan hawa pegunungan Kota Wisata Batu, petik apel segar langsung dari pohon, Coban Rondo, dan wisata keluarga.',
+        link: '/paket/malang-adventure',
         waText: isEn
-          ? 'Hello Lombok_Travelers, I would like to consult about the Romantic Lombok Honeymoon Package.'
-          : 'Halo Lombok_Travelers, saya ingin konsultasi Paket Honeymoon Lombok Romantis.'
+          ? 'Hello Travelogy, I would like to consult about the Malang Adventure package.'
+          : 'Halo Travelogy, saya tertarik dengan paket Malang Adventure. Mohon informasi lebih lanjut.'
+      };
+    } else if (tema === 'ijen') {
+      rec = {
+        title: 'Ijen Midnight Crater Expedition',
+        desc: isEn
+          ? 'Rare natural electric blue flames, vibrant turquoise acidic lake, and breathtaking morning sunrise at the crater rim.'
+          : 'Fenomena langka Api Biru (Blue Fire) Kawah Ijen, danau belerang toska, dan sunrise fajar spektakuler dari bibir kawah.',
+        link: '/paket/ijen-crater-expedition',
+        waText: isEn
+          ? 'Hello Travelogy, I would like to consult about the Ijen Crater Expedition package.'
+          : 'Halo Travelogy, saya tertarik dengan paket Ijen Midnight Crater Expedition. Mohon informasi lebih lanjut.'
+      };
+    } else if (tema === 'jember') {
+      rec = {
+        title: 'Jember Exotic Discovery',
+        desc: isEn
+          ? 'Authentic local exploration of Tanjung Papuma sea rocks, heart-shaped Love Bay, and heritage mountain coffee plantations.'
+          : 'Eksotisme pantai selatan Tanjung Papuma, panorama Teluk Love dari bukit, dan agrowisata kopi khas lereng pegunungan Jember.',
+        link: '/paket/2d1n-jember-exotic-discovery',
+        waText: isEn
+          ? 'Hello Travelogy, I would like to consult about the Jember Exotic Discovery package.'
+          : 'Halo Travelogy, saya tertarik dengan paket Jember Exotic Discovery. Mohon informasi lebih lanjut.'
       };
     }
 
@@ -102,104 +90,211 @@ export default function AiConciergeModal({ isOpen, onClose }: AiConciergeModalPr
   };
 
   return (
-    <div className="modal-overlay active" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="modal-box">
-        <button className="modal-close" onClick={onClose}>&times;</button>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-          <span style={{ background: 'var(--primary-soft)', color: 'var(--primary)', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase' }}>
-            {t.concierge?.modalTag || (isEn ? 'Travel Assistant' : 'Assistant Perjalanan')}
-          </span>
-        </div>
-        <h3 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--dark)', marginBottom: '6px' }}>
-          {t.concierge?.modalTitle || 'Pilih Paket Sesuai Impian Liburan Anda'}
-        </h3>
-        <p style={{ fontSize: '13.5px', color: 'var(--muted)', marginBottom: '20px' }}>
-          {t.concierge?.modalSubtitle || 'Jawab 3 pertanyaan singkat berikut dan asisten kami akan merekomendasikan pilihan paket terbaik:'}
-        </p>
-
-        <form onSubmit={handleSubmit}>
-          {/* Q1 */}
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--dark)', display: 'block', marginBottom: '6px' }}>
-              {t.concierge?.q1 || '1. Berapa lama rencana waktu liburan Anda?'}
-            </label>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <label style={{ border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' }}>
-                <input type="radio" name="aiDurasi" value="1h" checked={durasi === '1h'} onChange={(e) => setDurasi(e.target.value)} /> {t.concierge?.q1Opt1 || (isEn ? '1 Day (Daily Trip)' : '1 Hari (Trip Harian)')}
-              </label>
-              <label style={{ border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' }}>
-                <input type="radio" name="aiDurasi" value="3h2m" checked={durasi === '3h2m'} onChange={(e) => setDurasi(e.target.value)} /> {t.concierge?.q1Opt2 || (isEn ? '2 - 3 Days' : '2 - 3 Hari')}
-              </label>
-              <label style={{ border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' }}>
-                <input type="radio" name="aiDurasi" value="4h5h" checked={durasi === '4h5h'} onChange={(e) => setDurasi(e.target.value)} /> {t.concierge?.q1Opt3 || (isEn ? '4 - 5 Days' : '4 - 5 Hari')}
-              </label>
-            </div>
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: 'rgba(15, 40, 30, 0.75)',
+        backdropFilter: 'blur(6px)',
+        zIndex: 99999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px'
+      }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          borderRadius: '20px',
+          maxWidth: '560px',
+          width: '100%',
+          padding: '32px',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.25)',
+          border: '1px solid var(--border)'
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+          <div>
+            <span
+              style={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: 'var(--primary)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.8px',
+                backgroundColor: 'var(--primary-soft)',
+                padding: '4px 10px',
+                borderRadius: '14px'
+              }}
+            >
+              Travelogy Trip Assistant
+            </span>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: 'var(--dark)', marginTop: '6px' }}>
+              {isEn ? 'Find Your Best Match' : 'Cari Rekomendasi Paket Perjalanan'}
+            </h3>
           </div>
-
-          {/* Q2 */}
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--dark)', display: 'block', marginBottom: '6px' }}>
-              {t.concierge?.q2 || '2. Gaya liburan apa yang paling Anda inginkan?'}
-            </label>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <label style={{ border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' }}>
-                <input type="radio" name="aiGaya" value="nature" checked={gaya === 'nature'} onChange={(e) => setGaya(e.target.value)} /> {t.concierge?.q2Opt1 || (isEn ? 'Nature & Rice Terraces (Tetebatu)' : 'Alam & Sawah (Tetebatu)')}
-              </label>
-              <label style={{ border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' }}>
-                <input type="radio" name="aiGaya" value="snorkeling" checked={gaya === 'snorkeling'} onChange={(e) => setGaya(e.target.value)} /> {t.concierge?.q2Opt2 || (isEn ? 'Beaches & Snorkeling (Gili)' : 'Pantai & Snorkeling (Gili)')}
-              </label>
-              <label style={{ border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '6px', fontSize: '13px', cursor: 'pointer' }}>
-                <input type="radio" name="aiGaya" value="honeymoon" checked={gaya === 'honeymoon'} onChange={(e) => setGaya(e.target.value)} /> {t.concierge?.q2Opt3 || (isEn ? 'Romantic Getaway (Honeymoon)' : 'Romantis Berdua (Honeymoon)')}
-              </label>
-            </div>
-          </div>
-
-          {/* Q3 */}
-          <div style={{ marginBottom: '20px' }}>
-            <label htmlFor="aiPax" style={{ fontSize: '12.5px', fontWeight: 700, color: 'var(--dark)', display: 'block', marginBottom: '6px' }}>
-              {t.concierge?.q3 || '3. Jumlah orang yang ikut serta'}
-            </label>
-            <input
-              type="number"
-              id="aiPax"
-              className="form-input"
-              value={pax}
-              min="1"
-              style={{ maxWidth: '140px' }}
-              onChange={(e) => setPax(e.target.value)}
-            />
-          </div>
-
-          <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '14px' }}>
-            <i className="fa fa-search"></i> {t.concierge?.btnCalculate || 'Dapatkan Rekomendasi Paket'}
+          <button
+            type="button"
+            onClick={onClose}
+            style={{
+              background: '#f3f7f4',
+              border: 'none',
+              borderRadius: '50%',
+              width: '36px',
+              height: '36px',
+              cursor: 'pointer',
+              color: 'var(--dark)',
+              fontSize: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            ✕
           </button>
-        </form>
+        </div>
 
-        {recommendation && (
-          <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '8px', padding: '16px', marginTop: '16px' }}>
-            <div style={{ fontSize: '11px', textTransform: 'uppercase', fontWeight: 700, color: '#166534', marginBottom: '4px' }}>
-              {t.concierge?.recTag || 'Rekomendasi Paket Terbaik Untuk Anda:'}
+        {!recommendation ? (
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                1. {isEn ? 'Preferred Trip Duration?' : 'Rencana Durasi Perjalanan?'}
+              </label>
+              <select
+                value={durasi}
+                onChange={(e) => setDurasi(e.target.value)}
+                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '14px', backgroundColor: '#fafcfb' }}
+              >
+                <option value="1h">1 Hari (Trip Singkat)</option>
+                <option value="2h1m">2 Hari 1 Malam</option>
+                <option value="3h2m">3 Hari 2 Malam</option>
+                <option value="4h3m">4 Hari 3 Malam</option>
+              </select>
             </div>
-            <h4 style={{ fontSize: '16px', fontWeight: 800, color: '#14532d', marginBottom: '6px' }}>
-              {recommendation.title}
-            </h4>
-            <p style={{ fontSize: '13px', color: '#374151', marginBottom: '12px', lineHeight: 1.5 }}>
-              {recommendation.desc}
-            </p>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <Link href={recommendation.link} className="btn-detail" onClick={onClose} style={{ fontSize: '12px', padding: '6px 14px' }}>
-                {t.concierge?.btnViewPkg || 'Lihat Rincian Paket'}
+
+            <div>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                2. {isEn ? 'Which Destination Interests You Most?' : 'Destinasi yang Paling Menarik Minat Anda?'}
+              </label>
+              <select
+                value={tema}
+                onChange={(e) => setTema(e.target.value)}
+                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '14px', backgroundColor: '#fafcfb' }}
+              >
+                <option value="bromo">Bromo & Sunrise Penanjakan</option>
+                <option value="bali">Bali (Ubud, Kintamani & Pantai)</option>
+                <option value="malang">Malang & Kota Wisata Batu</option>
+                <option value="ijen">Kawah Ijen & Fenomena Blue Fire</option>
+                <option value="jember">Jember (Papuma, Teluk Love & Kopi)</option>
+              </select>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                3. {isEn ? 'Estimated Number of Guests?' : 'Perkiraan Jumlah Peserta?'}
+              </label>
+              <select
+                value={pax}
+                onChange={(e) => setPax(e.target.value)}
+                style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '14px', backgroundColor: '#fafcfb' }}
+              >
+                <option value="2">2 Orang (Pasangan / Duet)</option>
+                <option value="4">3 - 6 Orang (Keluarga)</option>
+                <option value="10">7 - 14+ Orang (Rombongan)</option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              style={{
+                backgroundColor: 'var(--primary)',
+                color: '#ffffff',
+                padding: '14px',
+                borderRadius: '30px',
+                border: 'none',
+                fontWeight: 700,
+                fontSize: '15px',
+                cursor: 'pointer',
+                marginTop: '8px'
+              }}
+            >
+              {isEn ? 'Show Recommendation' : 'Lihat Rekomendasi Paket'}
+            </button>
+          </form>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ backgroundColor: 'var(--primary-soft)', padding: '20px', borderRadius: '12px', border: '1px solid rgba(27, 67, 50, 0.15)' }}>
+              <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase' }}>
+                Rekomendasi Terbaik
+              </span>
+              <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 700, color: 'var(--primary-dark)', marginTop: '4px', marginBottom: '8px' }}>
+                {recommendation.title}
+              </h4>
+              <p style={{ fontSize: '13.5px', color: 'var(--dark-soft)', lineHeight: 1.55 }}>
+                {recommendation.desc}
+              </p>
+            </div>
+
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <Link
+                href={recommendation.link}
+                onClick={onClose}
+                style={{
+                  flex: 1,
+                  textAlign: 'center',
+                  backgroundColor: '#f3f7f4',
+                  color: 'var(--primary)',
+                  padding: '12px 16px',
+                  borderRadius: '24px',
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  border: '1px solid var(--border)'
+                }}
+              >
+                {isEn ? 'View Package' : 'Lihat Detail Paket'}
               </Link>
               <a
-                href={`https://wa.me/6283117110638?text=${encodeURIComponent(recommendation.waText)}`}
+                href={`https://wa.me/6281333992989?text=${encodeURIComponent(recommendation.waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary"
-                style={{ fontSize: '12px', padding: '6px 14px', background: '#25d366' }}
+                style={{
+                  flex: 1,
+                  textAlign: 'center',
+                  backgroundColor: 'var(--primary)',
+                  color: '#ffffff',
+                  padding: '12px 16px',
+                  borderRadius: '24px',
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  textDecoration: 'none'
+                }}
               >
-                <i className="fa fa-whatsapp"></i> {t.concierge?.btnConsultWa || 'Chat via WhatsApp'}
+                <i className="fa fa-whatsapp"></i> Chat WhatsApp
               </a>
             </div>
+
+            <button
+              type="button"
+              onClick={() => setRecommendation(null)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--muted)',
+                fontSize: '13px',
+                cursor: 'pointer',
+                textAlign: 'center',
+                textDecoration: 'underline'
+              }}
+            >
+              {isEn ? 'Reset choices' : 'Pilih preferensi lain'}
+            </button>
           </div>
         )}
       </div>

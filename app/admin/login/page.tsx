@@ -9,7 +9,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const redirectTarget = searchParams.get('redirect') || '/admin';
 
-  const [username, setUsername] = useState('admin_lombok');
+  const [username, setUsername] = useState('admin_travelogy');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,28 +79,23 @@ function LoginForm() {
       >
         {/* Brand Header */}
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
-          <div
+          <img
+            src="/images/travelogy_logo.png"
+            alt="Travelogy Tour Organizer"
             style={{
-              width: '60px',
-              height: '60px',
+              width: '64px',
+              height: '64px',
               borderRadius: '16px',
-              background: 'linear-gradient(135deg, #185a38 0%, #22c55e 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
               margin: '0 auto 16px auto',
-              fontSize: '24px',
-              fontWeight: 900,
-              color: '#ffffff',
-              boxShadow: '0 8px 20px rgba(34, 197, 94, 0.4)',
+              display: 'block',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
+              objectFit: 'cover'
             }}
-          >
-            LT
-          </div>
+          />
           <span
             style={{
-              backgroundColor: 'rgba(34, 197, 94, 0.15)',
-              color: '#86efac',
+              backgroundColor: 'rgba(45, 106, 79, 0.25)',
+              color: '#a7d7b5',
               fontSize: '11px',
               fontWeight: 800,
               textTransform: 'uppercase',
@@ -114,7 +109,7 @@ function LoginForm() {
             Portal Administrator
           </span>
           <h1 style={{ fontSize: '22px', fontWeight: 800, margin: '0 0 6px 0', color: '#ffffff' }}>
-            Lombok_Travelers ERP
+            Travelogy Tour Organizer ERP
           </h1>
           <p style={{ fontSize: '13px', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>
             Sistem Keamanan Terpusat Reservasi & Operasional Tour

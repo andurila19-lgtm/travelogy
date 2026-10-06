@@ -33,15 +33,15 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: 'Artikel Tidak Ditemukan — Lombok_Travelers',
+      title: 'Artikel Tidak Ditemukan — Travelogy Tour Organizer',
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lomboktravelers.reaksy.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://travelogy.co.id';
   const canonicalUrl = `${siteUrl}/artikel/${article.slug}`;
 
   return {
-    title: `${article.title} — Panduan Wisata Lombok_Travelers`,
+    title: `${article.title} — Travelogy Tour Organizer`,
     description: article.excerpt,
     alternates: {
       canonical: canonicalUrl,
@@ -50,7 +50,7 @@ export async function generateMetadata({
       title: article.title,
       description: article.excerpt,
       url: canonicalUrl,
-      siteName: 'Lombok_Travelers',
+      siteName: 'Travelogy Tour Organizer',
       images: [
         {
           url: article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`,
@@ -86,26 +86,26 @@ export default async function ArticleDetailPage({
     .filter((a) => a.slug !== article.slug)
     .slice(0, 3);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lomboktravelers.reaksy.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://travelogy.co.id';
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
     description: article.excerpt,
     image: article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`,
-    datePublished: '2026-08-01T08:00:00+08:00',
-    dateModified: '2026-09-24T12:00:00+08:00',
+    datePublished: '2026-08-01T08:00:00+07:00',
+    dateModified: '2026-09-24T12:00:00+07:00',
     author: {
       '@type': 'Organization',
-      name: 'Lombok_Travelers Team',
+      name: 'PT. Travelogy Tour Organizer',
       url: siteUrl,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Lombok_Travelers',
+      name: 'PT. Travelogy Tour Organizer',
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/favicon.ico`,
+        url: `${siteUrl}/images/travelogy_logo.png`,
       },
     },
     mainEntityOfPage: {

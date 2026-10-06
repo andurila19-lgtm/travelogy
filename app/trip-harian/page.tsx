@@ -7,6 +7,7 @@ import { DailyTrip } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 import { getLocalizedTrip } from '@/lib/localization';
 import BookingModal from '@/components/BookingModal';
+import PageHeaderNav from '@/components/PageHeaderNav';
 
 export default function TripHarianPage() {
   const { language, t, convertPriceString } = useLanguage();
@@ -33,35 +34,26 @@ export default function TripHarianPage() {
   const filteredTrips = trips.filter((tItem) => {
     if (selectedRegion === 'all') return true;
     const lower = (tItem.title + ' ' + tItem.desc).toLowerCase();
-    if (selectedRegion === 'gili') return lower.includes('gili');
-    if (selectedRegion === 'kuta') return lower.includes('mandalika') || lower.includes('selatan') || lower.includes('south') || lower.includes('sasak');
-    if (selectedRegion === 'tetebatu') return lower.includes('tetebatu') || lower.includes('pink');
-    if (selectedRegion === 'rinjani') return lower.includes('senaru') || lower.includes('sembalun') || lower.includes('rinjani');
+    if (selectedRegion === 'bromo') return lower.includes('bromo');
+    if (selectedRegion === 'ijen') return lower.includes('ijen');
+    if (selectedRegion === 'jember') return lower.includes('jember') || lower.includes('papuma') || lower.includes('love');
+    if (selectedRegion === 'malang') return lower.includes('malang') || lower.includes('batu');
     return true;
   });
 
   return (
     <div className="multipage-wrapper">
-      {/* PAGE HEADER */}
-      <div className="page-header-banner">
-        <div className="box1140">
-          <nav className="breadcrumb-nav">
-            <Link href="/">{language === 'en' ? 'Home' : 'Beranda'}</Link>
-            <span>›</span>
-            <strong>{language === 'en' ? 'Daily Day Trips' : 'Trip Harian'}</strong>
-          </nav>
-          <h1 className="page-header-title">
-            {language === 'en'
-              ? 'Lombok One-Day Private Trips'
-              : 'Pilihan Paket Trip Harian Lombok (1 Hari)'}
-          </h1>
-          <p className="page-header-subtitle">
-            {language === 'en'
-              ? 'Private full-day excursions with hotel round-trip pickup, flexible pace, and experienced Sasak drivers.'
-              : 'Eksplorasi destinasi unggulan Lombok dalam 1 hari private tour. Include jemputan hotel, mobil nyaman, driver ramah, tiket masuk & dokumentasi.'}
-          </p>
-        </div>
-      </div>
+      {/* PAGE HEADER WITH BACK BUTTONS & BREADCRUMBS */}
+      <PageHeaderNav
+        breadcrumbs={[{ label: language === 'en' ? 'Daily Trips' : 'Trip Harian' }]}
+        badge={language === 'en' ? '1-Day Excursions' : 'Trip Harian 1 Hari'}
+        title={language === 'en' ? 'East Java One-Day Excursions' : 'Pilihan Ekskursi & Trip Harian Travelogy (1 Hari)'}
+        description={
+          language === 'en'
+            ? 'Private full-day excursions with hotel/station pickup, flexible itinerary, and experienced Travelogy coordinators.'
+            : 'Eksplorasi destinasi favorit Jawa Timur dalam 1 hari private tour. Transportasi nyaman, driver berpengalaman, jadwal fleksibel, dan pendampingan profesional dari Travelogy Tour Organizer.'
+        }
+      />
 
       <div className="box1140" style={{ padding: '40px 15px 80px 15px' }}>
         {/* REGION FILTER TABS */}
@@ -73,28 +65,28 @@ export default function TripHarianPage() {
             {language === 'en' ? 'All Daily Trips' : 'Semua Trip Harian'}
           </button>
           <button
-            className={`tab-btn ${selectedRegion === 'gili' ? 'active' : ''}`}
-            onClick={() => setSelectedRegion('gili')}
+            className={`tab-btn ${selectedRegion === 'bromo' ? 'active' : ''}`}
+            onClick={() => setSelectedRegion('bromo')}
           >
-            Gili Islands Snorkeling
+            Mount Bromo
           </button>
           <button
-            className={`tab-btn ${selectedRegion === 'kuta' ? 'active' : ''}`}
-            onClick={() => setSelectedRegion('kuta')}
+            className={`tab-btn ${selectedRegion === 'ijen' ? 'active' : ''}`}
+            onClick={() => setSelectedRegion('ijen')}
           >
-            {language === 'en' ? 'Kuta & South Coast' : 'Kuta & Pantai Selatan'}
+            Kawah Ijen
           </button>
           <button
-            className={`tab-btn ${selectedRegion === 'tetebatu' ? 'active' : ''}`}
-            onClick={() => setSelectedRegion('tetebatu')}
+            className={`tab-btn ${selectedRegion === 'jember' ? 'active' : ''}`}
+            onClick={() => setSelectedRegion('jember')}
           >
-            Tetebatu & Pink Beach
+            Jember & Coast
           </button>
           <button
-            className={`tab-btn ${selectedRegion === 'rinjani' ? 'active' : ''}`}
-            onClick={() => setSelectedRegion('rinjani')}
+            className={`tab-btn ${selectedRegion === 'malang' ? 'active' : ''}`}
+            onClick={() => setSelectedRegion('malang')}
           >
-            Sembalun & Senaru Rinjani
+            Malang & Batu
           </button>
         </div>
 
@@ -130,7 +122,7 @@ export default function TripHarianPage() {
                     </button>
 
                     <a
-                      href={`https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20tertarik%20dengan%20${encodeURIComponent(trip.title)}.%20Mohon%20info%20jadwal%20dan%20penjemputan.`}
+                      href={`https://wa.me/6281333992989?text=Halo%20Travelogy,%20saya%20tertarik%20dengan%20paket%20${encodeURIComponent(trip.title)}.%20Mohon%20informasi%20lebih%20lanjut.`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-card-secondary"
@@ -153,15 +145,15 @@ export default function TripHarianPage() {
           <div className="daily-inc-grid">
             <div className="inc-pill-item">
               <i className="fa fa-check-circle"></i>{' '}
-              {language === 'en' ? 'Hotel roundtrip pickup & drop-off' : 'Antar-jemput hotel PP'}
+              {language === 'en' ? 'Hotel / Station roundtrip pickup & drop-off' : 'Antar-jemput hotel / stasiun PP'}
             </div>
             <div className="inc-pill-item">
               <i className="fa fa-check-circle"></i>{' '}
-              {language === 'en' ? 'Private AC car + fuel (BBM)' : 'Mobil private AC + BBM'}
+              {language === 'en' ? 'Private AC fleet + fuel (BBM)' : 'Armada private AC + BBM'}
             </div>
             <div className="inc-pill-item">
               <i className="fa fa-check-circle"></i>{' '}
-              {language === 'en' ? 'Friendly local Sasak driver' : 'Driver lokal ramah asli Sasak'}
+              {language === 'en' ? 'Experienced local driver & trip coordinator' : 'Driver & pendamping trip berpengalaman'}
             </div>
             <div className="inc-pill-item">
               <i className="fa fa-check-circle"></i>{' '}
@@ -169,11 +161,11 @@ export default function TripHarianPage() {
             </div>
             <div className="inc-pill-item">
               <i className="fa fa-check-circle"></i>{' '}
-              {language === 'en' ? 'Free mineral water during tour' : 'Air mineral botol selama trip'}
+              {language === 'en' ? 'Mineral water during tour' : 'Air mineral selama perjalanan'}
             </div>
             <div className="inc-pill-item">
               <i className="fa fa-check-circle"></i>{' '}
-              {language === 'en' ? 'Complimentary photo assistance' : 'Bantuan foto & dokumentasi'}
+              {language === 'en' ? 'Photo assistance & full support' : 'Bantuan dokumentasi & asistensi tim'}
             </div>
           </div>
         </div>

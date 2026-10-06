@@ -16,99 +16,90 @@ export default function BookingActionButtons({
   variant = 'sidebar',
 }: BookingActionButtonsProps) {
   const [modalOpen, setModalOpen] = useState(false);
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
 
   const isEn = language === 'en';
   const waText = isEn
-    ? `Hello Lombok_Travelers, I would like to consult about booking ${packageTitle}.`
-    : `Halo Lombok_Travelers, saya ingin konsultasi booking ${packageTitle}.`;
-  const waUrl = `https://wa.me/6283117110638?text=${encodeURIComponent(waText)}`;
+    ? `Hello Travelogy, I am interested in the ${packageTitle} package. Please share further details and quotation.`
+    : `Halo Travelogy, saya tertarik dengan paket ${packageTitle}. Mohon informasi lebih lanjut.`;
+  const waUrl = `https://wa.me/6281333992989?text=${encodeURIComponent(waText)}`;
 
   if (variant === 'card') {
     return (
-      <>
-        <button
-          type="button"
-          onClick={() => setModalOpen(true)}
-          className="btn-booking-card"
-          style={{
-            background: 'var(--primary)',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '4px',
-            padding: '7px 12px',
-            fontSize: '12.5px',
-            fontWeight: 700,
-            cursor: 'pointer',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            transition: 'background 0.2s ease',
-          }}
-        >
-          <i className="fa fa-calendar-check-o"></i> {t.buttons.book}
-        </button>
-
-        <BookingModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          defaultPackageSlug={packageSlug}
-        />
-      </>
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          background: 'var(--primary)',
+          color: '#ffffff',
+          borderRadius: '20px',
+          padding: '8px 16px',
+          fontSize: '13px',
+          fontWeight: 700,
+          textDecoration: 'none',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          transition: 'background 0.2s ease',
+        }}
+      >
+        <i className="fa fa-whatsapp"></i> {isEn ? 'Ask Trip' : 'Tanya WA'}
+      </a>
     );
   }
 
   if (variant === 'inline') {
     return (
       <>
-        <div className="booking-cta-buttons-row" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '14px' }}>
-          <button
-            type="button"
-            onClick={() => setModalOpen(true)}
-            className="btn-booking-primary"
-            style={{
-              flex: '1 1 160px',
-              background: 'linear-gradient(135deg, #185a38 0%, #0f3d26 100%)',
-              color: '#ffffff',
-              border: 'none',
-              borderRadius: '8px',
-              padding: '11px 16px',
-              fontSize: '13.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              boxShadow: '0 3px 10px rgba(24, 90, 56, 0.25)',
-              transition: 'all 0.2s ease',
-            }}
-          >
-            <i className="fa fa-calendar-check-o" style={{ fontSize: '15px' }}></i> {t.buttons.bookNow}
-          </button>
-
+        <div className="booking-cta-buttons-row" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '16px' }}>
           <a
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              flex: '1 1 160px',
-              background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+              flex: '1 1 200px',
+              backgroundColor: 'var(--primary)',
               color: '#ffffff',
-              borderRadius: '8px',
-              padding: '11px 16px',
-              fontSize: '13.5px',
-              fontWeight: 800,
+              borderRadius: '30px',
+              padding: '14px 24px',
+              fontSize: '15px',
+              fontWeight: 700,
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '8px',
-              boxShadow: '0 3px 10px rgba(37, 211, 102, 0.2)',
+              gap: '10px',
+              boxShadow: '0 6px 20px rgba(27, 67, 50, 0.25)',
+              transition: 'all 0.2s ease',
             }}
           >
-            <i className="fa fa-whatsapp" style={{ fontSize: '16px' }}></i> {t.buttons.chatWa}
+            <i className="fa fa-whatsapp" style={{ fontSize: '18px' }}></i>
+            <span>{isEn ? 'Ask About This Trip' : 'Ask About This Trip'}</span>
           </a>
+
+          <button
+            type="button"
+            onClick={() => setModalOpen(true)}
+            style={{
+              flex: '1 1 180px',
+              backgroundColor: '#f3f7f4',
+              color: 'var(--primary)',
+              border: '1px solid var(--border)',
+              borderRadius: '30px',
+              padding: '14px 20px',
+              fontSize: '14px',
+              fontWeight: 700,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+            }}
+          >
+            <i className="fa fa-edit"></i>
+            <span>{isEn ? 'Send Trip Inquiry' : 'Isi Form Inquiry'}</span>
+          </button>
         </div>
 
         <BookingModal
@@ -124,45 +115,54 @@ export default function BookingActionButtons({
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            width: '100%',
+            backgroundColor: 'var(--primary)',
+            color: '#ffffff',
+            borderRadius: '30px',
+            padding: '14px 20px',
+            fontSize: '15px',
+            fontWeight: 700,
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            boxShadow: '0 6px 20px rgba(27, 67, 50, 0.25)',
+            transition: 'all 0.2s ease',
+            boxSizing: 'border-box'
+          }}
+        >
+          <i className="fa fa-whatsapp" style={{ fontSize: '18px' }}></i>
+          <span>Ask About This Trip</span>
+        </a>
+
         <button
           type="button"
           onClick={() => setModalOpen(true)}
           style={{
             width: '100%',
-            background: 'var(--primary)',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '6px',
-            padding: '13px 16px',
-            fontSize: '14.5px',
-            fontWeight: 800,
+            background: '#ffffff',
+            color: 'var(--primary)',
+            border: '1px solid var(--border)',
+            borderRadius: '30px',
+            padding: '11px 16px',
+            fontSize: '13px',
+            fontWeight: 700,
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             gap: '8px',
-            boxShadow: '0 4px 12px rgba(24, 90, 56, 0.25)',
             transition: 'background 0.2s ease',
           }}
         >
-          <i className="fa fa-calendar-check-o"></i> {t.buttons.bookNow}
+          <i className="fa fa-calendar-check-o"></i> {isEn ? 'Customize / Book Form' : 'Request Penawaran'}
         </button>
-
-        <a
-          href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-sidebar-wa"
-          style={{
-            margin: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-          }}
-        >
-          <i className="fa fa-whatsapp"></i> {t.buttons.chatWa}
-        </a>
       </div>
 
       <BookingModal

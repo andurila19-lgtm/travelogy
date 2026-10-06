@@ -7,6 +7,7 @@ import packagesData from '@/data/packages.json';
 import { TourPackage } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 import { getLocalizedPackage } from '@/lib/localization';
+import PageHeaderNav from '@/components/PageHeaderNav';
 import BookingModal from '@/components/BookingModal';
 
 function SearchParamSync({
@@ -33,10 +34,10 @@ function SearchParamSync({
     }
     if (kat && kat !== 'semua') {
       const lower = kat.toLowerCase();
-      if (lower.includes('honeymoon')) setFilterCategory('honeymoon');
-      else if (lower.includes('private')) setFilterCategory('private');
-      else if (lower.includes('cultural') || lower.includes('tetebatu')) setFilterCategory('cultural');
-      else if (lower.includes('wisata')) setFilterCategory('lombok');
+      if (lower.includes('adventure')) setFilterCategory('adventure');
+      else if (lower.includes('culture')) setFilterCategory('culture');
+      else if (lower.includes('family')) setFilterCategory('family');
+      else if (lower.includes('local')) setFilterCategory('local');
     }
   }, [searchParams, setFilterCategory, setSearchQuery, setDurationFilter]);
 
@@ -44,7 +45,7 @@ function SearchParamSync({
 }
 
 export default function PaketPage() {
-  const { language, t, convertPriceString } = useLanguage();
+  const { language, t } = useLanguage();
   const rawPackages: TourPackage[] = packagesData as TourPackage[];
 
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
@@ -70,14 +71,15 @@ export default function PaketPage() {
       pkg.duration.includes(durationFilter) ||
       (durationFilter.includes('2') && pkg.duration.includes('2')) ||
       (durationFilter.includes('3') && pkg.duration.includes('3')) ||
-      (durationFilter.includes('4') && pkg.duration.includes('4')) ||
-      (durationFilter.includes('5') && pkg.duration.includes('5'));
+      (durationFilter.includes('4') && pkg.duration.includes('4'));
 
     return matchesCat && matchesQuery && matchesDur;
   });
 
+  const isEn = language === 'en';
+
   return (
-    <div className="multipage-wrapper">
+    <div className="multipage-wrapper" style={{ backgroundColor: '#fafcfb', minHeight: '100vh', paddingTop: '20px' }}>
       <Suspense fallback={null}>
         <SearchParamSync
           setFilterCategory={setFilterCategory}
@@ -86,133 +88,228 @@ export default function PaketPage() {
         />
       </Suspense>
 
-      {/* PAGE HEADER */}
-      <div className="page-header-banner">
-        <div className="box1140">
-          <nav className="breadcrumb-nav">
-            <Link href="/">{language === 'en' ? 'Home' : 'Beranda'}</Link>
-            <span>›</span>
-            <strong>{language === 'en' ? 'Tour Packages' : 'Paket Wisata'}</strong>
-          </nav>
-          <h1 className="page-header-title">
-            {language === 'en'
-              ? 'Lombok Tour Packages & Private Trips'
-              : 'Katalog Paket Wisata Lombok & Private Trip'}
-          </h1>
-          <p className="page-header-subtitle">
-            {language === 'en'
-              ? 'Explore our complete private itineraries with friendly local guides, comfortable AC vehicles, and complimentary underwater GoPro photography.'
-              : 'Pilihan paket liburan terlengkap dengan armada ber-AC, driver lokal ramah asli Sasak, dan GRATIS dokumentasi foto & GoPro bawah laut.'}
-          </p>
-        </div>
-      </div>
+      {/* PAGE HEADER WITH BACK BUTTONS & BREADCRUMBS */}
+      <PageHeaderNav
+        breadcrumbs={[{ label: isEn ? 'Tour Packages' : 'Paket Wisata' }]}
+        badge={isEn ? 'Curated Journeys' : 'Pilihan Paket Perjalanan'}
+        title={isEn ? 'Explore Tour Packages & Journeys' : 'Katalog Paket Wisata & Perjalanan Travelogy'}
+        description={
+          isEn
+            ? 'Preview and choose from our curated multi-day tour packages. Custom itineraries can be crafted specifically around your schedule and travel style.'
+            : 'Pilihan paket perjalanan kurasi terbaik Travelogy. Setiap rute dan tanggal dapat disesuaikan dengan kebutuhan liburan keluarga maupun rombongan kantor.'
+        }
+      />
 
-      <div className="box1140" style={{ padding: '40px 15px 80px 15px' }}>
+      <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '40px 24px 80px' }}>
         {/* FILTER & SEARCH CONTROLS */}
-        <div className="catalog-filter-bar">
-          <div className="filter-search-box">
-            <i className="fa fa-search"></i>
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '16px',
+            padding: '20px',
+            border: '1px solid var(--border)',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '16px',
+            alignItems: 'center',
+            marginBottom: '32px'
+          }}
+        >
+          {/* Search Box */}
+          <div style={{ flex: '1 1 280px', position: 'relative' }}>
             <input
               type="text"
-              placeholder={
-                language === 'en'
-                  ? 'Search package by destination, island or activity...'
-                  : 'Cari paket berdasarkan destinasi, pulau atau aktivitas...'
-              }
+              placeholder={isEn ? 'Search package by title or destination...' : 'Cari paket atau destinasi (Bromo, Bali, Malang...)'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="filter-search-input"
+              style={{
+                width: '100%',
+                padding: '12px 16px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
             />
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={() => setSearchQuery('')}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  color: '#999',
-                  padding: '4px'
-                }}
-              >
-                <i className="fa fa-times"></i>
-              </button>
-            )}
           </div>
 
-          <div className="filter-select-group">
+          {/* Duration Filter */}
+          <div style={{ minWidth: '200px' }}>
             <select
               value={durationFilter}
               onChange={(e) => setDurationFilter(e.target.value)}
-              className="filter-select"
+              style={{
+                width: '100%',
+                padding: '12px 14px',
+                borderRadius: '10px',
+                border: '1px solid var(--border)',
+                fontSize: '14px',
+                outline: 'none',
+                backgroundColor: '#fafcfb'
+              }}
             >
-              <option value="all">
-                {language === 'en' ? 'All Durations' : 'Semua Durasi'}
-              </option>
-              <option value="2">
-                {language === 'en' ? '2 Days 1 Night (2D1N)' : '2 Hari 1 Malam (2H1M)'}
-              </option>
-              <option value="3">
-                {language === 'en' ? '3 Days 2 Nights (3D2N)' : '3 Hari 2 Malam (3H2M)'}
-              </option>
-              <option value="4">
-                {language === 'en' ? '4 Days 3 Nights (4D3N)' : '4 Hari 3 Malam (4H3M)'}
-              </option>
-              <option value="5">
-                {language === 'en' ? '5 Days 4 Nights (5D4N)' : '5 Hari 4 Malam (5H4M)'}
-              </option>
+              <option value="all">{isEn ? 'All Durations' : 'Semua Durasi'}</option>
+              <option value="2">{isEn ? '2 Days 1 Night' : '2 Hari 1 Malam'}</option>
+              <option value="3">{isEn ? '3 Days 2 Nights' : '3 Hari 2 Malam'}</option>
+              <option value="4">{isEn ? '4 Days 3 Nights' : '4 Hari 3 Malam'}</option>
             </select>
           </div>
         </div>
 
         {/* CATEGORY TABS */}
-        <div className="package-tabs" style={{ marginBottom: '32px' }}>
+        <div className="filter-tabs-bar" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '32px' }}>
           <button
+            type="button"
             className={`tab-btn ${filterCategory === 'all' ? 'active' : ''}`}
             onClick={() => setFilterCategory('all')}
+            style={{
+              padding: '9px 18px',
+              borderRadius: '20px',
+              fontSize: '13.5px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: '1px solid var(--border)',
+              backgroundColor: filterCategory === 'all' ? 'var(--primary)' : '#ffffff',
+              color: filterCategory === 'all' ? '#ffffff' : 'var(--dark)'
+            }}
           >
-            {language === 'en' ? 'All Packages' : 'Semua Paket'}
+            {isEn ? 'All Packages' : 'Semua Paket'}
           </button>
           <button
-            className={`tab-btn ${filterCategory === 'lombok' ? 'active' : ''}`}
-            onClick={() => setFilterCategory('lombok')}
+            type="button"
+            className={`tab-btn ${filterCategory === 'adventure' ? 'active' : ''}`}
+            onClick={() => setFilterCategory('adventure')}
+            style={{
+              padding: '9px 18px',
+              borderRadius: '20px',
+              fontSize: '13.5px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: '1px solid var(--border)',
+              backgroundColor: filterCategory === 'adventure' ? 'var(--primary)' : '#ffffff',
+              color: filterCategory === 'adventure' ? '#ffffff' : 'var(--dark)'
+            }}
           >
-            {language === 'en' ? 'Multi-Day (2D1N - 5D4N)' : 'Multi-Day (2H1M - 5H4M)'}
+            Adventure & Nature
           </button>
           <button
-            className={`tab-btn ${filterCategory === 'private' ? 'active' : ''}`}
-            onClick={() => setFilterCategory('private')}
+            type="button"
+            className={`tab-btn ${filterCategory === 'culture' ? 'active' : ''}`}
+            onClick={() => setFilterCategory('culture')}
+            style={{
+              padding: '9px 18px',
+              borderRadius: '20px',
+              fontSize: '13.5px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: '1px solid var(--border)',
+              backgroundColor: filterCategory === 'culture' ? 'var(--primary)' : '#ffffff',
+              color: filterCategory === 'culture' ? '#ffffff' : 'var(--dark)'
+            }}
           >
-            {language === 'en' ? 'Private Trips' : 'Private Trip'}
+            Culture & Heritage
           </button>
           <button
-            className={`tab-btn ${filterCategory === 'honeymoon' ? 'active' : ''}`}
-            onClick={() => setFilterCategory('honeymoon')}
+            type="button"
+            className={`tab-btn ${filterCategory === 'family' ? 'active' : ''}`}
+            onClick={() => setFilterCategory('family')}
+            style={{
+              padding: '9px 18px',
+              borderRadius: '20px',
+              fontSize: '13.5px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: '1px solid var(--border)',
+              backgroundColor: filterCategory === 'family' ? 'var(--primary)' : '#ffffff',
+              color: filterCategory === 'family' ? '#ffffff' : 'var(--dark)'
+            }}
           >
-            {t.packages.tabHoneymoon}
+            Family & Leisure
           </button>
           <button
-            className={`tab-btn ${filterCategory === 'cultural' ? 'active' : ''}`}
-            onClick={() => setFilterCategory('cultural')}
+            type="button"
+            className={`tab-btn ${filterCategory === 'local' ? 'active' : ''}`}
+            onClick={() => setFilterCategory('local')}
+            style={{
+              padding: '9px 18px',
+              borderRadius: '20px',
+              fontSize: '13.5px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              border: '1px solid var(--border)',
+              backgroundColor: filterCategory === 'local' ? 'var(--primary)' : '#ffffff',
+              color: filterCategory === 'local' ? '#ffffff' : 'var(--dark)'
+            }}
           >
-            {t.packages.tabCulture}
+            Local Gem (Jember)
           </button>
         </div>
 
-        {/* RESULTS COUNT */}
-        <div style={{ marginBottom: '20px', color: '#666', fontSize: '14px' }}>
-          {language === 'en'
-            ? `Showing ${filteredPackages.length} tour packages`
-            : `Menampilkan ${filteredPackages.length} paket wisata`}
+        {/* RESULTS COUNT & FILTER RESET */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '20px',
+            flexWrap: 'wrap',
+            gap: '12px'
+          }}
+        >
+          <div style={{ color: 'var(--muted)', fontSize: '13.5px' }}>
+            {isEn
+              ? `Showing ${filteredPackages.length} tour package${filteredPackages.length > 1 ? 's' : ''}`
+              : `Menampilkan ${filteredPackages.length} paket perjalanan`}
+          </div>
+
+          {(filterCategory !== 'all' || searchQuery || durationFilter !== 'all') && (
+            <button
+              onClick={() => {
+                setFilterCategory('all');
+                setSearchQuery('');
+                setDurationFilter('all');
+              }}
+              style={{
+                background: 'none',
+                border: '1px solid var(--border)',
+                color: 'var(--primary)',
+                fontSize: '12.5px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '5px 12px',
+                borderRadius: '16px',
+                backgroundColor: 'var(--primary-soft)',
+                transition: 'all 0.2s ease'
+              }}
+            >
+              <i className="fa fa-times" style={{ fontSize: '11px' }}></i>
+              <span>{isEn ? 'Clear filters (show all)' : 'Hapus filter (tampilkan semua)'}</span>
+            </button>
+          )}
         </div>
 
         {/* PACKAGES GRID */}
         {filteredPackages.length === 0 ? (
-          <div className="empty-state-box">
-            <i className="fa fa-map-o" style={{ fontSize: '40px', color: '#ccc', marginBottom: '12px' }}></i>
-            <h3>{language === 'en' ? 'No packages matched' : 'Tidak ada paket yang sesuai'}</h3>
-            <p style={{ color: '#777', fontSize: '14px' }}>
-              {language === 'en'
+          <div
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '16px',
+              padding: '60px 24px',
+              textAlign: 'center',
+              border: '1px solid var(--border)'
+            }}
+          >
+            <i className="fa fa-map-o" style={{ fontSize: '42px', color: '#ccc', marginBottom: '16px' }}></i>
+            <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--dark)', marginBottom: '8px' }}>
+              {isEn ? 'No packages matched' : 'Tidak ada paket yang sesuai'}
+            </h3>
+            <p style={{ color: 'var(--muted)', fontSize: '14px', marginBottom: '20px' }}>
+              {isEn
                 ? 'Try adjusting your search query or reset the filters.'
                 : 'Coba ubah kata kunci pencarian atau reset filter di atas.'}
             </p>
@@ -222,89 +319,231 @@ export default function PaketPage() {
                 setSearchQuery('');
                 setDurationFilter('all');
               }}
-              className="btn-reset-filter"
+              style={{
+                backgroundColor: 'var(--primary)',
+                color: '#ffffff',
+                border: 'none',
+                padding: '10px 24px',
+                borderRadius: '20px',
+                fontWeight: 700,
+                fontSize: '13.5px',
+                cursor: 'pointer'
+              }}
             >
-              {t.buttons.resetFilter}
+              Reset Filter
             </button>
           </div>
         ) : (
-          <div className="packages-grid">
-            {filteredPackages.map((pkg) => (
-              <div key={pkg.slug} className="package-card">
-                <div className="card-img-wrapper">
-                  <img src={pkg.image} alt={pkg.title} />
-                  <span className="card-badge">{pkg.duration}</span>
-                  {pkg.badge && (
-                    <span className="card-badge-right">
-                      <i className="fa fa-star"></i> {pkg.badge}
+          <div
+            className="packages-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 350px), 1fr))',
+              gap: '28px'
+            }}
+          >
+            {filteredPackages.map((pkg) => {
+              const waMessage = encodeURIComponent(
+                `Halo Travelogy, saya tertarik dengan paket ${pkg.title}. Mohon informasi lebih lanjut.`
+              );
+
+              return (
+                <div
+                  key={pkg.slug}
+                  className="package-card"
+                  style={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border)',
+                    boxShadow: '0 8px 24px rgba(27, 67, 50, 0.05)',
+                    display: 'flex',
+                    flexDirection: 'column'
+                  }}
+                >
+                  <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
+                    <img src={pkg.image} alt={pkg.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        left: '12px',
+                        backgroundColor: 'rgba(15, 40, 30, 0.85)',
+                        color: '#ffffff',
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        fontSize: '11.5px',
+                        fontWeight: 700
+                      }}
+                    >
+                      {pkg.duration}
                     </span>
-                  )}
-                </div>
-                <div className="package-card-body">
-                  <span className="package-category">{pkg.type}</span>
-                  <h3 className="package-title">{pkg.title}</h3>
-                  <p className="package-desc">{pkg.shortDesc}</p>
-
-                  <div className="package-highlights">
-                    {pkg.highlights.map((h, i) => (
-                      <span key={i} className="highlight-pill">
-                        <i className="fa fa-check"></i> {h}
-                      </span>
-                    ))}
+                    <span
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        right: '12px',
+                        backgroundColor: 'var(--secondary)',
+                        color: '#ffffff',
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        fontSize: '11px',
+                        fontWeight: 700
+                      }}
+                    >
+                      {pkg.badge || 'Preview Data'}
+                    </span>
+                    <div
+                      style={{
+                        position: 'absolute',
+                        bottom: '12px',
+                        left: '12px',
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        color: 'var(--dark)',
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        fontSize: '11.5px',
+                        fontWeight: 600
+                      }}
+                    >
+                      <i className="fa fa-map-marker" style={{ color: 'var(--primary)', marginRight: '5px' }}></i>
+                      {pkg.location}
+                    </div>
                   </div>
 
-                  <div className="package-card-footer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
-                    <div className="price-box">
-                      <span className="price-label">
-                        {t.packages.perPerson}
-                      </span>
-                      <span className="price-value">{convertPriceString(pkg.pricePlaceholder)}</span>
+                  <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    <h3
+                      style={{
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        color: 'var(--dark)',
+                        marginBottom: '8px'
+                      }}
+                    >
+                      {pkg.title}
+                    </h3>
+                    <p style={{ fontSize: '13.5px', color: 'var(--muted)', lineHeight: 1.55, marginBottom: '16px', flex: 1 }}>
+                      {pkg.shortDesc}
+                    </p>
+
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                      {pkg.highlights.slice(0, 3).map((h, i) => (
+                        <span
+                          key={i}
+                          style={{
+                            backgroundColor: 'var(--primary-soft)',
+                            color: 'var(--primary)',
+                            padding: '3px 8px',
+                            borderRadius: '6px',
+                            fontSize: '11px',
+                            fontWeight: 600
+                          }}
+                        >
+                          &bull; {h}
+                        </span>
+                      ))}
                     </div>
-                    <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-                      <Link href={`/paket/${pkg.slug}`} className="btn-card-secondary">
-                        {t.buttons.detail}
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSelectedPkgSlug(pkg.slug);
-                          setBookingModalOpen(true);
+
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '10px',
+                        paddingTop: '16px',
+                        borderTop: '1px solid var(--border-light)'
+                      }}
+                    >
+                      <Link
+                        href={`/paket/${pkg.slug}`}
+                        style={{
+                          flex: 1,
+                          textAlign: 'center',
+                          backgroundColor: '#f3f7f4',
+                          color: 'var(--primary)',
+                          padding: '11px 16px',
+                          borderRadius: '24px',
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          textDecoration: 'none',
+                          border: '1px solid var(--border)'
                         }}
-                        className="btn-card-primary"
                       >
-                        <i className="fa fa-calendar-check-o"></i> {t.buttons.book}
-                      </button>
+                        View Details
+                      </Link>
+
+                      <a
+                        href={`https://wa.me/6281333992989?text=${waMessage}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          backgroundColor: 'var(--primary)',
+                          color: '#ffffff',
+                          padding: '11px 18px',
+                          borderRadius: '24px',
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          textDecoration: 'none'
+                        }}
+                      >
+                        <i className="fa fa-whatsapp"></i>
+                        <span>Inquiry</span>
+                      </a>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
         {/* CUSTOM TRIP BANNER */}
-        <div className="custom-banner-card">
-          <div className="custom-banner-text">
-            <h3>
-              {language === 'en'
-                ? 'Want a Custom Travel Route?'
-                : 'Punya Rencana & Destinasi Sendiri?'}
+        <div
+          style={{
+            marginTop: '56px',
+            backgroundColor: 'var(--primary)',
+            borderRadius: '20px',
+            padding: '36px 40px',
+            color: '#ffffff',
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '24px'
+          }}
+        >
+          <div style={{ maxWidth: '640px' }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontWeight: 700, marginBottom: '8px' }}>
+              {isEn ? 'Need a Custom Itinerary Designed Around You?' : 'Ingin Jadwal & Destinasi Khusus Sesuai Rencana Anda?'}
             </h3>
-            <p>
-              {language === 'en'
-                ? 'Tell us your preferred dates, group size, and must-see places. Our local team will design a tailor-made private itinerary with the best transparent rates.'
-                : 'Konsultasikan keinginan liburan Anda. Tim lokal Tetebatu kami siap merancang itinerary custom sesuai budget dan preferensi Anda.'}
+            <p style={{ fontSize: '14.5px', color: '#d5e6dc', lineHeight: 1.6 }}>
+              {isEn
+                ? 'Tell us your preferred dates, group size, and must-see places. Our Travelogy team will design a custom itinerary with transparent pricing.'
+                : 'Sampaikan tanggal perjalanan, jumlah rombongan, dan destinasi impian Anda. Tim Travelogy siap menyusun program terbaik.'}
             </p>
           </div>
-          <a
-            href="https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20ingin%20konsultasi%20custom%20trip%20Lombok."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-custom-wa"
+          <Link
+            href="/#custom-trip"
+            style={{
+              backgroundColor: '#ffffff',
+              color: 'var(--primary-dark)',
+              padding: '14px 28px',
+              borderRadius: '30px',
+              fontSize: '14.5px',
+              fontWeight: 700,
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
           >
-            <i className="fa fa-whatsapp"></i>{' '}
-            {language === 'en' ? 'Consult via WhatsApp' : 'Konsultasi Custom Trip'}
-          </a>
+            <span>Request Custom Trip</span>
+            <i className="fa fa-arrow-right" style={{ fontSize: '13px' }}></i>
+          </Link>
         </div>
       </div>
 

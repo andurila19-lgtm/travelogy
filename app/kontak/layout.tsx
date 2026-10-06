@@ -1,23 +1,23 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kontak & Lokasi Kantor Basecamp — Lombok_Travelers Tetebatu',
+  title: 'Kontak & Lokasi Kantor — PT. Travelogy Tour Organizer Jember',
   description:
-    'Hubungi Lombok_Travelers via WhatsApp 24/7 di 0831-1711-0638 atau kunjungi kantor basecamp kami di Jl. Pariwisata Tetebatu, Kec. Sikur, Lombok Timur. Konsultasi itinerary gratis!',
+    'Hubungi PT. Travelogy Tour Organizer via WhatsApp +62 813-3399-2989, email travelogycorp@gmail.com, atau kunjungi kantor kami di Jl. Mastrip No.71, Sumbersari, Jember.',
   alternates: {
-    canonical: 'https://lomboktravelers.reaksy.com/kontak',
+    canonical: 'https://travelogy.co.id/kontak',
   },
   openGraph: {
-    title: 'Hubungi Lombok_Travelers — Layanan Pelanggan 24 Jam',
+    title: 'Kontak & Lokasi Kantor — PT. Travelogy Tour Organizer',
     description:
-      'Konsultasikan rencana liburan Anda bersama tour planner kami. Respon cepat ramah via WhatsApp.',
-    url: 'https://lomboktravelers.reaksy.com/kontak',
+      'Hubungi tim Travelogy Tour Organizer untuk konsultasi paket wisata, transportasi, hotel, dan event dari Jember.',
+    url: 'https://travelogy.co.id/kontak',
     images: [
       {
-        url: '/images/hero_tetebatu.png',
+        url: '/images/travelogy_hero.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Kontak Lombok Travelers',
+        height: 675,
+        alt: 'Kontak Travelogy Tour Organizer Jember',
       },
     ],
   },

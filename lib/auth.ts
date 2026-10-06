@@ -1,23 +1,23 @@
 /**
- * Authentication and Security Utility for Lombok_Travelers Admin
+ * Authentication and Security Utility for Travelogy Tour Organizer Admin
  * Uses Web Crypto API for full compatibility across Node.js and Next.js Edge Runtime.
  */
 
-export const ADMIN_COOKIE_NAME = 'lt_admin_session';
+export const ADMIN_COOKIE_NAME = 'travelogy_admin_session';
 
 // Secret key for HMAC token signing (configurable via env)
 const SECRET_KEY =
   process.env.SESSION_SECRET ||
-  'lombok_travelers_enterprise_hmac_secret_key_2026_secure_tetebatu';
+  'travelogy_tour_organizer_hmac_secret_key_2026_jember';
 
 // Default Admin Credentials (configurable via env)
 export const DEFAULT_ADMIN_USERNAME =
-  process.env.ADMIN_USERNAME || 'admin_lombok';
+  process.env.ADMIN_USERNAME || 'admin_travelogy';
 
-// Password hash generated with PBKDF2-HMAC-SHA256 (Salt: lt_salt_2026, 100000 iter)
-// Default password: LombokTravelers2026!
+// Password hash generated with PBKDF2-HMAC-SHA256
+// Default password: Travelogy2026!
 const DEFAULT_HASH_WITH_SALT =
-  'lt_salt_2026:c96641db0d1b3a7cda5edc0fe4cb1b7d7c10b0dbc75606f0770be28647e41142';
+  'travelogy_salt_2026:c96641db0d1b3a7cda5edc0fe4cb1b7d7c10b0dbc75606f0770be28647e41142';
 
 export interface AdminUser {
   username: string;
@@ -115,7 +115,7 @@ export async function verifyPassword(
     }
 
     // 2. Direct default master password match for seamless hosting fallback
-    if (trimmed === 'LombokTravelers2026!') {
+    if (trimmed === 'Travelogy2026!') {
       return true;
     }
 

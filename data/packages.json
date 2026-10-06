@@ -1,271 +1,423 @@
 [
   {
-    "slug": "paket-lombok-3-hari-2-malam",
-    "title": "Paket Lombok 3 Hari 2 Malam",
-    "subtitle": "Sasak Cultural Tour, Kuta Mandalika & Snorkeling 3 Gili",
-    "category": "lombok private",
-    "badge": "Best Seller",
+    "slug": "3d2n-bromo-escape",
+    "title": "3D2N Bromo Escape",
+    "subtitle": "Golden Sunrise Penanjakan, Lautan Pasir & Kawah Aktif Bromo",
+    "category": "adventure",
+    "badge": "Preview Data • Favorit",
     "duration": "3 Hari 2 Malam",
-    "type": "Private Trip",
-    "location": "South Lombok & Gili Islands",
-    "image": "/images/gili_snorkeling.jpg",
+    "type": "Private / Group Trip",
+    "location": "Bromo & Probolinggo, Jawa Timur",
+    "image": "/images/travelogy_hero.jpg",
     "gallery": [
-      "/images/gili_snorkeling.jpg",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDr6U-cNCJReQAZiOIE9vEdk8RuA0b1ETWGkY9n0Dl4Y1S3aIvXg3BU-q6qa9DkD0AInIqEeQDraSgIyWfIndC_mmvKgO53RDefYqG8hrmIBgDxOpDYauPw7ljyl56Lk_SkJdVttpxGLZBTM35qlNCtc4MpNHuJfqpXiP5n8-lZQUezllR6qzmTf5Hrxp-akG7lvK6kXQ4Vh5mgvF4aQeI6zWqBHXNNnYaZKzifeQ0w0T3hFJ-dqG6g",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuD20oVTklMxySleHhwOdOVE5unl6u6NT6UVKKyMH1RY6ztOgmAvSWbgozoljKK4sbHXeQLGH2DSZJlFBrJLMaovcbubo8WazM5JZgAgm6mXcCfXqOmHnqwl_3lmrfONEAzPlDU_DQA8nxUUzjOfEy_2jlY9KpIEsPB1VFvSR1ArSJXR7YnRTtyAh9J8og4Hnk2Gwx-D4i4FvaMmIa1bBPDVDdq36xzTwPAoSPoQIjb2H2o2qcXB8x5P",
-      "/images/hero_tetebatu.png"
+      "/images/travelogy_hero.jpg",
+      "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
     ],
-    "pricePlaceholder": "Konsultasikan",
-    "shortDesc": "Kombinasi komplit: Desa Adat Sasak Sade, Sirkuit Mandalika, Pantai Kuta & Tanjung Aan, Bukit Merese, dan Snorkeling 3 Gili (Air, Meno, Trawangan).",
-    "description": "Paket Wisata Lombok 3 Hari 2 Malam adalah pilihan perjalanan terpopuler bagi wisatawan yang ingin menikmati esensi terbaik Pulau Lombok secara efisien, santai, dan berkesan. Program ini memadukan kekayaan budaya asli Suku Sasak, keindahan pantai pasir merica di kawasan Kuta Mandalika, serta petualangan bawah laut snorkeling di kepulauan 3 Gili (Gili Air, Gili Meno, dan Gili Trawangan). Perjalanan ini berstatus Private Trip, artinya armada mobil ber-AC dan supir lokal kami sepenuhnya didedikasikan untuk Anda dan rombongan Anda tanpa digabung dengan tamu lain.",
+    "pricePlaceholder": "Konsultasikan via WhatsApp",
+    "shortDesc": "Saksikan magisnya sunrise di atas kaldera Tengger dengan pemandangan Gunung Bromo & Semeru yang megah, safari Jeep 4x4, lautan pasir berbisik, dan kawah aktif.",
+    "description": "Paket 3D2N Bromo Escape dirancang untuk memberikan pengalaman liburan petualangan terbaik tanpa rasa lelah berlebih. Bersama Travelogy Tour Organizer, perjalanan Anda dimulai dengan penjemputan nyaman dari titik kumpul (Jember, Surabaya, atau Malang), dilanjutkan dengan safari Jeep 4x4 melintasi padang pasir berbisik, kawah aktif Bromo, pura luhur Poten, hingga padang savana Bukit Teletubbies. Catatan: Data ini merupakan format preview/proposal resmi dan dapat disesuaikan sepenuhnya dengan preferensi Anda.",
     "highlights": [
-      "Hotel 2 Malam",
-      "Private Car AC",
-      "Private Boat Gili",
-      "Driver / Guide Asli Sasak"
+      "Safari Jeep 4x4 Private",
+      "Golden Sunrise Titik Penanjakan",
+      "Eksplorasi Lautan Pasir Berbisik",
+      "Savana Hijau Bukit Teletubbies",
+      "Akomodasi Penginapan Nyaman"
     ],
     "itinerary": [
       {
         "day": "Hari 1",
-        "title": "Sasak Cultural Tour & Kuta Mandalika Explorer",
+        "title": "Penjemputan & Perjalanan Menuju Kawasan Tengger",
         "schedule": [
-          { "time": "09.00", "activity": "Penjemputan di Bandara Internasional Lombok (BIL) atau Hotel oleh Tim Lombok_Travelers" },
-          { "time": "09.30 – 11.00", "activity": "Mengunjungi Desa Tenun Sukarara (Mencoba menenun tradisional Sasak & gratis berfoto baju adat khas Lombok)" },
-          { "time": "11.00 – 12.30", "activity": "Eksplorasi Desa Adat Sasak Sade / Ende (Melihat rumah adat tradisional lantai kotoran kerbau & tradisi lokal)" },
-          { "time": "12.30 – 14.00", "activity": "Makan siang di restoran lokal tepi pantai kawasan Kuta" },
-          { "time": "14.00 – 15.30", "activity": "Wisata ke Pantai Kuta Mandalika & foto di landmark Sirkuit Internasional Mandalika" },
-          { "time": "15.30 – 17.00", "activity": "Menuju Pantai Tanjung Aan dengan pasir putih khas butiran merica dan air laut jernih toska" },
-          { "time": "17.00 – 18.30", "activity": "Menikmati panorama sunset golden hour di atas Bukit Merese (hiking ringan 5 menit)" },
-          { "time": "18.30 – 20.00", "activity": "Makan malam kuliner legendaris khas Sasak: Ayam Taliwang & Plecing Kangkung" },
-          { "time": "20.00", "activity": "Check-in Hotel pilihan (area Senggigi / Mataram / Kuta), istirahat dan acara bebas" }
+          { "time": "09.00 - 12.00", "activity": "Penjemputan peserta oleh tim armada Travelogy dari titik temu (Jember / Surabaya / Malang)" },
+          { "time": "12.00 - 13.30", "activity": "Makan siang bersama di restoran lokal & orientasi perjalanan" },
+          { "time": "13.30 - 16.00", "activity": "Perjalanan santai menuju kawasan lereng Bromo Tengger & check-in penginapan" },
+          { "time": "16.00 - 19.00", "activity": "Istirahat santai menikmati hawa sejuk pegunungan & coffee time" },
+          { "time": "19.00 - 20.30", "activity": "Makan malam hangat khas pegunungan & briefing persiapan sunrise tour dini hari" }
         ]
       },
       {
         "day": "Hari 2",
-        "title": "Snorkeling 3 Gili (Air, Meno, Trawangan) & Sunset Island",
+        "title": "Midnight Sunrise Tour, Kawah Bromo & Lautan Pasir",
         "schedule": [
-          { "time": "07.30 – 08.30", "activity": "Sarapan pagi di hotel & persiapan tour bahari" },
-          { "time": "08.30 – 09.45", "activity": "Perjalanan pesisir pantai barat Lombok via Malimbu & Tebing Villa Hantu" },
-          { "time": "09.45 – 10.15", "activity": "Tiba di Pelabuhan Teluk Nare, menaiki Private Boat Snorkeling" },
-          { "time": "10.15 – 11.30", "activity": "Snorkeling spot 1: Gili Air Coral Garden (Melihat ikan karang warna-warni & feeding fish)" },
-          { "time": "11.30 – 12.45", "activity": "Snorkeling spot 2: Gili Meno Turtle Point & Patung Bawah Laut (Underwater Statues)" },
-          { "time": "12.45 – 14.30", "activity": "Mendarat di Gili Trawangan, makan siang di restoran tepi pantai & sholat" },
-          { "time": "14.30 – 16.30", "activity": "Acara santai di Gili Trawangan: bersepeda keliling pulau, naik cidomo kuda, atau foto di ayunan laut" },
-          { "time": "16.30 – 17.30", "activity": "Kembali menyeberang ke Pulau Lombok dan bilas air tawar" },
-          { "time": "18.00 – 19.30", "activity": "Makan malam kuliner olahan seafood segar tepi pantai Senggigi" },
-          { "time": "20.00", "activity": "Kembali ke hotel dan istirahat" }
+          { "time": "03.00 - 04.00", "activity": "Morning call dan menaiki Jeep 4x4 menuju view point sunrise Penanjakan / Kingkong Hill" },
+          { "time": "04.30 - 06.00", "activity": "Menyaksikan spektakuler golden sunrise berlatar siluet Bromo, Batok, dan Semeru" },
+          { "time": "06.00 - 08.00", "activity": "Turun ke lautan pasir, jalan santai / naik kuda menuju bibir kawah aktif Bromo & Pura Poten" },
+          { "time": "08.00 - 09.30", "activity": "Sesi foto estetik di Pasir Berbisik dan hamparan hijau Savana Bukit Teletubbies" },
+          { "time": "10.00 - 12.00", "activity": "Kembali ke penginapan, sarapan pagi, bersih-bersih, dan istirahat" },
+          { "time": "18.30 - 20.00", "activity": "Makan malam santai dan sharing session perjalanan bersama tim Travelogy" }
         ]
       },
       {
         "day": "Hari 3",
-        "title": "Pusat Oleh-oleh Khas Lombok & Transfer Airport",
+        "title": "Wisata Oleh-Oleh & Pengantaran Kembali",
         "schedule": [
-          { "time": "08.00 – 09.00", "activity": "Sarapan pagi di hotel, proses check-out & luggage loading" },
-          { "time": "09.00 – 11.00", "activity": "Wisata belanja oleh-oleh khas Lombok: Kaos Lombok, Mutiara, Madu Sumbawa, Kopi Sasak Tetebatu, dan Dodol Rumput Laut" },
-          { "time": "11.00 – 12.30", "activity": "Makan siang santai di restoran lokal khas Lombok (opsional/sesuai jam penerbangan)" },
-          { "time": "12.30 – 14.00", "activity": "Pengantaran kembali ke Bandara Internasional Lombok (BIL). Program tour selesai!" }
+          { "time": "07.30 - 08.30", "activity": "Sarapan pagi di hotel dan persiapan check-out" },
+          { "time": "09.00 - 11.30", "activity": "Perjalanan singgah ke pusat oleh-oleh khas Jawa Timur" },
+          { "time": "12.00 - 14.00", "activity": "Pengantaran kembali ke stasiun/bandara/titik akhir. Program perjalanan selesai dengan penuh kebahagiaan!" }
         ]
       }
     ],
     "inclusions": [
-      "Hotel 2 malam (pilihan bintang 3/4) termasuk sarapan pagi",
-      "Transportasi mobil ber-AC (Innova/Avanza) + Bensin + Driver ramah",
-      "Private Glass Bottom Boat Snorkeling di 3 Gili (Air, Meno, Trawangan)",
-      "Perlengkapan snorkeling lengkap (Masker, Snorkel, Pelampung/Life Jacket)",
-      "Makan siang 2x dan Makan malam 2x di restoran lokal",
-      "Seluruh tiket masuk destinasi wisata & biaya parkir",
-      "Guide lokal berlisensi di Desa Adat Sade & Sukarara",
-      "Gratis foto menggunakan baju adat tradisional Sasak",
-      "Air mineral botol dingin harian selama trip",
-      "Dokumentasi standar foto kamera/smartphone"
+      "Transportasi armada Travelogy AC privat + BBM + Driver ramah profesional",
+      "Jeep 4x4 tertutup khusus kawasan Bromo (Sunrise & Lautan Pasir)",
+      "Penginapan / Hotel 2 malam sesuai paket pilihan",
+      "Tiket masuk Taman Nasional Bromo Tengger Semeru",
+      "Makan & air mineral selama rangkaian tour",
+      "Pendampingan tour leader / local guide bersertifikat"
     ],
     "exclusions": [
-      "Tiket pesawat terbang PP ke/dari Lombok",
-      "Pengeluaran pribadi (laundry, minibar hotel, belanja suvenir)",
-      "Sewa sepeda atau Cidomo di Gili Trawangan",
-      "Tipping sukarela untuk supir/guide lokal",
-      "Tambahan asuransi perjalanan pribadi"
+      "Tiket pesawat / kereta api menuju titik kumpul awal",
+      "Sewa kuda di kawah Bromo (opsional pribadi)",
+      "Pengeluaran belanja pribadi & laundry",
+      "Tipping sukarela untuk driver / crew"
     ]
   },
   {
-    "slug": "paket-lombok-2-hari-1-malam",
-    "title": "Paket Lombok 2 Hari 1 Malam",
-    "subtitle": "Kuta Mandalika Explorer & Sukarara Weaving Village",
-    "category": "lombok private",
-    "badge": "Weekend Trip",
-    "duration": "2 Hari 1 Malam",
-    "type": "Private Trip",
-    "location": "South Lombok",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCXFiA-A1V3lxkRRq1TLYKAH--twJKYdv7yCAGetDcM84zUeDJarsMPI2qvt39BjQE76dYaIIf-EMmuak1VoQdhMdLyQq5w9OqNpwGFLKCnFYWuqvgrpupnt3StPM1Jk9N-5fRlRdaSnboo6KiuDoRoF_9tTyAN9r0-HUfh8_G2KUrUauRC90tK01QtnyKOHEHKmS2BrJzKu6PFV8ocCjXiYvb2xC21czJCcPdmhzzhbCkz5W-06V0o",
-    "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCXFiA-A1V3lxkRRq1TLYKAH--twJKYdv7yCAGetDcM84zUeDJarsMPI2qvt39BjQE76dYaIIf-EMmuak1VoQdhMdLyQq5w9OqNpwGFLKCnFYWuqvgrpupnt3StPM1Jk9N-5fRlRdaSnboo6KiuDoRoF_9tTyAN9r0-HUfh8_G2KUrUauRC90tK01QtnyKOHEHKmS2BrJzKu6PFV8ocCjXiYvb2xC21czJCcPdmhzzhbCkz5W-06V0o",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDr6U-cNCJReQAZiOIE9vEdk8RuA0b1ETWGkY9n0Dl4Y1S3aIvXg3BU-q6qa9DkD0AInIqEeQDraSgIyWfIndC_mmvKgO53RDefYqG8hrmIBgDxOpDYauPw7ljyl56Lk_SkJdVttpxGLZBTM35qlNCtc4MpNHuJfqpXiP5n8-lZQUezllR6qzmTf5Hrxp-akG7lvK6kXQ4Vh5mgvF4aQeI6zWqBHXNNnYaZKzifeQ0w0T3hFJ-dqG6g"
-    ],
-    "pricePlaceholder": "Request Price",
-    "shortDesc": "Pilihan ideal untuk liburan singkat: eksplorasi tenun Sukarara, Bukit Merese, pantai pasir putih, dan pusat suvenir khas Lombok.",
-    "description": "Dirancang khusus bagi traveler dengan waktu terbatas yang ingin memaksimalkan akhir pekan di Lombok. Menikmati eksotisme pantai pasir merica Kuta Mandalika dan tradisi tenun Sasak dengan penjemputan langsung dari bandara.",
-    "highlights": [
-      "Hotel 1 Malam",
-      "Antar-Jemput Bandara",
-      "Pantai Mandalika & Merese",
-      "Desa Tenun Sukarara"
-    ],
-    "inclusions": [
-      "Hotel 1 malam termasuk sarapan",
-      "Mobil ber-AC + Driver + BBM",
-      "Tiket masuk wisata & parkir",
-      "Makan siang 1x & Makan malam 1x",
-      "Air mineral harian"
-    ],
-    "exclusions": [
-      "Tiket pesawat PP",
-      "Pengeluaran pribadi",
-      "Tipping driver"
-    ]
-  },
-  {
-    "slug": "paket-lombok-4-hari-3-malam",
-    "title": "Paket Lombok 4 Hari 3 Malam",
-    "subtitle": "Complete Lombok: Sembalun Rinjani, Tetebatu, Gili & South Beach",
-    "category": "lombok private",
-    "badge": "Favorit Keluarga",
+    "slug": "4d3n-bali-experience",
+    "title": "4D3N Bali Experience",
+    "subtitle": "Eksplorasi Budaya Ubud, Pura Ikonik & Sunset Eksotis Bali",
+    "category": "culture",
+    "badge": "Preview Data • Populer",
     "duration": "4 Hari 3 Malam",
-    "type": "Private Trip",
-    "location": "All Lombok Regions",
-    "image": "/images/sembalun_bukit_selong.jpg",
+    "type": "Private Tour",
+    "location": "Bali (Ubud, Kintamani, Bedugul & Kuta)",
+    "image": "/images/dest_bali.jpg",
     "gallery": [
-      "/images/sembalun_bukit_selong.jpg",
-      "/images/hero_tetebatu.png",
-      "/images/gili_snorkeling.jpg"
+      "/images/dest_bali.jpg",
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=1200&q=80"
     ],
-    "pricePlaceholder": "Konsultasikan",
-    "shortDesc": "Jelajah utuh Pulau Seribu Masjid: Kuta Mandalika, Gili Trawangan, segarnya udara Sembalun di kaki Rinjani, dan panorama terasiring hijau Tetebatu.",
-    "description": "Paket 4H3M memberikan ritme liburan yang seimbang antara petualangan pegunungan dan pantai tropis. Anda akan diajak menikmati sejuknya udara lembah Sembalun, sawah bertingkat Tetebatu, serta keindahan terumbu karang 3 Gili.",
+    "pricePlaceholder": "Konsultasikan via WhatsApp",
+    "shortDesc": "Rangkaian perjalanan lengkap ke Pulau Dewata: Danau Beratan Bedugul, seni & sawah terasering Ubud, keindahan Kintamani, dan panorama sunset pantai selatan.",
+    "description": "Bali Experience dari Travelogy dirancang untuk keluarga, pasangan, maupun grup kantor yang menginginkan kenyamanan prima tanpa jadwal yang terburu-buru. Itinerary seimbang menggabungkan keindahan pura tepi danau, sentuhan seni budaya Ubud, hingga relaksasi pantai di Bali Selatan. Tim Travelogy siap mendampingi perjalanan Anda dari Jember atau penjemputan langsung di Pulau Bali.",
     "highlights": [
-      "Hotel 3 Malam",
-      "Sembalun & Tetebatu",
-      "Snorkeling 3 Gili",
-      "Kuliner Khas Sasak"
+      "Pura Ulun Danu Beratan Bedugul",
+      "Pemandangan Gunung & Danau Batur Kintamani",
+      "Pusat Seni & Terasering Hijau Ubud",
+      "Sunset Golden Hour Pantai Melasti / Jimbaran",
+      "Transportasi Private & Supir Paham Wisata"
+    ],
+    "itinerary": [
+      {
+        "day": "Hari 1",
+        "title": "Ketibaan di Bali, Check-in & Sunset Santai",
+        "schedule": [
+          { "time": "11.00 - 13.00", "activity": "Penjemputan oleh tim Travelogy di Bandara Ngurah Rai atau Pelabuhan Gilimanuk" },
+          { "time": "13.00 - 14.30", "activity": "Makan siang kuliner khas Bali halal & perjalanan menuju hotel" },
+          { "time": "15.00 - 18.00", "activity": "Check-in hotel pilihan, istirahat dan santai sejenak" },
+          { "time": "18.30 - 20.30", "activity": "Makan malam tepi pantai & menikmati suasana malam tropis" }
+        ]
+      },
+      {
+        "day": "Hari 2",
+        "title": "Bedugul Ulun Danu, Wanagiri Hidden Hills & Tanah Lot",
+        "schedule": [
+          { "time": "08.00 - 09.30", "activity": "Sarapan di hotel dan keberangkatan menuju kawasan sejuk Bedugul" },
+          { "time": "09.30 - 12.00", "activity": "Mengunjungi Pura Ulun Danu Beratan di tengah danau yang magis & spot foto Wanagiri" },
+          { "time": "12.30 - 14.00", "activity": "Makan siang prasmanan dengan panorama bukit hijau" },
+          { "time": "15.30 - 18.00", "activity": "Menuju Pura Tanah Lot untuk menyaksikan momen sunset di atas tebing karang samudra" },
+          { "time": "19.00 - 20.30", "activity": "Makan malam dan kembali ke hotel" }
+        ]
+      },
+      {
+        "day": "Hari 3",
+        "title": "Pesona Budaya Ubud & Panorama Kintamani",
+        "schedule": [
+          { "time": "08.00 - 10.00", "activity": "Perjalanan ke Ubud, mengunjungi sawah bertingkat Tegalalang & desa kerajinan" },
+          { "time": "10.30 - 13.00", "activity": "Menuju Kintamani untuk makan siang menghadap langsung Danau dan Gunung Batur" },
+          { "time": "14.00 - 16.30", "activity": "Coffee testing di agrowisata kopi luwak & jalan santai di Pasar Seni Ubud" },
+          { "time": "17.30 - 20.00", "activity": "Makan malam santai dan kembali ke hotel" }
+        ]
+      },
+      {
+        "day": "Hari 4",
+        "title": "Belanja Oleh-Oleh Khas Bali & Drop Off",
+        "schedule": [
+          { "time": "08.30 - 10.00", "activity": "Sarapan, proses check-out hotel, dan packing" },
+          { "time": "10.00 - 12.30", "activity": "Singgah ke pusat oleh-oleh Krisna / Joger" },
+          { "time": "13.00 - 14.30", "activity": "Pengantaran ke Bandara / Pelabuhan. Liburan berkesan bersama Travelogy usai!" }
+        ]
+      }
     ],
     "inclusions": [
-      "Hotel 3 malam pilihan",
-      "Transportasi private ber-AC penuh",
-      "Private boat snorkeling Gili",
-      "Makan sesuai program",
-      "Tiket semua destinasi wisata"
+      "Hotel 3 malam di lokasi strategis termasuk sarapan",
+      "Armada privat AC berstandar pariwisata + BBM + Driver ramah",
+      "Seluruh tiket masuk obyek wisata sesuai program",
+      "Makan sesuai itinerary & air mineral botol setiap hari",
+      "Parkir & retribusi kawasan wisata"
     ],
     "exclusions": [
-      "Tiket pesawat PP",
-      "Pengeluaran pribadi",
-      "Tipping guide/driver"
+      "Tiket pesawat / kapal penyeberangan",
+      "Keperluan belanja pribadi",
+      "Tipping driver sukarela"
     ]
   },
   {
-    "slug": "paket-lombok-5-hari-4-malam",
-    "title": "Paket Lombok 5 Hari 4 Malam",
-    "subtitle": "Grand Island Tour: Pink Beach, Secret Gilis & Rinjani Foothills",
-    "category": "lombok private",
-    "badge": "Grand Explorer",
-    "duration": "5 Hari 4 Malam",
-    "type": "Private Trip",
-    "location": "All Lombok Regions",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDTbrGKinn1UKKBKH5wRoFYMO3R8yEVpHdEpf7bBfdTu1nUYYcTDECjmX12CZ_8eXyhRDJTK7jeZ11Fvs6hUY1rjly963y0tNadfutl_Ulv4cBK0mf3-gJkIaQHKav7mfW4VHPl3xOi-xjEhR7cHtaRfd_D0wC1wQrmXHMkRG-_hjmSGsYlAEv3v4wd3m9y_i2mQmxWZ_N_7_lHESWsTLMh79ooo4HaVGxc33YlnLlZDIyoI0Ajhya_",
+    "slug": "malang-adventure",
+    "title": "Malang Adventure & Highland Escape",
+    "subtitle": "Kesejukan Kota Wisata Batu, Petik Apel & Destinasi Favorit Keluarga",
+    "category": "family",
+    "badge": "Preview Data • Rekomendasi",
+    "duration": "3 Hari 2 Malam",
+    "type": "Family & Group",
+    "location": "Malang & Kota Batu, Jawa Timur",
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDTbrGKinn1UKKBKH5wRoFYMO3R8yEVpHdEpf7bBfdTu1nUYYcTDECjmX12CZ_8eXyhRDJTK7jeZ11Fvs6hUY1rjly963y0tNadfutl_Ulv4cBK0mf3-gJkIaQHKav7mfW4VHPl3xOi-xjEhR7cHtaRfd_D0wC1wQrmXHMkRG-_hjmSGsYlAEv3v4wd3m9y_i2mQmxWZ_N_7_lHESWsTLMh79ooo4HaVGxc33YlnLlZDIyoI0Ajhya_",
-      "/images/sembalun_bukit_selong.jpg"
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+      "/images/travelogy_hero.jpg",
+      "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80"
     ],
-    "pricePlaceholder": "Request Price",
-    "shortDesc": "Petualangan menyeluruh tanpa terburu-buru: Pink Beach, Secret Gilis (Nanggu & Sudak), air terjun tersembunyi, Sembalun, dan pesona selatan Lombok.",
-    "description": "Program liburan terlengkap dengan ritme santai. Mengunjungi spot-spot tersembunyi pulau Lombok yang jarang dijangkau wisatawan umum bersama pemandu lokal berdedikasi.",
+    "pricePlaceholder": "Konsultasikan via WhatsApp",
+    "shortDesc": "Jelajahi segarnya hawa pegunungan Kota Batu Malang, pengalaman petik apel langsung di kebun petani, theme park modern kelas dunia, dan kuliner legendaris.",
+    "description": "Kota Malang dan Batu merupakan pilihan berlibur keluarga paling komplit di Jawa Timur. Bersama Travelogy Tour Organizer, Anda dapat menikmati kombinasi seru antara keindahan alam lereng Gunung Panderman, museum otomotif spektakuler, hingga air terjun alami dengan pengaturan waktu santai dan armada ber-AC yang nyaman.",
     "highlights": [
-      "Hotel 4 Malam",
-      "Pink Beach & Secret Gilis",
-      "Sembalun & Tetebatu",
-      "Dokumentasi Foto Lengkap"
+      "Wisata Petik Apel Segar di Kebun Petani",
+      "Museum Angkut & Jatim Park Series",
+      "Air Terjun Coban Rondo & Taman Labirin",
+      "Wisata Malam Batu Night Spectacular (BNS)",
+      "Kuliner Khas Bakso Malang & Oleh-Oleh Keripik Buah"
+    ],
+    "itinerary": [
+      {
+        "day": "Hari 1",
+        "title": "Penjemputan, Wisata Petik Apel & Check-in Batu",
+        "schedule": [
+          { "time": "08.00 - 11.30", "activity": "Penjemputan di meeting point Jember / Stasiun Malang oleh armada Travelogy" },
+          { "time": "12.00 - 13.30", "activity": "Makan siang kuliner khas Bakso Presiden Malang" },
+          { "time": "14.00 - 16.30", "activity": "Menuju kebun apel dataran tinggi Batu, edukasi & petik apel langsung dari pohon" },
+          { "time": "17.00 - 18.30", "activity": "Check-in hotel/villa di Kota Batu dengan udara sejuk pegunungan" },
+          { "time": "19.00 - 21.00", "activity": "Makan malam dan jalan-jalan santai di Alun-Alun Kota Batu (mencicipi Ketan Legenda)" }
+        ]
+      },
+      {
+        "day": "Hari 2",
+        "title": "Coban Rondo, Museum Angkut & Wisata Malam",
+        "schedule": [
+          { "time": "08.00 - 09.00", "activity": "Sarapan pagi di hotel" },
+          { "time": "09.30 - 12.00", "activity": "Eksplorasi Air Terjun Coban Rondo dan bermain di Taman Labirin yang asri" },
+          { "time": "12.30 - 13.30", "activity": "Makan siang di restoran berlatar pemandangan pegunungan" },
+          { "time": "14.00 - 17.30", "activity": "Mengunjungi Museum Angkut: koleksi ribuan moda transportasi dan zona tematik dunia" },
+          { "time": "18.30 - 21.00", "activity": "Makan malam dan mengunjungi festival lampu di Batu Night Spectacular (BNS)" }
+        ]
+      },
+      {
+        "day": "Hari 3",
+        "title": "Sentra Oleh-Oleh Khas Malang & Pengantaran Pulang",
+        "schedule": [
+          { "time": "08.00 - 09.30", "activity": "Sarapan santai dan check-out penginapan" },
+          { "time": "10.00 - 12.00", "activity": "Belanja keripik apel, strudel Malang, dan cinderamata khas" },
+          { "time": "12.30 - 14.30", "activity": "Pengantaran kembali peserta ke titik asal. Perjalanan selesai penuh keceriaan!" }
+        ]
+      }
     ],
     "inclusions": [
-      "Hotel 4 malam",
-      "Armada private standby",
-      "Perahu private Pink Beach & Gili",
-      "Makan lengkap selama tour",
-      "Tiket wisata & local guide"
+      "Armada mobil privat full AC + Supir ramah + BBM selama 3 hari",
+      "Akomodasi Hotel 2 malam di Kota Batu pilihan berbintang",
+      "Tiket masuk seluruh destinasi wisata sesuai program",
+      "Tiket perkebunan petik apel makan sepuasnya di kebun",
+      "Makan sesuai itinerary & air mineral botol"
     ],
     "exclusions": [
-      "Tiket pesawat PP",
-      "Pengeluaran pribadi",
-      "Tipping kru"
+      "Pengeluaran belanja pribadi di luar program",
+      "Tiket wahana opsional di dalam area taman rekreasi",
+      "Tipping sukarela"
     ]
   },
   {
-    "slug": "private-lombok-honeymoon-trip",
-    "title": "Private Lombok Honeymoon Trip",
-    "subtitle": "Romantic Sanctuary: Candlelight Dinner, Private Boat & Sunset Cruise",
-    "category": "honeymoon private",
-    "badge": "Spesial Pasangan",
-    "duration": "3H2M / 4H3M",
-    "type": "Honeymoon",
-    "location": "Senggigi & Gili Islands",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBmQvfCSA3k_A_5I5Q2vbx_UGBWu_Ad74wc9xoYEltvFLzCyfNaESYu1wPMhr3DhmVrugVzPNI-C5qcXjCGRRgJ7xOIALlBLC8v2f8fYgu_srComUV8Hgd5tKdkcAzJWG6-_kiPUvyCK8KpsnfNRN1mTeg4hwUcUulU50j-VoGRm1Z1iIf0j9s8wdwELNq6HHO9KjKFw8XZJr3Qg-D4HjTuJUYihsulZuMGTEWYYzQVPoMPl9NPeQLv",
+    "slug": "ijen-crater-expedition",
+    "title": "Ijen Midnight Crater Expedition",
+    "subtitle": "Fenomena Langka Api Biru (Blue Fire) & Danau Kawah Asam Terbesar",
+    "category": "adventure",
+    "badge": "Preview Data • Eksklusif",
+    "duration": "2 Hari 1 Malam",
+    "type": "Adventure Trip",
+    "location": "Kawah Ijen, Banyuwangi & Bondowoso",
+    "image": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBmQvfCSA3k_A_5I5Q2vbx_UGBWu_Ad74wc9xoYEltvFLzCyfNaESYu1wPMhr3DhmVrugVzPNI-C5qcXjCGRRgJ7xOIALlBLC8v2f8fYgu_srComUV8Hgd5tKdkcAzJWG6-_kiPUvyCK8KpsnfNRN1mTeg4hwUcUulU50j-VoGRm1Z1iIf0j9s8wdwELNq6HHO9KjKFw8XZJr3Qg-D4HjTuJUYihsulZuMGTEWYYzQVPoMPl9NPeQLv",
-      "/images/gili_snorkeling.jpg"
+      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1200&q=80",
+      "/images/travelogy_hero.jpg",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
     ],
-    "pricePlaceholder": "Konsultasikan",
-    "shortDesc": "Dirancang khusus untuk pasangan: dekorasi kamar bulan madu, candlelight dinner tepi pantai, sunset cruise private, dan spot foto romantis.",
-    "description": "Wujudkan momen manis bulan madu yang intim dan tak terlupakan di Lombok. Privasi penuh, layanan hospitality hangat, dan pemandangan sunset romantis yang memikat hati.",
+    "pricePlaceholder": "Konsultasikan via WhatsApp",
+    "shortDesc": "Mendaki salah satu kawah paling spektakuler di bumi. Saksikan fenomena api biru alami langka dan danau asam berwarna toska saat fajar menyingsing di Gunung Ijen.",
+    "description": "Kawah Ijen merupakan keajaiban geologis dunia yang terletak di perbatasan Banyuwangi dan Bondowoso, hanya berjarak beberapa jam perjalanan nyaman dari Jember. Bersama tim Travelogy, pendakian tengah malam Anda dipandu oleh guide lokal berpengalaman lengkap dengan masker gas standar keselamatan, memastikan ekspedisi Anda aman, tertib, dan tak terlupakan.",
     "highlights": [
-      "Honeymoon Bed Decoration",
-      "Romantic Candlelight Dinner",
-      "Private Boat Snorkeling",
-      "Private Driver Khusus"
+      "Fenomena Blue Fire Langka (Hanya 2 di Dunia)",
+      "Pemandangan Danau Kawah Asam Hijau Toska",
+      "Sunrise Mengagumkan dari Puncak Rim Kawah",
+      "Masker Gas Standar & Guide Trekking Lokal",
+      "Jarak Dekat & Akses Nyaman dari Jember"
+    ],
+    "itinerary": [
+      {
+        "day": "Hari 1",
+        "title": "Penjemputan di Jember / Banyuwangi & Istirahat Penginapan",
+        "schedule": [
+          { "time": "14.00 - 17.00", "activity": "Penjemputan oleh tim armada Travelogy di Jember atau Stasiun Banyuwangi" },
+          { "time": "17.00 - 18.30", "activity": "Perjalanan santai menuju kawasan lereng Ijen & check-in homestay / hotel" },
+          { "time": "19.00 - 20.30", "activity": "Makan malam hangat, briefing peralatan trekking dan istirahat awal" }
+        ]
+      },
+      {
+        "day": "Hari 2",
+        "title": "Midnight Trekking Blue Fire, Sunrise & Drop Off",
+        "schedule": [
+          { "time": "00.30 - 01.30", "activity": "Persiapan dini hari dan perjalanan menuju Pos Paltuding (pintu masuk kawah)" },
+          { "time": "02.00 - 04.00", "activity": "Trekking mendaki dipandu guide lokal berlisensi menuju bibir kawah (jarak 3 km)" },
+          { "time": "04.00 - 05.15", "activity": "Menyaksikan pesona lidah api biru (Blue Fire) di dasar kawah belerang" },
+          { "time": "05.30 - 06.45", "activity": "Menyambut sunrise hangat dengan latar danau kawah asam berwarna toska magis" },
+          { "time": "07.00 - 08.30", "activity": "Trekking turun kembali ke Pos Paltuding" },
+          { "time": "09.00 - 11.00", "activity": "Kembali ke penginapan, sarapan pagi, mandi air hangat, dan check-out" },
+          { "time": "11.30 - 14.00", "activity": "Pengantaran kembali peserta ke Jember / stasiun kepulangan. Ekspedisi sukses!" }
+        ]
+      }
     ],
     "inclusions": [
-      "Resort / Villa Honeymoon",
-      "Setup dekorasi bunga kamar",
-      "1x Candlelight Dinner tepi pantai",
-      "Private Boat & Snorkeling Gear",
-      "Transportasi private exclusive"
+      "Transportasi armada Travelogy PP dari Jember / Banyuwangi + BBM + Supir",
+      "Akomodasi penginapan 1 malam di lereng Ijen",
+      "Tiket resmi Taman Wisata Alam Kawah Ijen",
+      "Guide lokal profesional pendakian kawah",
+      "Sewa Masker Gas respirator standar & senter kepala",
+      "Air mineral & sarapan pagi"
     ],
     "exclusions": [
-      "Tiket pesawat PP",
+      "Sewa troli gerobak dorong jika dibutuhkan (opsional di lokasi)",
       "Pengeluaran pribadi",
-      "Tipping"
+      "Tipping sukarela"
     ]
   },
   {
-    "slug": "tetebatu-nature-cultural-immersion",
-    "title": "Tetebatu Nature & Cultural Immersion",
-    "subtitle": "Highland Sanctuary, Rice Terraces & Sasak Living",
-    "category": "cultural private",
-    "badge": "Khas Tetebatu",
-    "duration": "2H1M / 3H2M",
-    "type": "Private Trip",
-    "location": "Tetebatu, Lombok Timur",
-    "image": "/images/hero_tetebatu.png",
+    "slug": "3d2n-yogyakarta-heritage",
+    "title": "Yogyakarta Heritage & Nature",
+    "subtitle": "Keagungan Borobudur, Jejak Budaya Keraton & Petualangan Merapi",
+    "category": "culture",
+    "badge": "Preview Data",
+    "duration": "3 Hari 2 Malam",
+    "type": "Cultural Tour",
+    "location": "DI Yogyakarta & Magelang",
+    "image": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=1200&q=80",
     "gallery": [
-      "/images/hero_tetebatu.png",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBlyQbG7Xk09X-zF4TVEzN7vjZi_FlIDuKf7bUu83Me65P3hxtzztMudpHT6RLVnx-9IPaf9rQiOjxU1ftDedhn6zkfOQMPKJg1nsYTwcsl0QVAjL3ZL_Cgcbekbh68FZXJACB9dkkATQoSptLB2xryww4y86CVFQSKsiusDtbecb3z2-iS53MTRrKW6_PXM9d4Mkv2EYvt5bRh_Hhhwb8RW7PKhTqS1qGR9Rp1pcfEpM7Hnj6RUrZ1"
+      "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?auto=format&fit=crop&w=1200&q=80",
+      "/images/travelogy_hero.jpg",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
     ],
-    "pricePlaceholder": "Konsultasikan",
-    "shortDesc": "Rasakan denyut kehidupan asli Lombok: trekking sawah bertingkat Tetebatu, sangrai kopi tradisional Sasak, melihat Black Monkey langka, dan air terjun alami.",
-    "description": "Menyelami ketenangan desa wisata Tetebatu di lereng Gunung Rinjani. Belajar tradisi lokal, menikmati kopi Sasak racikan tangan penduduk asli, serta menyusuri air terjun tersembunyi yang asri.",
+    "pricePlaceholder": "Konsultasikan via WhatsApp",
+    "shortDesc": "Jelajahi jantung kebudayaan Jawa: kemegahan Candi Borobudur & Prambanan, serunya Lava Tour Jeep lereng Merapi, Keraton Jogja, dan gemerlap malam Malioboro.",
+    "description": "Yogyakarta selalu menghadirkan kenangan rindu yang hangat. Paket ini memadukan kemegahan candi warisan dunia UNESCO, petualangan seru melintasi jalur erupsi Merapi dengan Jeep terbuka, hingga suasana belanja malam hari di Jalan Malioboro. Didukung armada nyaman dan rekomendasi kuliner gudeg legendaris dari tim Travelogy.",
     "highlights": [
-      "Local Guide Asli Tetebatu",
-      "Trekking Terasering Sawah",
-      "Black Monkey Sanctuary",
-      "Air Terjun Sarang Walet"
+      "Kemegahan Candi Borobudur & Prambanan",
+      "Jeep Lava Tour Lereng Gunung Merapi",
+      "Keraton Ngayogyakarta Hadiningrat",
+      "Suasana Romantis Malam Malioboro & Titik Nol",
+      "Wisata Kuliner Khas & Sentra Bakpia Pathok"
+    ],
+    "itinerary": [
+      {
+        "day": "Hari 1",
+        "title": "Ketibaan di Jogja, Keraton & Sunset Prambanan",
+        "schedule": [
+          { "time": "08.30 - 11.00", "activity": "Penjemputan di Stasiun Tugu / Bandara YIA Yogyakarta oleh tim Travelogy" },
+          { "time": "11.30 - 13.00", "activity": "Makan siang kuliner khas Gudeg Yu Djum" },
+          { "time": "13.30 - 15.30", "activity": "Eksplorasi Keraton Yogyakarta dan keindahan arsitektur Taman Sari Water Castle" },
+          { "time": "16.00 - 18.00", "activity": "Menyaksikan siluet megah Candi Prambanan saat senja" },
+          { "time": "18.30 - 20.30", "activity": "Check-in hotel dan jalan-jalan santai di sekitar Malioboro" }
+        ]
+      },
+      {
+        "day": "Hari 2",
+        "title": "Candi Borobudur & Lava Tour Merapi Adventure",
+        "schedule": [
+          { "time": "07.30 - 09.00", "activity": "Sarapan di hotel dan perjalanan menuju Candi Borobudur di Magelang" },
+          { "time": "09.00 - 12.00", "activity": "Mengeksplorasi relief dan stupa megah Candi Borobudur" },
+          { "time": "12.30 - 13.30", "activity": "Makan siang masakan pedesaan khas Mangut Beong" },
+          { "time": "14.30 - 17.00", "activity": "Petualangan seru Jeep 4x4 Lava Tour Merapi (Bunker Kaliadem & Batu Alien)" },
+          { "time": "18.30 - 20.30", "activity": "Makan malam dan kembali ke hotel" }
+        ]
+      },
+      {
+        "day": "Hari 3",
+        "title": "Pusat Oleh-Oleh Bakpia & Pengantaran Kepulangan",
+        "schedule": [
+          { "time": "08.00 - 09.30", "activity": "Sarapan santai, check-out hotel" },
+          { "time": "10.00 - 12.00", "activity": "Berbelanja oleh-oleh bakpia kukus/panggang dan batik khas Jogja" },
+          { "time": "12.30 - 14.00", "activity": "Pengantaran kembali ke Stasiun / Bandara. Liburan penuh nostalgia selesai!" }
+        ]
+      }
     ],
     "inclusions": [
-      "Eco-lodge / Homestay asri Tetebatu",
-      "Pemandu lokal berlisensi",
-      "Workshop sangrai kopi tradisional",
-      "Makan kuliner organik lokal",
-      "Transport penjemputan"
+      "Hotel 2 malam bintang 3/4 di pusat kota Yogyakarta termasuk sarapan",
+      "Armada mobil privat full AC + Supir berpengalaman + BBM",
+      "Sewa Jeep 4x4 untuk rute Lava Tour Merapi",
+      "Tiket masuk seluruh obyek wisata sesuai paket",
+      "Air mineral dan rekomendasi kuliner terbaik"
     ],
     "exclusions": [
-      "Tiket pesawat PP",
-      "Pengeluaran pribadi",
-      "Tipping guide"
+      "Tiket kereta / pesawat ke dan dari Yogyakarta",
+      "Pengeluaran pribadi & wahana di luar itinerary",
+      "Tipping sukarela"
+    ]
+  },
+  {
+    "slug": "2d1n-jember-exotic-discovery",
+    "title": "Jember Exotic Discovery",
+    "subtitle": "Pesona Pantai Tanjung Papuma, Teluk Love & Agrowisata Kopi",
+    "category": "local",
+    "badge": "Preview Data • Local Gem",
+    "duration": "2 Hari 1 Malam",
+    "type": "Local Tour",
+    "location": "Jember, Jawa Timur",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    "gallery": [
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "/images/travelogy_hero.jpg",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80"
+    ],
+    "pricePlaceholder": "Konsultasikan via WhatsApp",
+    "shortDesc": "Jelajahi surga tersembunyi tanah Jember: pantai karang eksotis Tanjung Papuma, panorama Teluk Love dari atas bukit, dan kesejukan perkebunan kopi pegunungan.",
+    "description": "Sebagai biro perjalanan yang berakar di Jember, Travelogy Tour Organizer mempersembahkan keindahan kampung halaman yang otentik. Temukan keelokan pantai selatan dengan pasir putih dan batu karang menjulang di Tanjung Papuma, pemandangan garis pantai berbentuk hati di Teluk Love, serta cita rasa kopi robusta Jember yang mendunia di perkebunan lereng Argopuro.",
+    "highlights": [
+      "Batu Karang & Pasir Putih Tanjung Papuma",
+      "Panorama Teluk Love dari Bukit Payangan",
+      "Agrowisata Perkebunan Kopi & Kakao Jember",
+      "Wisata Kuliner Suwar-Suwir & Tape Khas Jember",
+      "Dipandu Tim Asli Jember yang Ramah & Mengetahui Sudut Terbaik"
+    ],
+    "itinerary": [
+      {
+        "day": "Hari 1",
+        "title": "Penjemputan di Jember, Teluk Love & Sunset Papuma",
+        "schedule": [
+          { "time": "08.30 - 10.00", "activity": "Penjemputan di Stasiun Jember atau kantor Travelogy (Jl. Mastrip No.71)" },
+          { "time": "10.30 - 12.30", "activity": "Perjalanan ke pesisir selatan, mendaki Bukit Payangan untuk menikmati pemandangan Teluk Love" },
+          { "time": "12.30 - 14.00", "activity": "Makan siang hidangan ikan bakar segar khas nelayan lokal di tepi pantai" },
+          { "time": "14.30 - 17.45", "activity": "Menuju Tanjung Papuma: menikmati pasir putih, batuan karang Siti Hinggil, dan sunset eksotis" },
+          { "time": "18.30 - 20.30", "activity": "Kembali ke pusat kota Jember, makan malam kuliner lokal, check-in hotel & istirahat" }
+        ]
+      },
+      {
+        "day": "Hari 2",
+        "title": "Agrowisata Kopi Pegunungan & Oleh-Oleh Khas",
+        "schedule": [
+          { "time": "08.00 - 09.30", "activity": "Sarapan pagi di hotel dan check-out" },
+          { "time": "09.30 - 12.00", "activity": "Kunjungan ke perkebunan kopi di lereng pegunungan, mencicipi seduhan kopi khas Jember" },
+          { "time": "12.30 - 13.30", "activity": "Makan siang di resto lokal" },
+          { "time": "14.00 - 15.30", "activity": "Membeli oleh-oleh khas Jember (Prol Tape, Suwar-Suwir, Edamame)" },
+          { "time": "16.00", "activity": "Pengantaran kembali ke Stasiun Jember. Tour selesai dengan penuh kepuasan!" }
+        ]
+      }
+    ],
+    "inclusions": [
+      "Armada mobil ber-AC prima + BBM + Supir lokal asli Jember",
+      "Hotel 1 malam di pusat kota Jember pilihan",
+      "Tiket masuk Tanjung Papuma & Bukit Payangan",
+      "Makan hidangan laut nelayan & kuliner khas",
+      "Air mineral dingin & pendampingan tour"
+    ],
+    "exclusions": [
+      "Tiket kereta api kedatangan ke Jember",
+      "Pengeluaran belanja pribadi",
+      "Tipping sukarela"
     ]
   }
 ]

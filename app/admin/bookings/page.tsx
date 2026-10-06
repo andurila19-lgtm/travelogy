@@ -307,7 +307,7 @@ export default function AdminBookingsPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `bookings_lombok_travelers_${new Date().toISOString().split('T')[0]}.csv`);
+    link.setAttribute('download', `bookings_travelogy_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -324,13 +324,13 @@ export default function AdminBookingsPage() {
 
     let text = '';
     if (type === 'confirm') {
-      text = `Halo Kak ${b.customer_name},\n\nTerima kasih telah mengajukan reservasi di Lombok_Travelers!\n\n📋 *Rincian Booking:*\n- No. Booking: ${b.booking_number}\n- Paket: ${b.package_name}\n- Tanggal Trip: ${b.travel_date}\n- Peserta: ${b.participants} Orang\n- Penjemputan: ${b.pickup_location}\n\nJadwal armada dan pemandu lokal Tetebatu kami *TERSEDIA* pada tanggal tersebut. Untuk mengunci jadwal, silakan melakukan pembayaran DP 30%.\n\nApakah ada pertanyaan tambahan mengenai itinerary? Terima kasih!`;
+      text = `Halo Kak ${b.customer_name},\n\nTerima kasih telah mengajukan reservasi di PT. Travelogy Tour Organizer!\n\n📋 *Rincian Booking:*\n- No. Booking: ${b.booking_number}\n- Paket: ${b.package_name}\n- Tanggal Trip: ${b.travel_date}\n- Peserta: ${b.participants} Orang\n- Penjemputan: ${b.pickup_location}\n\nJadwal armada dan driver Travelogy kami *TERSEDIA* pada tanggal tersebut. Untuk mengunci jadwal, silakan melakukan pembayaran DP 30%.\n\nApakah ada pertanyaan tambahan mengenai itinerary? Terima kasih!`;
     } else if (type === 'voucher') {
-      text = `Halo Kak ${b.customer_name},\n\nBerikut konfirmasi E-Voucher resmi Lombok_Travelers untuk perjalanan Anda:\n\n🎫 *No. Voucher:* ${b.booking_number}\n📍 *Paket:* ${b.package_name}\n📅 *Tanggal Keberangkatan:* ${b.travel_date}\n🚐 *Armada:* ${b.transportation}\n📍 *Titik Temu:* ${b.pickup_location}\n\nDriver kami akan standby 15 menit sebelum jadwal penjemputan. Sampai jumpa di Lombok!`;
+      text = `Halo Kak ${b.customer_name},\n\nBerikut konfirmasi E-Voucher resmi Travelogy Tour Organizer untuk perjalanan Anda:\n\n🎫 *No. Voucher:* ${b.booking_number}\n📍 *Paket:* ${b.package_name}\n📅 *Tanggal Keberangkatan:* ${b.travel_date}\n🚐 *Armada:* ${b.transportation}\n📍 *Titik Temu:* ${b.pickup_location}\n\nDriver kami akan standby 15 menit sebelum jadwal penjemputan. Sampai jumpa di perjalanan menyenangkan bersama Travelogy!`;
     } else if (type === 'reminder') {
-      text = `Halo Kak ${b.customer_name}!\n\nPengingat penjemputan H-1 liburan Lombok besok (${b.travel_date}). Driver lokal kami akan menjemput Anda di *${b.pickup_location}*.\n\nMohon pastikan nomor HP aktif. Jika butuh bantuan darurat, hotline kami standby di 0831-1711-0638. Selamat beristirahat!`;
+      text = `Halo Kak ${b.customer_name}!\n\nPengingat penjemputan H-1 perjalanan bersama Travelogy besok (${b.travel_date}). Driver kami akan menjemput Anda di *${b.pickup_location}*.\n\nMohon pastikan nomor HP aktif. Hotline Travelogy standby di +62 813-3399-2989. Selamat beristirahat!`;
     } else if (type === 'review') {
-      text = `Halo Kak ${b.customer_name},\n\nTerima kasih banyak telah mempercayakan liburan di Lombok bersama keluarga besar Lombok_Travelers Tetebatu!\n\nSemoga perjalanannya sangat berkesan. Jika berkenan, mohon bantuan memberikan ulasan bintang 5 dan pengalaman Anda bersama supir & guide kami di Google Maps. Sangat berarti bagi pemandu lokal kami! Terima kasih.`;
+      text = `Halo Kak ${b.customer_name},\n\nTerima kasih banyak telah mempercayakan perjalanan bersama keluarga besar PT. Travelogy Tour Organizer Jember!\n\nSemoga perjalanannya sangat berkesan. Jika berkenan, mohon bantuan memberikan ulasan bintang 5 dan pengalaman Anda bersama tim kami di Google Maps. Sangat berarti bagi kami! Terima kasih.`;
     }
 
     return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
@@ -370,7 +370,7 @@ export default function AdminBookingsPage() {
             </span>
           </div>
           <p style={{ fontSize: '13.5px', color: '#64748b', margin: '4px 0 0 0' }}>
-            Tetebatu Basecamp • Pantau alur reservasi tamu, jadwal penjemputan bandara, dan pencatatan pembayaran DP.
+            Travelogy Jember Operations • Pantau alur reservasi tamu, jadwal penjemputan, dan pencatatan pembayaran DP.
           </p>
         </div>
 
@@ -425,11 +425,11 @@ export default function AdminBookingsPage() {
                 customer_name: '',
                 whatsapp: '',
                 email: '',
-                package_name: packagesData[0]?.title || 'Paket Lombok 3 Hari 2 Malam',
-                package_id: packagesData[0]?.slug || 'paket-lombok-3-hari-2-malam',
+                package_name: packagesData[0]?.title || '3D2N Bromo Escape',
+                package_id: packagesData[0]?.slug || '3d2n-bromo-escape',
                 travel_date: new Date().toISOString().split('T')[0],
                 participants: 2,
-                pickup_location: 'Bandara Internasional Lombok (BIL)',
+                pickup_location: 'Stasiun / Hotel Jember',
                 transportation: 'Innova Reborn (Private AC)',
                 notes: '',
                 status: 'New Inquiry',
@@ -1391,7 +1391,7 @@ export default function AdminBookingsPage() {
               </p>
             </div>
             <span style={{ fontSize: '12px', background: '#f1f5f9', padding: '6px 12px', borderRadius: '6px', fontWeight: 600 }}>
-              Zona Waktu: WITA (Lombok)
+              Zona Waktu: WIB (Jember)
             </span>
           </div>
 
@@ -1540,7 +1540,7 @@ export default function AdminBookingsPage() {
                 Rp {metrics.pendingSettlement.toLocaleString('id-ID')}
               </div>
               <p style={{ fontSize: '12px', color: '#64748b', margin: '4px 0 0 0' }}>
-                Diterima secara tunai / transfer saat penjemputan tamu di Lombok.
+                Diterima secara tunai / transfer saat penjemputan tamu Travelogy.
               </p>
             </div>
           </div>
@@ -1576,12 +1576,12 @@ export default function AdminBookingsPage() {
       {viewMode === 'fleets' && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
           {[
-            { name: 'All New Avanza (Unit #01)', plate: 'DR 1422 AX', driver: 'Pak Johari (Tetebatu)', status: 'Siap Operasi', pax: '5 Pax' },
-            { name: 'Innova Reborn (Unit #02)', plate: 'DR 1889 BZ', driver: 'Mas Dedi (Sikur)', status: 'On Trip (Gili Trawangan)', pax: '7 Pax' },
-            { name: 'Innova Reborn (Unit #03)', plate: 'DR 1902 CL', driver: 'Pak Herman (Tetebatu)', status: 'Siap Operasi', pax: '7 Pax' },
-            { name: 'Toyota HiAce Commuter (Unit #04)', plate: 'DR 7120 DK', driver: 'Bang Fikri (Mataram)', status: 'Booked Besok (Sembalun)', pax: '14 Pax' },
-            { name: 'Toyota HiAce Premio Luxury (Unit #05)', plate: 'DR 7788 VIP', driver: 'Pak Rudi (Tetebatu)', status: 'Siap Operasi VIP', pax: '10 Pax' },
-            { name: 'Toyota Fortuner VRZ (Unit #06)', plate: 'DR 1111 EX', driver: 'Mas Ridwan (Senggigi)', status: 'Siap Operasi', pax: '6 Pax' },
+            { name: 'All New Avanza (Unit #01)', plate: 'P 1422 AX', driver: 'Pak Johari (Jember)', status: 'Siap Operasi', pax: '5 Pax' },
+            { name: 'Innova Reborn (Unit #02)', plate: 'P 1889 BZ', driver: 'Mas Dedi (Jember)', status: 'On Trip (Bromo Safari)', pax: '7 Pax' },
+            { name: 'Innova Reborn (Unit #03)', plate: 'P 1902 CL', driver: 'Pak Herman (Jember)', status: 'Siap Operasi', pax: '7 Pax' },
+            { name: 'Toyota HiAce Commuter (Unit #04)', plate: 'P 7120 DK', driver: 'Bang Fikri (Jember)', status: 'Booked Besok (Malang)', pax: '14 Pax' },
+            { name: 'Toyota HiAce Premio Luxury (Unit #05)', plate: 'P 7788 VIP', driver: 'Pak Rudi (Jember)', status: 'Siap Operasi VIP', pax: '10 Pax' },
+            { name: 'Toyota Fortuner VRZ (Unit #06)', plate: 'P 1111 EX', driver: 'Mas Ridwan (Jember)', status: 'Siap Operasi', pax: '6 Pax' },
           ].map((car, idx) => (
             <div key={idx} style={{ background: '#ffffff', borderRadius: '10px', padding: '18px', border: '1px solid #e2e8f0' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -2077,12 +2077,12 @@ export default function AdminBookingsPage() {
               {/* Header Letterhead */}
               <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '2px solid #185a38', paddingBottom: '16px', marginBottom: '20px' }}>
                 <div>
-                  <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, color: '#185a38' }}>LOMBOK_TRAVELERS</h2>
+                  <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, color: '#1b4332' }}>PT. TRAVELOGY TOUR ORGANIZER</h2>
                   <span style={{ fontSize: '11px', color: '#64748b' }}>
-                    Local Travel Partner • Jl. Pariwisata Tetebatu, Sikur, Lombok Timur, NTB 83662
+                    Official Tour & Transport Partner • Jl. Mastrip No.71, Sumbersari, Jember, Jawa Timur 68124
                   </span>
                   <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
-                    Hotline WhatsApp: +62 831-1711-0638 • Web: lomboktravelers.reaksy.com
+                    Hotline WhatsApp: +62 813-3399-2989 • Email: travelogycorp@gmail.com
                   </div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
@@ -2127,10 +2127,10 @@ export default function AdminBookingsPage() {
                   Fasilitas Termasuk dalam Voucher Ini:
                 </strong>
                 <ul style={{ margin: 0, paddingLeft: '18px', color: '#475569', lineHeight: 1.6 }}>
-                  <li>Transportasi mobil ber-AC + Bahan Bakar + Supir lokal asli Sasak</li>
-                  <li>Tiket masuk semua destinasi wisata & parkir sesuai rute resmi</li>
-                  <li>Perlengkapan snorkeling & private boat (jika termasuk program Gili)</li>
-                  <li>Pendampingan tour & dokumentasi standar</li>
+                  <li>Transportasi armada ber-AC + BBM + Driver ramah profesional</li>
+                  <li>Tiket masuk semua destinasi wisata & retribusi sesuai itinerary resmi</li>
+                  <li>Air mineral botol selama kegiatan tour</li>
+                  <li>Pendampingan & koordinasi perjalanan Travelogy</li>
                 </ul>
               </div>
 
@@ -2147,11 +2147,11 @@ export default function AdminBookingsPage() {
                   Dicetak pada: {new Date().toLocaleDateString('id-ID')} • Harap tunjukkan voucher ini ke supir saat penjemputan.
                 </div>
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 700, color: '#185a38', marginBottom: '40px' }}>
-                    Lombok_Travelers Management
+                  <div style={{ fontSize: '12px', fontWeight: 700, color: '#1b4332', marginBottom: '40px' }}>
+                    PT. Travelogy Tour Organizer
                   </div>
                   <div style={{ fontSize: '11px', color: '#64748b', borderTop: '1px solid #94a3b8', paddingTop: '4px' }}>
-                    Tetebatu Basecamp Representative
+                    Jember Central Operations
                   </div>
                 </div>
               </div>
@@ -2301,7 +2301,7 @@ export default function AdminBookingsPage() {
                       {pkg.title}
                     </option>
                   ))}
-                  <option value="Custom Itinerary Lombok">Custom Itinerary Lombok</option>
+                  <option value="Custom Trip Travelogy">Custom Trip Travelogy</option>
                 </select>
               </div>
 

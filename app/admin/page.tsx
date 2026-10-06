@@ -64,10 +64,10 @@ export default function AdminDashboardPage() {
             Pusat Komando Operasional
           </span>
           <h1 className="admin-welcome-title" style={{ fontSize: '22px', fontWeight: 800, margin: '0 0 6px 0', color: '#ffffff', lineHeight: 1.25 }}>
-            Selamat Datang di Command Center Lombok_Travelers
+            Selamat Datang di Command Center Travelogy Tour Organizer
           </h1>
           <p style={{ fontSize: '13px', color: '#cbd5e1', margin: 0, maxWidth: '600px', lineHeight: 1.5 }}>
-            Basecamp Tetebatu, Sikur, Lombok Timur. Seluruh data reservasi, armada supir, dan pembukuan uang muka (DP) terpantau terpusat.
+            Kantor Pusat Jember, Jawa Timur. Seluruh data reservasi, armada transportasi, dan operasional tur terpantau terpusat.
           </p>
         </div>
 
@@ -192,7 +192,7 @@ export default function AdminDashboardPage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px', gap: '10px' }}>
             <div>
               <h3 style={{ fontSize: '15px', fontWeight: 800, margin: '0 0 2px 0', color: '#0f172a' }}>Jadwal Penjemputan Tamu</h3>
-              <span style={{ fontSize: '11.5px', color: '#64748b' }}>Rombongan yang akan segera tiba di Lombok</span>
+              <span style={{ fontSize: '11.5px', color: '#64748b' }}>Rombongan perjalanan terdekat</span>
             </div>
             <Link href="/admin/schedule" style={{ fontSize: '11.5px', fontWeight: 700, color: '#185a38', textDecoration: 'none', whiteSpace: 'nowrap' }}>
               Lihat Semua ›
@@ -254,7 +254,7 @@ export default function AdminDashboardPage() {
         <div style={{ background: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', padding: '18px', boxShadow: '0 1px 3px rgba(0,0,0,0.03)' }}>
           <h3 style={{ fontSize: '15px', fontWeight: 800, margin: '0 0 3px 0', color: '#0f172a' }}>Modul Operasional</h3>
           <p style={{ fontSize: '12px', color: '#64748b', margin: '0 0 14px 0' }}>
-            Akses langsung ke seluruh instrumen pengelolaan Lombok_Travelers.
+            Akses langsung ke seluruh instrumen pengelolaan PT. Travelogy Tour Organizer.
           </p>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>

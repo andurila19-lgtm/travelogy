@@ -19,19 +19,13 @@ export default function SearchBar() {
     if (durasi && durasi !== 'semua') params.set('durasi', durasi);
 
     const queryString = params.toString();
-
-    if (durasi === '1 Hari' || kategori === 'Paket Trip 1 Hari') {
-      router.push(`/trip-harian${queryString ? `?${queryString}` : ''}`);
-    } else {
-      router.push(`/paket${queryString ? `?${queryString}` : ''}`);
-    }
+    router.push(`/paket${queryString ? `?${queryString}` : ''}`);
   };
 
   return (
     <div id="srchome">
       <div className="box1140">
         <form onSubmit={handleSearch} className="srchome-form">
-          
           {/* Col 1: Pilih Kategori */}
           <div className="srchome-col">
             <label htmlFor="kategori">{t.search.catLabel}</label>
@@ -43,11 +37,11 @@ export default function SearchBar() {
               onChange={(e) => setKategori(e.target.value)}
             >
               <option value="semua">{t.search.allCat}</option>
-              <option value="Paket Wisata Lombok">{t.search.catHoliday}</option>
-              <option value="Private Trip">{t.search.catPrivate}</option>
-              <option value="Paket Honeymoon">{t.search.catHoneymoon}</option>
-              <option value="Paket Trip 1 Hari">{t.search.catDaily}</option>
-              <option value="Tetebatu Cultural">{t.search.catTetebatu}</option>
+              <option value="Tour Packages">Tour Packages</option>
+              <option value="Private Trip">Private Trip</option>
+              <option value="Family & Group">Family & Group</option>
+              <option value="Adventure">Adventure & Nature</option>
+              <option value="Culture">Culture & Heritage</option>
             </select>
           </div>
 
@@ -62,13 +56,13 @@ export default function SearchBar() {
               onChange={(e) => setDestinasi(e.target.value)}
             >
               <option value="semua">{t.search.allDest}</option>
-              <option value="Tetebatu">{language === 'en' ? 'Tetebatu & Rinjani Foothills' : 'Tetebatu & Lembah Rinjani'}</option>
-              <option value="Gili Trawangan">{language === 'en' ? 'Gili Trawangan & 3 Gilis' : 'Gili Trawangan & 3 Gili'}</option>
-              <option value="Kuta Mandalika">{language === 'en' ? 'Kuta Mandalika & Merese Hill' : 'Kuta Mandalika & Merese'}</option>
-              <option value="Sembalun">{language === 'en' ? 'Sembalun Highlands' : 'Lembah Sembalun'}</option>
-              <option value="Pink Beach">{language === 'en' ? 'Pink Beach Lombok' : 'Pink Beach Lombok'}</option>
-              <option value="Gili Nanggu">{language === 'en' ? 'Gili Nanggu Secret Islands' : 'Gili Nanggu Secret Islands'}</option>
-              <option value="Senaru">{language === 'en' ? 'Senaru Waterfalls & Tiu Kelep' : 'Air Terjun Senaru & Tiu Kelep'}</option>
+              <option value="Bromo">Bromo & Tengger</option>
+              <option value="Bali">Bali (Ubud, Kintamani & Pantai)</option>
+              <option value="Malang">Malang & Kota Wisata Batu</option>
+              <option value="Ijen">Kawah Ijen & Blue Fire</option>
+              <option value="Yogyakarta">Yogyakarta & Candi Borobudur</option>
+              <option value="Jember">Jember (Papuma & Teluk Love)</option>
+              <option value="East Java">East Java Overland</option>
             </select>
           </div>
 
@@ -87,17 +81,15 @@ export default function SearchBar() {
               <option value="2 Hari 1 Malam">{t.search.dur2D1N}</option>
               <option value="3 Hari 2 Malam">{t.search.dur3D2N}</option>
               <option value="4 Hari 3 Malam">{t.search.dur4D3N}</option>
-              <option value="5 Hari 4 Malam">{t.search.dur5D4N}</option>
             </select>
           </div>
 
-          {/* Col 4: Submit Yellow Button */}
+          {/* Col 4: Submit Search Button */}
           <div className="srchome-btn-col">
-            <button type="submit" className="smt">
+            <button type="submit" className="smt" style={{ backgroundColor: 'var(--primary)', color: '#ffffff' }}>
               <i className="fa fa-search" aria-hidden="true"></i> {t.search.btnText}
             </button>
           </div>
-
         </form>
       </div>
     </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 
 interface ArticleItem {
@@ -24,35 +25,103 @@ export default function ArticleDetailClient({
   article,
   relatedArticles,
 }: ArticleDetailClientProps) {
+  const router = useRouter();
   const { language } = useLanguage();
   const isEn = language === 'en';
 
   const waText = isEn
-    ? `Hello Lombok_Travelers, I just read your article "${article.title}" and would like to consult about visiting this destination.`
-    : `Halo Lombok_Travelers, saya membaca artikel "${article.title}" dan ingin konsultasi trip ke destinasi ini.`;
-  const waUrl = `https://wa.me/6283117110638?text=${encodeURIComponent(waText)}`;
+    ? `Halo Travelogy, I read your article "${article.title}" and would like to consult about this trip.`
+    : `Halo Travelogy, saya membaca artikel "${article.title}" dan ingin konsultasi rute perjalanan ini.`;
+  const waUrl = `https://wa.me/6281333992989?text=${encodeURIComponent(waText)}`;
 
   return (
     <>
       {/* HEADER BANNER & BREADCRUMBS */}
-      <div style={{ backgroundColor: '#f8fafc', borderBottom: '1px solid #e2e8f0', padding: '36px 15px' }}>
+      <div style={{ backgroundColor: '#ffffff', borderBottom: '1px solid #e5ede7', padding: '32px 15px 36px' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-          <nav style={{ fontSize: '13px', color: '#64748b', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
-            <Link href="/" style={{ color: '#185a38', textDecoration: 'none', fontWeight: 600 }}>
-              {isEn ? 'Home' : 'Beranda'}
-            </Link>
-            <span>›</span>
-            <Link href="/artikel" style={{ color: '#185a38', textDecoration: 'none', fontWeight: 600 }}>
-              {isEn ? 'Articles & Guides' : 'Artikel & Panduan'}
-            </Link>
-            <span>›</span>
-            <span style={{ color: '#94a3b8' }}>{article.category}</span>
-          </nav>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '12px', marginBottom: '18px', paddingBottom: '14px', borderBottom: '1px dashed #e8efe9' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                onClick={() => router.back()}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: 'var(--primary-soft)',
+                  color: 'var(--primary)',
+                  border: '1px solid #cfe0d5',
+                  padding: '6px 14px',
+                  borderRadius: '20px',
+                  fontSize: '12.5px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <i className="fa fa-arrow-left" style={{ fontSize: '11px' }}></i>
+                <span>{isEn ? 'Previous Page' : 'Halaman Sebelumnya'}</span>
+              </button>
+
+              <Link
+                href="/"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: '#ffffff',
+                  color: 'var(--dark-soft)',
+                  border: '1px solid #d5e0d7',
+                  padding: '6px 14px',
+                  borderRadius: '20px',
+                  fontSize: '12.5px',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                <i className="fa fa-home" style={{ fontSize: '12px' }}></i>
+                <span>{isEn ? 'Home' : 'Beranda'}</span>
+              </Link>
+
+              <Link
+                href="/artikel"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: '#ffffff',
+                  color: 'var(--primary)',
+                  border: '1px solid #cfe0d5',
+                  padding: '6px 14px',
+                  borderRadius: '20px',
+                  fontSize: '12.5px',
+                  fontWeight: 600,
+                  textDecoration: 'none'
+                }}
+              >
+                <i className="fa fa-newspaper-o" style={{ fontSize: '12px' }}></i>
+                <span>{isEn ? 'All Articles' : 'Semua Artikel'}</span>
+              </Link>
+            </div>
+
+            <nav style={{ fontSize: '12.5px', color: '#64748b', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <Link href="/" style={{ color: 'var(--muted)', textDecoration: 'none' }}>
+                {isEn ? 'Home' : 'Beranda'}
+              </Link>
+              <span>›</span>
+              <Link href="/artikel" style={{ color: 'var(--muted)', textDecoration: 'none' }}>
+                {isEn ? 'Articles' : 'Artikel'}
+              </Link>
+              <span>›</span>
+              <strong style={{ color: 'var(--primary)' }}>{article.category}</strong>
+            </nav>
+          </div>
 
           <span
             style={{
-              backgroundColor: '#dcfce7',
-              color: '#15803d',
+              backgroundColor: '#e8f5e9',
+              color: 'var(--primary)',
               padding: '4px 12px',
               borderRadius: '999px',
               fontSize: '12px',
@@ -64,16 +133,16 @@ export default function ArticleDetailClient({
             {article.category}
           </span>
 
-          <h1 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 900, color: '#0f172a', lineHeight: 1.25, margin: '0 0 14px 0' }}>
+          <h1 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 900, color: 'var(--text-main)', lineHeight: 1.25, margin: '0 0 14px 0' }}>
             {article.title}
           </h1>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '13px', color: '#64748b', flexWrap: 'wrap' }}>
-            <span><i className="fa fa-clock-o" style={{ color: '#16a34a', marginRight: '5px' }}></i> {article.readTime}</span>
+            <span><i className="fa fa-clock-o" style={{ color: 'var(--primary)', marginRight: '5px' }}></i> {article.readTime}</span>
             <span>•</span>
-            <span><i className="fa fa-calendar-o" style={{ color: '#16a34a', marginRight: '5px' }}></i> {article.date}</span>
+            <span><i className="fa fa-calendar-o" style={{ color: 'var(--primary)', marginRight: '5px' }}></i> {article.date}</span>
             <span>•</span>
-            <span><i className="fa fa-user-circle-o" style={{ color: '#16a34a', marginRight: '5px' }}></i> {isEn ? 'Lombok_Travelers Tetebatu Team' : 'Tim Lombok_Travelers Tetebatu'}</span>
+            <span><i className="fa fa-user-circle-o" style={{ color: 'var(--primary)', marginRight: '5px' }}></i> {isEn ? 'Travelogy Tour Organizer Editorial Team' : 'Tim Editorial Travelogy Tour Organizer'}</span>
           </div>
         </div>
       </div>
@@ -94,9 +163,9 @@ export default function ArticleDetailClient({
           style={{
             fontSize: '18px',
             lineHeight: 1.7,
-            color: '#1e293b',
+            color: 'var(--text-main)',
             fontWeight: 500,
-            borderLeft: '4px solid #185a38',
+            borderLeft: '4px solid var(--primary)',
             paddingLeft: '18px',
             marginBottom: '28px',
             fontStyle: 'italic',
@@ -118,7 +187,7 @@ export default function ArticleDetailClient({
         <div
           style={{
             marginTop: '48px',
-            background: 'linear-gradient(135deg, #091e13 0%, #185a38 100%)',
+            background: 'linear-gradient(135deg, #0f291e 0%, #1b4332 100%)',
             borderRadius: '16px',
             padding: '30px',
             color: '#ffffff',
@@ -127,20 +196,20 @@ export default function ArticleDetailClient({
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '20px',
-            boxShadow: '0 10px 25px -5px rgba(24, 90, 56, 0.3)',
+            boxShadow: '0 10px 25px -5px rgba(27, 67, 50, 0.3)',
           }}
         >
           <div style={{ maxWidth: '500px' }}>
-            <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#86efac', fontWeight: 800 }}>
-              {isEn ? 'Route Consultation with Local Guides' : 'Konsultasi Rute Bersama Warga Lokal'}
+            <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#a7d7b5', fontWeight: 800 }}>
+              {isEn ? 'Consultation & Custom Itinerary' : 'Konsultasi Perjalanan Bersama Travelogy'}
             </span>
             <h3 style={{ fontSize: '20px', fontWeight: 800, margin: '6px 0 8px 0', color: '#ffffff' }}>
               {isEn ? 'Interested in Visiting This Destination?' : 'Tertarik Mengunjungi Destinasi Ini?'}
             </h3>
-            <p style={{ fontSize: '13.5px', color: '#cbd5e1', margin: 0, lineHeight: 1.5 }}>
+            <p style={{ fontSize: '13.5px', color: '#e2e8f0', margin: 0, lineHeight: 1.5 }}>
               {isEn
-                ? 'Plan your pickup schedule, private AC car rental, or daily trip package with official local guides from Lombok_Travelers in Tetebatu.'
-                : 'Konsultasikan jadwal penjemputan, sewa mobil private AC, atau paket trip harian bersama tim pemandu resmi Lombok_Travelers di Tetebatu.'}
+                ? 'Plan your travel schedule, transport service, or personalized tour package with the dedicated team at PT. Travelogy Tour Organizer, Jember.'
+                : 'Konsultasikan jadwal keberangkatan, sewa transportasi, atau paket perjalanan custom bersama tim konsultan PT. Travelogy Tour Organizer, Jember.'}
             </p>
           </div>
 
@@ -162,13 +231,13 @@ export default function ArticleDetailClient({
               boxShadow: '0 4px 12px rgba(37, 211, 102, 0.35)',
             }}
           >
-            <i className="fa fa-whatsapp" style={{ fontSize: '18px' }}></i> {isEn ? 'Ask Schedule via WA' : 'Tanya Jadwal via WA'}
+            <i className="fa fa-whatsapp" style={{ fontSize: '18px' }}></i> {isEn ? 'Ask Travelogy via WA' : 'Tanya Travelogy via WA'}
           </a>
         </div>
 
         {/* RELATED ARTICLES */}
         <div style={{ marginTop: '56px', borderTop: '1px solid #e2e8f0', paddingTop: '40px' }}>
-          <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginBottom: '20px' }}>
+          <h2 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-main)', marginBottom: '20px' }}>
             {isEn ? 'More Articles & Travel Guides' : 'Artikel & Panduan Wisata Lainnya'}
           </h2>
 
@@ -198,13 +267,13 @@ export default function ArticleDetailClient({
                   />
                 </div>
                 <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <span style={{ fontSize: '11px', color: '#16a34a', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
+                  <span style={{ fontSize: '11px', color: 'var(--primary)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '4px' }}>
                     {rel.category}
                   </span>
-                  <h4 style={{ fontSize: '14px', fontWeight: 700, margin: '0 0 8px 0', color: '#0f172a', lineHeight: 1.4, flex: 1 }}>
+                  <h4 style={{ fontSize: '14px', fontWeight: 700, margin: '0 0 8px 0', color: 'var(--text-main)', lineHeight: 1.4, flex: 1 }}>
                     {rel.title}
                   </h4>
-                  <span style={{ fontSize: '12px', color: '#185a38', fontWeight: 600 }}>
+                  <span style={{ fontSize: '12px', color: 'var(--primary)', fontWeight: 600 }}>
                     {isEn ? 'Read Guide ›' : 'Baca Selengkapnya ›'}
                   </span>
                 </div>

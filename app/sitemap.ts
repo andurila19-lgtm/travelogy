@@ -11,7 +11,7 @@ interface ArticleItem {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://lomboktravelers.reaksy.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://travelogy.co.id';
   const currentDate = new Date();
 
   // Static Routes
@@ -23,10 +23,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/destinasi`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/paket`,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/custom-trip`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/trip-harian`,

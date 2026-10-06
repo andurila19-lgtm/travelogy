@@ -7,18 +7,23 @@ export type Language = 'id' | 'en';
 export interface Translations {
   nav: {
     home: string;
+    destinations: string;
     tourPackages: string;
     dailyTrips: string;
     transport: string;
-    articles: string;
     aboutUs: string;
+    customTrip: string;
+    planYourTrip: string;
     allPackages: string;
     chatWa: string;
   };
   hero: {
+    badge: string;
     headline: string;
     subline: string;
     description: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
   };
   search: {
     catLabel: string;
@@ -32,7 +37,6 @@ export interface Translations {
     catPrivate: string;
     catHoneymoon: string;
     catDaily: string;
-    catTetebatu: string;
     dur1Day: string;
     dur2D1N: string;
     dur3D2N: string;
@@ -47,6 +51,13 @@ export interface Translations {
       desc: string;
     }>;
   };
+  destinations: {
+    tag: string;
+    title: string;
+    subtitle: string;
+    exploreBtn: string;
+    previewNotice: string;
+  };
   packages: {
     tag: string;
     title: string;
@@ -54,7 +65,7 @@ export interface Translations {
     tabAll: string;
     tabMulti: string;
     tabDaily: string;
-    tabHoneymoon: string;
+    tabAdventure: string;
     tabCulture: string;
     perPerson: string;
     viewDetail: string;
@@ -68,11 +79,6 @@ export interface Translations {
     bookNow: string;
     durationPrefix: string;
   };
-  destinations: {
-    tag: string;
-    title: string;
-    subtitle: string;
-  };
   customTrip: {
     tag: string;
     title: string;
@@ -82,7 +88,10 @@ export interface Translations {
     waLabel: string;
     dateLabel: string;
     participantsLabel: string;
-    prefLabel: string;
+    destLabel: string;
+    tripTypeLabel: string;
+    transportLabel: string;
+    hotelLabel: string;
     notesLabel: string;
     btnSubmit: string;
   };
@@ -90,7 +99,28 @@ export interface Translations {
     tag: string;
     title: string;
     subtitle: string;
-    rentNow: string;
+    askTransport: string;
+  };
+  moreServices: {
+    tag: string;
+    title: string;
+    subtitle: string;
+    services: Array<{
+      title: string;
+      desc: string;
+      features: string[];
+    }>;
+  };
+  about: {
+    tag: string;
+    title: string;
+    heading: string;
+    description1: string;
+    description2: string;
+    hqTitle: string;
+    hqAddress: string;
+    hoursTitle: string;
+    hoursValue: string;
   };
   gallery: {
     tag: string;
@@ -107,7 +137,9 @@ export interface Translations {
     defaultMsg: string;
   };
   footer: {
+    tagline: string;
     desc: string;
+    linksTitle: string;
     servicesTitle: string;
     contactTitle: string;
     copyright: string;
@@ -133,10 +165,6 @@ export interface Translations {
     inclusionsTitle: string;
     exclusionsTitle: string;
     extraAddonsTitle: string;
-    droneTitle: string;
-    droneDesc: string;
-    reelsTitle: string;
-    reelsDesc: string;
     priceTitle: string;
     priceSubtitle: string;
     colPax: string;
@@ -152,24 +180,16 @@ export interface Translations {
     valSpecialGroup: string;
     priceNote: string;
     ctaQuestion: string;
-    reviewsTitle: string;
-    review1Text: string;
-    review1Author: string;
-    review2Text: string;
-    review2Author: string;
     sidebarFrom: string;
     sidebarPerPax: string;
     sidebarCar: string;
     sidebarDriver: string;
     sidebarTickets: string;
     sidebarFastResp: string;
-    basecampTitle: string;
-    basecampSubtitle: string;
-    basecampDesc: string;
-    basecampLink: string;
     relatedTag: string;
     relatedTitle: string;
     viewAllPkgs: string;
+    btnAskTrip: string;
   };
   bookingModal: {
     systemBadge: string;
@@ -241,18 +261,23 @@ const translations: Record<Language, Translations> = {
   id: {
     nav: {
       home: 'Home',
-      tourPackages: 'Paket Wisata',
+      destinations: 'Destinations',
+      tourPackages: 'Tour Packages',
       dailyTrips: 'Trip Harian',
       transport: 'Transport',
-      articles: 'Artikel',
-      aboutUs: 'Tentang Kami',
+      aboutUs: 'About',
+      customTrip: 'Custom Trip',
+      planYourTrip: 'Plan Your Trip',
       allPackages: 'Lihat Semua Paket',
       chatWa: 'Chat WhatsApp'
     },
     hero: {
-      headline: 'Dapatkan Pengalaman Berkesan',
-      subline: 'Mengunjungi destinasi terbaik di Pulau Lombok',
-      description: 'Kami menyediakan paket wisata dengan destinasi terbaik di Pulau Lombok dan dokumentasi terlengkap'
+      badge: 'PT. Travelogy Tour Organizer • Jember',
+      headline: 'Bringing Happiness in Every Journey',
+      subline: 'Travel • Transport • Hotel • Event',
+      description: 'Explore new destinations, create unforgettable moments, and let Travelogy take care of the journey.',
+      ctaPrimary: 'Explore Our Trips',
+      ctaSecondary: 'Plan Your Trip'
     },
     search: {
       catLabel: 'Pilih Kategori:',
@@ -261,12 +286,11 @@ const translations: Record<Language, Translations> = {
       allDest: 'Semua Destinasi',
       durLabel: 'Pilih Durasi:',
       allDur: 'Semua Durasi',
-      btnText: 'CARI TOUR',
-      catHoliday: 'Paket Wisata Lombok',
+      btnText: 'CARI PERJALANAN',
+      catHoliday: 'Tour Packages',
       catPrivate: 'Private Trip',
-      catHoneymoon: 'Paket Honeymoon',
-      catDaily: 'Paket Trip Harian',
-      catTetebatu: 'Tetebatu & Cultural',
+      catHoneymoon: 'Honeymoon Trip',
+      catDaily: 'Trip Harian',
       dur1Day: '1 Hari (Trip Harian)',
       dur2D1N: '2 Hari 1 Malam',
       dur3D2N: '3 Hari 2 Malam',
@@ -274,235 +298,264 @@ const translations: Record<Language, Translations> = {
       dur5D4N: '5 Hari 4 Malam'
     },
     why: {
-      title1: 'Kenapa Wajib Memilih Tour Wisata di Lombok',
-      title2: 'Bersama Lombok_Travelers',
+      title1: 'Why Travel With Travelogy?',
+      title2: 'Komitmen Layanan Terbaik untuk Setiap Perjalanan',
       features: [
         {
-          title: 'Travel Agen Resmi',
-          desc: 'Biro perjalanan wisata resmi lokal terdaftar berpusat di Tetebatu, Lombok Timur.'
+          title: 'Personalized Journey',
+          desc: 'Setiap perjalanan dapat disesuaikan dengan kebutuhan, preferensi, dan gaya liburan Anda.'
         },
         {
-          title: 'Tim Berpengalaman',
-          desc: 'Tour Anda akan dilayani oleh tim lokal kami yang sudah berpengalaman di bidang pelayanan wisata.'
+          title: 'End-to-End Planning',
+          desc: 'Bantuan komprehensif dari perencanaan rute, reservasi hotel, hingga pendampingan selama perjalanan.'
         },
         {
-          title: 'Gratis Dokumentasi',
-          desc: 'Paket wisata yang kami tawarkan sudah termasuk GRATIS dokumentasi foto & action cam GoPro bawah laut.'
+          title: 'Flexible Travel Solutions',
+          desc: 'Pilihan perjalanan, armada transportasi, penginapan rekanan, dan event dalam satu layanan terpadu.'
         },
         {
-          title: 'Travel Photographer',
-          desc: 'Selama tour Anda akan ditemani oleh Tour Leader kami yang siap mengabadikan momen liburan terbaik.'
-        },
-        {
-          title: 'Tanpa Biaya Tersembunyi',
-          desc: 'Harga paket all-in transparan, jujur tanpa ada biaya tambahan tak terduga selama di lapangan.'
+          title: 'Dedicated Support',
+          desc: 'Customer dapat berkonsultasi langsung dengan tim profesional Travelogy yang ramah dan responsif.'
         }
       ]
     },
+    destinations: {
+      tag: 'Destinasi Populer',
+      title: 'Where Will Your Journey Take You?',
+      subtitle: 'Inspirasi destinasi perjalanan favorit bersama Travelogy. Dari panorama megah gunung berapi hingga eksotisme pesisir.',
+      exploreBtn: 'Explore',
+      previewNotice: '* Seluruh destinasi di bawah merupakan data preview kurasi Travelogy yang dapat disesuaikan dengan kebutuhan trip Anda.'
+    },
     packages: {
-      tag: 'Katalog Pilihan',
-      title: 'Paket Wisata Lengkap',
-      subtitle: 'Pilih paket perjalanan sesuai durasi dan kebutuhan Anda.',
+      tag: 'Katalog Perjalanan',
+      title: 'Explore Our Journeys',
+      subtitle: 'Rangkaian paket perjalanan terencana untuk liburan personal, keluarga, hingga group gathering.',
       tabAll: 'Semua Paket',
-      tabMulti: 'Multi-Day (2H1M - 5H4M)',
+      tabMulti: 'Multi-Day Trip',
       tabDaily: 'Trip Harian (1 Hari)',
-      tabHoneymoon: 'Honeymoon',
-      tabCulture: 'Tetebatu & Culture',
-      perPerson: 'Harga mulai / orang',
-      viewDetail: 'Lihat Detail Paket',
-      consultWa: 'Tanya WA',
-      bestSellerBadge: 'BEST SELLER'
+      tabAdventure: 'Adventure & Nature',
+      tabCulture: 'Culture & Leisure',
+      perPerson: 'Harga estimasi / konsultasi',
+      viewDetail: 'View Details',
+      consultWa: 'Tanya WhatsApp',
+      bestSellerBadge: 'FAVORIT'
     },
     daily: {
-      tag: 'One-Day Adventure',
-      title: 'Pilihan Trip Harian Lombok',
-      subtitle: 'Paket perjalanan satu hari private eksklusif dengan penjemputan dari hotel Anda.',
-      bookNow: 'Booking Trip',
+      tag: 'Eksplorasi 1 Hari',
+      title: 'Pilihan Trip Harian',
+      subtitle: 'Paket perjalanan satu hari berkesan dengan armada prima dan supir berpengalaman.',
+      bookNow: 'Tanya Trip Ini',
       durationPrefix: 'Durasi'
     },
-    destinations: {
-      tag: 'Destinasi Favorit',
-      title: 'Spot Wisata Terindah di Lombok',
-      subtitle: 'Eksplorasi keindahan alam mulai dari pegunungan hijau Tetebatu hingga pantai eksotis Gili.'
-    },
     customTrip: {
-      tag: 'Rencanakan Liburan Sendiri',
-      title: 'Custom Itinerary Sesuai Keinginan',
-      subtitle: 'Punya destinasi impian sendiri atau liburan keluarga besar? Konsultasikan rencana trip Anda.',
-      desc: 'Isi preferensi perjalanan Anda di bawah ini, tim kami akan merancang rute liburan terbaik dengan harga paling bersahabat.',
+      tag: 'Rancang Trip Impian',
+      title: 'Your Trip, Your Way',
+      subtitle: 'Have a destination in mind but need a trip designed around you? Tell us what you need and let our team build the journey.',
+      desc: 'Sampaikan detail rencana perjalanan Anda di bawah ini, tim Travelogy akan menyusun program terbaik khusus untuk Anda.',
       nameLabel: 'Nama Lengkap',
-      waLabel: 'Nomor WhatsApp Aktif',
-      dateLabel: 'Rencana Tanggal Perjalanan',
-      participantsLabel: 'Jumlah Peserta (Orang)',
-      prefLabel: 'Kategori / Destinasi Pilihan',
-      notesLabel: 'Catatan Khusus / Permintaan Khusus',
-      btnSubmit: 'Kirim via WhatsApp Otomatis'
+      waLabel: 'Nomor WhatsApp',
+      dateLabel: 'Tanggal Perjalanan',
+      participantsLabel: 'Jumlah Peserta',
+      destLabel: 'Destinasi yang Dituju',
+      tripTypeLabel: 'Jenis Perjalanan',
+      transportLabel: 'Kebutuhan Transportasi',
+      hotelLabel: 'Kebutuhan Hotel / Akomodasi',
+      notesLabel: 'Catatan Khusus / Permintaan Rute',
+      btnSubmit: 'Request Custom Trip'
     },
     transport: {
-      tag: 'Armada & Driver Lokal',
-      title: 'Sewa Mobil & Transport Lombok',
-      subtitle: 'Layanan sewa armada terawat include driver ramah asli Lombok + BBM untuk kenyamanan liburan Anda.',
-      rentNow: 'Sewa Sekarang'
+      tag: 'Armada & Kenyamanan',
+      title: 'Travel With Comfort',
+      subtitle: 'Layanan transportasi profesional dari Jember dengan pilihan armada prima, supir berpengalaman, dan tarif transparan.',
+      askTransport: 'Ask About Transport'
+    },
+    moreServices: {
+      tag: 'Layanan Tambahan',
+      title: 'More Than Just A Trip',
+      subtitle: 'Solusi lengkap perjalanan, akomodasi, dan penyelenggaraan acara dari PT. Travelogy Tour Organizer.',
+      services: [
+        {
+          title: 'Travel & Tour',
+          desc: 'Perencanaan paket wisata lengkap, itinerary fleksibel, tiket obyek wisata, dan pendampingan tour yang menyenangkan.',
+          features: ['Paket Wisata Personal & Group', 'Itinerary Fleksibel & Terjadwal', 'Pendampingan Guide Ramah']
+        },
+        {
+          title: 'Hotel',
+          desc: 'Reservasi hotel berbintang, resort, dan villa rekanan dengan penawaran terbaik dan jaminan kenyamanan istirahat.',
+          features: ['Rekomendasi Penginapan Strategis', 'Negosiasi Rate Group / Corporate', 'Pilihan Bintang 3, 4 & Resort']
+        },
+        {
+          title: 'Event Planning',
+          desc: 'Layanan event organizer profesional untuk corporate gathering, outing kantor, outbound, meeting, dan perayaan khusus.',
+          features: ['Corporate Gathering & Family Outing', 'Outbound & Team Building', 'Perlengkapan Acara & Dokumentasi']
+        }
+      ]
+    },
+    about: {
+      tag: 'Tentang Travelogy',
+      title: 'About Travelogy',
+      heading: 'Bringing Happiness in Every Journey',
+      description1: 'Travelogy Tour Organizer hadir untuk membantu customer menikmati perjalanan dengan lebih mudah, nyaman, dan terencana. Berbasis di Jember, Jawa Timur, kami berkomitmen memberikan pengalaman perjalanan yang berkesan bagi setiap pelanggan.',
+      description2: 'Melalui integrasi layanan Tour & Travel, Transportasi prima, reservasi Hotel, dan Event Planning, tim kami siap mendampingi kebutuhan perjalanan personal, keluarga, hingga rombongan instansi dan korporasi.',
+      hqTitle: 'Kantor Operasional',
+      hqAddress: 'Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124',
+      hoursTitle: 'Jam Operasional',
+      hoursValue: '09:00 - 13:00 WIB'
     },
     gallery: {
-      tag: 'Galeri Momen',
-      title: 'Keseruan Para Traveler Bersama Kami',
-      subtitle: 'Dokumentasi asli pelanggan saat menjelajahi keindahan alam Pulau Lombok.'
+      tag: 'Momen Perjalanan',
+      title: 'Kebahagiaan di Setiap Langkah',
+      subtitle: 'Dokumentasi perjalanan mengesankan bersama para pelanggan setia Travelogy.'
     },
     testimonials: {
-      tag: 'Ulasan Jujur',
-      title: 'Apa Kata Para Tamu Lombok_Travelers',
-      subtitle: 'Testimoni nyata dari wisatawan nusantara & mancanegara yang berwisata bersama kami.'
+      tag: 'Kepercayaan Pelanggan',
+      title: 'Cerita Bahagia Bersama Travelogy',
+      subtitle: 'Pengalaman nyata pelanggan yang mempercayakan perjalanannya kepada tim Travelogy.'
     },
     whatsapp: {
-      bubble: 'Halo, Ada yang bisa kami bantu?',
-      defaultMsg: 'Halo Lombok_Travelers, saya ingin konsultasi paket liburan ke Lombok.'
+      bubble: 'Chat With Travelogy',
+      defaultMsg: 'Halo Travelogy, saya ingin bertanya tentang layanan tour dan perjalanan.'
     },
     footer: {
-      desc: 'Biro perjalanan wisata resmi lokal berpusat di Tetebatu, Lombok Timur. Mitra terpercaya untuk private tour, paket wisata keluarga, honeymoon, serta transportasi Lombok.',
-      servicesTitle: 'Layanan Wisata',
-      contactTitle: 'Hubungi Kami',
-      copyright: 'Hak Cipta Dilindungi Undang-Undang. Tetebatu, Lombok Timur, NTB.'
+      tagline: 'Bringing Happiness in Every Journey',
+      desc: 'PT. Travelogy Tour Organizer adalah biro perjalanan wisata resmi berbasis di Jember, Jawa Timur. Menyediakan layanan Tour & Travel, Sewa Transportasi, Hotel, dan Event Planning.',
+      linksTitle: 'Navigasi',
+      servicesTitle: 'Layanan',
+      contactTitle: 'Kontak Kami',
+      copyright: 'PT. Travelogy Tour Organizer. All rights reserved.'
     },
     buttons: {
-      book: 'Booking',
-      bookNow: 'Booking Sekarang',
+      book: 'Plan Trip',
+      bookNow: 'Pesan Sekarang',
       detail: 'Detail',
-      viewDetail: 'Lihat Detail',
-      chatWa: 'Chat WA',
+      viewDetail: 'View Details',
+      chatWa: 'Chat WhatsApp',
       chatWaLong: 'Chat via WhatsApp',
-      submit: 'Kirim',
+      submit: 'Kirim Permintaan',
       resetFilter: 'Reset Filter'
     },
     packageDetail: {
       breadcrumbHome: 'Home',
-      breadcrumbTour: 'Paket Wisata Lombok',
-      startingFrom: 'Mulai dari:',
-      perPerson: 'per orang / private trip',
-      packageDescTitle: 'Deskripsi Paket',
+      breadcrumbTour: 'Tour Packages',
+      startingFrom: 'Estimasi Biaya:',
+      perPerson: 'Konsultasi via WhatsApp',
+      packageDescTitle: 'Ringkasan Paket (Overview)',
       itineraryTitle: 'Rencana Perjalanan (Itinerary)',
-      facilitiesTitle: 'Fasilitas Paket',
-      inclusionsTitle: 'Paket Termasuk:',
-      exclusionsTitle: 'Paket Tidak Termasuk:',
-      extraAddonsTitle: 'Layanan Tambahan Dokumentasi Profesional',
-      droneTitle: 'Dokumentasi Drone (Footage Udara HD)',
-      droneDesc: 'Pilot drone profesional + RAW footage pantai & bukit Lombok: Konsultasikan / Rp 750.000/hari',
-      reelsTitle: 'Video Sinematik + Editing Reels Instagram/TikTok',
-      reelsDesc: 'Kamera mirrorless & underwater GoPro + edited video siap upload: Konsultasikan / Rp 1.500.000/trip',
-      priceTitle: 'Harga',
-      priceSubtitle: 'Harga dihitung per orang (pax) disesuaikan dengan jumlah rombongan dan pilihan kelas penginapan:',
+      facilitiesTitle: 'Fasilitas & Layanan',
+      inclusionsTitle: 'Sudah Termasuk (Included):',
+      exclusionsTitle: 'Belum Termasuk (Not Included):',
+      extraAddonsTitle: 'Dokumentasi & Layanan Tambahan',
+      priceTitle: 'Konsultasi Biaya & Peserta',
+      priceSubtitle: 'Biaya disesuaikan dengan jumlah rombongan, pilihan hotel, dan titik penjemputan:',
       colPax: 'Jumlah Peserta',
       colNoHotel: 'Paket Tanpa Hotel',
       colHotel3: 'Paket Hotel Bintang 3',
       colHotel4: 'Paket Hotel Bintang 4',
-      row2pax: '2 Orang (Pasangan/Duet)',
+      row2pax: '2 Orang (Pasangan)',
       row3pax: '3 – 4 Orang (Keluarga Kecil)',
       row5pax: '5 – 6 Orang (Grup Sedang)',
-      row7pax: '7 – 12+ Orang (Rombongan HiAce)',
-      valConsult: 'Konsultasikan',
-      valRequest: 'Request Price',
-      valSpecialGroup: 'Spesial Grup',
-      priceNote: '* Harga dapat disesuaikan berdasarkan jumlah peserta, periode liburan (High/Peak Season Lebaran, Natal & Tahun Baru), serta preferensi hotel. Hubungi tim Lombok_Travelers untuk penawaran terbaik dan diskon khusus rombongan.',
-      ctaQuestion: 'Sudah punya rencana tanggal perjalanan? Ajukan booking sekarang untuk mengamankan jadwal armada dan pemandu lokal kami:',
-      reviewsTitle: 'Ulasan Tamu Paket Ini',
-      review1Text: '"Program perjalanan sangat pas temponya, tidak buru-buru. Guide supirnya dari Tetebatu sangat ramah dan sabar menemani keluarga kami. Pemandangan Lombok luar biasa indah!"',
-      review1Author: '— Mas Dimas & Keluarga (Jakarta)',
-      review2Text: '"Makanan lokalnya enak-enak, mobilnya bersih dan wangi. Pelayanan transparan tanpa biaya aneh-aneh di lapangan. Terima kasih Lombok_Travelers!"',
-      review2Author: '— Ibu Ratna (Surabaya)',
-      sidebarFrom: 'Mulai dari',
-      sidebarPerPax: 'per orang / private trip',
-      sidebarCar: 'Transport Mobil Ber-AC',
-      sidebarDriver: 'Driver Lokal Asli Sasak',
-      sidebarTickets: 'Tiket Wisata & Parkir',
-      sidebarFastResp: 'Respon cepat dalam 5 - 15 menit',
-      basecampTitle: 'Tetebatu Base Camp',
-      basecampSubtitle: 'Lombok Timur Travel Partner',
-      basecampDesc: 'Ingin mengubah rute atau menambah destinasi Tetebatu & Sembalun ke paket ini? Kami siap menyesuaikan itinerary sesuai keinginan Anda!',
-      basecampLink: 'Ajukan Custom Itinerary ›',
+      row7pax: '7 – 14+ Orang (Rombongan HiAce)',
+      valConsult: 'Konsultasikan via WhatsApp',
+      valRequest: 'Request Penawaran',
+      valSpecialGroup: 'Tarif Spesial Rombongan',
+      priceNote: '* Catatan: Data itinerary dan paket merupakan format preview/proposal resmi Travelogy. Silakan hubungi kami untuk mendapatkan penawaran resmi terperinci.',
+      ctaQuestion: 'Ingin menyesuaikan tanggal atau rute paket ini? Diskusikan langsung dengan konsultan kami:',
+      sidebarFrom: 'Konsultasi Paket',
+      sidebarPerPax: 'Layanan Terencana & Nyaman',
+      sidebarCar: 'Armada Privat Ber-AC',
+      sidebarDriver: 'Supir Ramah Berpengalaman',
+      sidebarTickets: 'Tiket Wisata & Koordinasi Rute',
+      sidebarFastResp: 'Respon cepat via WhatsApp',
       relatedTag: 'Pilihan Lainnya',
-      relatedTitle: 'Paket Wisata Terkait',
-      viewAllPkgs: 'Lihat Semua Paket'
+      relatedTitle: 'Paket Rekomendasi Lainnya',
+      viewAllPkgs: 'Lihat Semua Paket',
+      btnAskTrip: 'Ask About This Trip'
     },
     bookingModal: {
-      systemBadge: 'Lombok_Travelers Booking System',
-      titleNew: 'Booking Paket Wisata',
-      titleSuccess: 'Reservasi Diterima',
-      nameLabel: 'Nama Lengkap Pemesan *',
-      namePlaceholder: 'Contoh: Budi Santoso',
+      systemBadge: 'Travelogy Tour Organizer',
+      titleNew: 'Inquiry Perjalanan',
+      titleSuccess: 'Permintaan Diterima',
+      nameLabel: 'Nama Lengkap *',
+      namePlaceholder: 'Contoh: Bapak / Ibu Pratama',
       waLabel: 'Nomor WhatsApp Aktif *',
-      waPlaceholder: 'Contoh: 081234567890',
-      waHint: 'Untuk konfirmasi jadwal & voucher penjemputan',
+      waPlaceholder: 'Contoh: 081333992989',
+      waHint: 'Untuk pengiriman detail itinerary dan konsultasi',
       emailLabel: 'Alamat Email (Opsional)',
       emailPlaceholder: 'nama@email.com',
-      pkgLabel: 'Paket Wisata Pilihan *',
-      dateLabel: 'Tanggal Keberangkatan *',
-      paxLabel: 'Jumlah Peserta (Orang) *',
-      pickupLabel: 'Lokasi Penjemputan (Pickup) *',
-      pickupPlaceholder: 'Contoh: Bandara BIL / Hotel Senggigi / Pelabuhan',
-      transportLabel: 'Pilihan Kelas Transportasi',
-      notesLabel: 'Catatan / Permintaan Khusus (Opsional)',
-      notesPlaceholder: 'Contoh: Pilihan hotel bintang 3/4, ada anak kecil, request kamar double bed...',
-      termsText: 'Dengan mengajukan booking, tim lokal kami akan memeriksa ketersediaan armada & pemandu lalu menghubungi Anda via WhatsApp dengan rincian konfirmasi.',
+      pkgLabel: 'Paket yang Diminati *',
+      dateLabel: 'Rencana Tanggal Perjalanan *',
+      paxLabel: 'Perkiraan Jumlah Peserta *',
+      pickupLabel: 'Lokasi Penjemputan *',
+      pickupPlaceholder: 'Contoh: Jember / Surabaya / Malang / Bandara',
+      transportLabel: 'Pilihan Armada Transportasi',
+      notesLabel: 'Catatan / Preferensi Khusus (Opsional)',
+      notesPlaceholder: 'Contoh: Preferensi hotel bintang 3/4, rombongan keluarga, membawa anak kecil...',
+      termsText: 'Dengan mengajukan inquiry, tim Travelogy akan menyiapkan rancangan perjalanan dan segera menghubungi Anda via WhatsApp.',
       btnSubmitting: 'Memproses...',
-      btnSubmit: 'Kirim Pengajuan Booking via WhatsApp',
-      successTitle: 'Pengajuan Booking Berhasil Terkirim!',
-      successSubtitle: 'Terima kasih! Tim lokal Tetebatu kami telah mencatat reservasi Anda ke dalam sistem antrean prioritas.',
-      refLabel: 'Nomor Referensi Booking',
+      btnSubmit: 'Kirim Permintaan ke WhatsApp Travelogy',
+      successTitle: 'Inquiry Berhasil Disiapkan!',
+      successSubtitle: 'Terima kasih telah menghubungi PT. Travelogy Tour Organizer.',
+      refLabel: 'Kode Inquiry',
       summaryPkg: 'Paket:',
-      summaryDate: 'Tanggal Trip:',
+      summaryDate: 'Tanggal:',
       summaryPax: 'Peserta:',
-      summaryStatus: 'Status: Menunggu Konfirmasi Tim',
-      followUpPrompt: 'Hubungkan langsung ke WhatsApp untuk mempercepat konfirmasi jadwal armada & supir:',
-      btnWaConfirm: 'Buka WhatsApp & Konfirmasi Sekarang',
-      btnClose: 'Selesai & Kembali ke Web',
+      summaryStatus: 'Status: Menghubungkan ke WhatsApp',
+      followUpPrompt: 'Klik tombol di bawah untuk langsung terhubung dengan tim customer service Travelogy:',
+      btnWaConfirm: 'Buka WhatsApp Travelogy Sekarang',
+      btnClose: 'Kembali ke Website',
       errorName: 'Nama pemesan wajib diisi (minimal 2 karakter).',
-      errorWa: 'Nomor WhatsApp tidak valid (format nomor minimal 8 digit).',
-      errorDate: 'Silakan pilih tanggal keberangkatan trip.',
-      errorDatePast: 'Tanggal perjalanan tidak boleh tanggal yang sudah lewat.',
+      errorWa: 'Nomor WhatsApp tidak valid (format minimal 8 digit).',
+      errorDate: 'Silakan pilih rencana tanggal perjalanan.',
+      errorDatePast: 'Tanggal perjalanan tidak boleh di masa lampau.',
       errorPax: 'Jumlah peserta harus antara 1 sampai 100 orang.',
-      errorGeneral: 'Terjadi kesalahan sistem saat mengirim booking. Silakan coba lagi.'
+      errorGeneral: 'Terjadi kendala sistem. Silakan hubungi kami langsung via WhatsApp.'
     },
     concierge: {
-      tag: 'Butuh Bantuan Memilih?',
-      bannerTitle: 'Masih Bingung Memilih Paket?',
-      bannerDesc: 'Ceritakan kebutuhan perjalanan Anda, kami bantu menemukan paket yang paling sesuai dengan durasi, peserta, dan preferensi liburan Anda.',
-      bannerBtn: 'Chat dengan Travel Assistant',
-      modalTag: 'Assistant Perjalanan',
-      modalTitle: 'Pilih Paket Sesuai Impian Liburan Anda',
-      modalSubtitle: 'Jawab 3 pertanyaan singkat berikut dan asisten kami akan merekomendasikan pilihan paket terbaik:',
-      q1: '1. Berapa lama rencana waktu liburan Anda?',
-      q1Opt1: '1 Hari (Trip Harian)',
+      tag: 'Bantuan Perjalanan',
+      bannerTitle: 'Butuh Bantuan Memilih Destinasi?',
+      bannerDesc: 'Ceritakan rencana liburan Anda, tim Travelogy akan membantu merekomendasikan pilihan paket terbaik sesuai waktu dan preferensi Anda.',
+      bannerBtn: 'Konsultasi Perjalanan',
+      modalTag: 'Trip Assistant',
+      modalTitle: 'Rekomendasi Perjalanan Travelogy',
+      modalSubtitle: 'Pilih preferensi liburan Anda untuk melihat opsi yang tepat:',
+      q1: '1. Berapa lama rencana durasi perjalanan Anda?',
+      q1Opt1: '1 Hari (Trip Singkat)',
       q1Opt2: '2 - 3 Hari',
-      q1Opt3: '4 - 5 Hari',
-      q2: '2. Apa tema utama liburan yang Anda cari?',
-      q2Opt1: 'Alam & Budaya Sasak',
-      q2Opt2: 'Pantai & Snorkeling 3 Gili',
-      q2Opt3: 'Honeymoon Romantis Berdua',
+      q1Opt3: '4 Hari atau lebih',
+      q2: '2. Apa tema perjalanan yang diinginkan?',
+      q2Opt1: 'Petualangan Alam & Gunung (Bromo / Ijen)',
+      q2Opt2: 'Pesona Budaya & Pantai (Bali / Jogja)',
+      q2Opt3: 'Liburan Santai & Eksplorasi Lokal (Jember / Malang)',
       q3: '3. Berapa jumlah rombongan Anda?',
-      q3Opt1: 'Solo Traveler (1 Orang)',
-      q3Opt2: 'Berdua / Pasangan (2 Orang)',
-      q3Opt3: 'Keluarga / Rombongan (3+ Orang)',
-      btnCalculate: 'Lihat Rekomendasi Paket',
-      recTag: 'Rekomendasi Terbaik Untuk Anda',
-      btnViewPkg: 'Lihat Detail Paket Ini',
+      q3Opt1: 'Solo / Berdua (1-2 Orang)',
+      q3Opt2: 'Keluarga (3-6 Orang)',
+      q3Opt3: 'Rombongan Kantor / Grup Besar (7+ Orang)',
+      btnCalculate: 'Lihat Rekomendasi',
+      recTag: 'Paket Rekomendasi Travelogy',
+      btnViewPkg: 'Lihat Detail Paket',
       btnConsultWa: 'Konsultasi via WhatsApp'
     }
   },
   en: {
     nav: {
       home: 'Home',
+      destinations: 'Destinations',
       tourPackages: 'Tour Packages',
       dailyTrips: 'Daily Trips',
       transport: 'Transport',
-      articles: 'Articles',
-      aboutUs: 'About Us',
+      aboutUs: 'About',
+      customTrip: 'Custom Trip',
+      planYourTrip: 'Plan Your Trip',
       allPackages: 'View All Packages',
       chatWa: 'WhatsApp Chat'
     },
     hero: {
-      headline: 'Get an Unforgettable Experience',
-      subline: 'Visiting the best destinations on Lombok Island',
-      description: 'We provide premier tour packages with Lombok’s finest destinations and comprehensive documentation'
+      badge: 'PT. Travelogy Tour Organizer • Jember',
+      headline: 'Bringing Happiness in Every Journey',
+      subline: 'Travel • Transport • Hotel • Event',
+      description: 'Explore new destinations, create unforgettable moments, and let Travelogy take care of the journey.',
+      ctaPrimary: 'Explore Our Trips',
+      ctaSecondary: 'Plan Your Trip'
     },
     search: {
       catLabel: 'Select Category:',
@@ -511,12 +564,11 @@ const translations: Record<Language, Translations> = {
       allDest: 'All Destinations',
       durLabel: 'Select Duration:',
       allDur: 'All Durations',
-      btnText: 'SEARCH TOUR',
-      catHoliday: 'Lombok Tour Packages',
+      btnText: 'SEARCH TRIPS',
+      catHoliday: 'Tour Packages',
       catPrivate: 'Private Trips',
-      catHoneymoon: 'Honeymoon Packages',
-      catDaily: 'Daily Day Trips',
-      catTetebatu: 'Tetebatu & Cultural',
+      catHoneymoon: 'Honeymoon Trips',
+      catDaily: 'Daily Trips',
       dur1Day: '1 Day (Daily Trip)',
       dur2D1N: '2 Days 1 Night',
       dur3D2N: '3 Days 2 Nights',
@@ -524,218 +576,242 @@ const translations: Record<Language, Translations> = {
       dur5D4N: '5 Days 4 Nights'
     },
     why: {
-      title1: 'Why Choose Lombok Tour Wisata',
-      title2: 'With Lombok_Travelers',
+      title1: 'Why Travel With Travelogy?',
+      title2: 'Our Commitment to Quality & Memorable Experiences',
       features: [
         {
-          title: 'Licensed Travel Agency',
-          desc: 'Official registered local travel agency based in Tetebatu, East Lombok.'
+          title: 'Personalized Journey',
+          desc: 'Every trip can be customized to suit your unique needs, preferences, and holiday pace.'
         },
         {
-          title: 'Experienced Local Team',
-          desc: 'Your tour will be guided by our friendly, knowledgeable local team with years of expertise.'
+          title: 'End-to-End Planning',
+          desc: 'Comprehensive support from initial itinerary design, hotel booking, to full trip assistance.'
         },
         {
-          title: 'Free Documentation',
-          desc: 'All tour packages include complimentary high-res photography and underwater GoPro action shots.'
+          title: 'Flexible Travel Solutions',
+          desc: 'Integrated travel choices, quality vehicle fleets, partner accommodations, and event management.'
         },
         {
-          title: 'Dedicated Tour Photographer',
-          desc: 'Your Tour Leader captures your best holiday moments throughout the journey.'
-        },
-        {
-          title: 'Transparent & No Hidden Costs',
-          desc: 'All-inclusive transparent pricing with zero surprise extra charges on the ground.'
+          title: 'Dedicated Support',
+          desc: 'Direct, responsive, and friendly consultation with our experienced Travelogy team.'
         }
       ]
     },
+    destinations: {
+      tag: 'Popular Destinations',
+      title: 'Where Will Your Journey Take You?',
+      subtitle: 'Inspiration for your next adventure with Travelogy. From iconic volcanic peaks to serene coastal shores.',
+      exploreBtn: 'Explore',
+      previewNotice: '* All destinations below represent curated Travelogy preview data that can be tailored to your trip schedule.'
+    },
     packages: {
-      tag: 'Handpicked Catalog',
-      title: 'Complete Tour Packages',
-      subtitle: 'Select the ideal travel package tailored to your schedule and preferences.',
+      tag: 'Curated Catalog',
+      title: 'Explore Our Journeys',
+      subtitle: 'Thoughtfully planned travel packages for personal escapes, family holidays, and group retreats.',
       tabAll: 'All Packages',
-      tabMulti: 'Multi-Day (2D1N - 5D4N)',
-      tabDaily: 'Day Trips (1 Day)',
-      tabHoneymoon: 'Honeymoon',
-      tabCulture: 'Tetebatu & Culture',
-      perPerson: 'Starting from / person',
-      viewDetail: 'View Package Details',
+      tabMulti: 'Multi-Day Trips',
+      tabDaily: 'Daily Trips (1 Day)',
+      tabAdventure: 'Adventure & Nature',
+      tabCulture: 'Culture & Leisure',
+      perPerson: 'Inquire via WhatsApp',
+      viewDetail: 'View Details',
       consultWa: 'Chat WhatsApp',
-      bestSellerBadge: 'BEST SELLER'
+      bestSellerBadge: 'FEATURED'
     },
     daily: {
       tag: 'One-Day Adventure',
-      title: 'Lombok Daily Day Trips',
-      subtitle: 'Exclusive private 1-day excursions including round-trip pickup directly from your hotel.',
-      bookNow: 'Book Trip',
+      title: 'Daily Excursions',
+      subtitle: 'Memorable full-day trips with clean vehicles and knowledgeable drivers.',
+      bookNow: 'Inquire Trip',
       durationPrefix: 'Duration'
     },
-    destinations: {
-      tag: 'Favorite Destinations',
-      title: 'Most Breathtaking Spots in Lombok',
-      subtitle: 'Explore pristine nature from the lush terraced valleys of Tetebatu to the exotic shores of the Gili Islands.'
-    },
     customTrip: {
-      tag: 'Tailor-Made Holiday',
-      title: 'Custom Itinerary to Fit Your Dream',
-      subtitle: 'Have specific dream spots or traveling with a large family? Consult with our local trip designers.',
-      desc: 'Fill out your travel preferences below, and our team will craft the optimal route at the most reasonable local rates.',
+      tag: 'Tailor-Made Journey',
+      title: 'Your Trip, Your Way',
+      subtitle: 'Have a destination in mind but need a trip designed around you? Tell us what you need and let our team build the journey.',
+      desc: 'Share your travel ideas below, and our Travelogy team will design a custom itinerary crafted just for you.',
       nameLabel: 'Full Name',
       waLabel: 'Active WhatsApp Number',
-      dateLabel: 'Planned Travel Date',
+      dateLabel: 'Estimated Travel Date',
       participantsLabel: 'Number of Guests',
-      prefLabel: 'Preferred Category / Destinations',
+      destLabel: 'Target Destination',
+      tripTypeLabel: 'Trip Style',
+      transportLabel: 'Transportation Need',
+      hotelLabel: 'Accommodation Need',
       notesLabel: 'Special Requests or Notes',
-      btnSubmit: 'Send via WhatsApp Automatically'
+      btnSubmit: 'Request Custom Trip'
     },
     transport: {
-      tag: 'Fleet & Local Drivers',
-      title: 'Car Rental & Transport Lombok',
-      subtitle: 'Well-maintained vehicles inclusive of friendly local driver + fuel for your ultimate holiday comfort.',
-      rentNow: 'Rent Now'
+      tag: 'Fleet & Comfort',
+      title: 'Travel With Comfort',
+      subtitle: 'Professional transport services from Jember with well-maintained fleets, experienced drivers, and fair pricing.',
+      askTransport: 'Ask About Transport'
+    },
+    moreServices: {
+      tag: 'Additional Services',
+      title: 'More Than Just A Trip',
+      subtitle: 'Comprehensive travel, accommodation, and event planning solutions from PT. Travelogy Tour Organizer.',
+      services: [
+        {
+          title: 'Travel & Tour',
+          desc: 'End-to-end holiday packages, flexible schedules, attraction admissions, and friendly local guidance.',
+          features: ['Personal & Group Tour Packages', 'Flexible & Well-Paced Itineraries', 'Friendly Local Guidance']
+        },
+        {
+          title: 'Hotel',
+          desc: 'Partner hotel, resort, and private villa bookings with transparent rates and guaranteed resting comfort.',
+          features: ['Strategic Accommodation Options', 'Corporate & Group Rate Negotiation', '3-Star, 4-Star & Villa Resorts']
+        },
+        {
+          title: 'Event Planning',
+          desc: 'Professional event organizing for corporate gatherings, team outings, outbound training, and celebrations.',
+          features: ['Corporate Gatherings & Outings', 'Outbound & Team Building Activities', 'Equipment Setup & Event Media']
+        }
+      ]
+    },
+    about: {
+      tag: 'About Travelogy',
+      title: 'About Travelogy',
+      heading: 'Bringing Happiness in Every Journey',
+      description1: 'Travelogy Tour Organizer is dedicated to helping customers enjoy travel with greater ease, comfort, and peace of mind. Headquartered in Jember, East Java, we strive to deliver memorable travel moments on every journey.',
+      description2: 'By integrating Tours & Travel, premium Transportation, Hotel arrangements, and Event Planning, our team caters to personal escapes, family holidays, as well as institutional and corporate groups.',
+      hqTitle: 'Headquarters',
+      hqAddress: 'Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124',
+      hoursTitle: 'Operating Hours',
+      hoursValue: '09:00 - 13:00 WIB'
     },
     gallery: {
-      tag: 'Moment Gallery',
-      title: 'Traveler Highlights With Us',
-      subtitle: 'Authentic photos from our delighted guests exploring the wonders of Lombok Island.'
+      tag: 'Captured Moments',
+      title: 'Happiness in Every Step',
+      subtitle: 'Inspiring snapshots from memorable journeys shared with Travelogy guests.'
     },
     testimonials: {
-      tag: 'Verified Reviews',
-      title: 'What Our Guests Say About Lombok_Travelers',
-      subtitle: 'Genuine feedback from travelers who explored Lombok with our local team.'
+      tag: 'Trusted Service',
+      title: 'Happy Stories with Travelogy',
+      subtitle: 'Authentic feedback from guests who explored magnificent destinations with Travelogy.'
     },
     whatsapp: {
-      bubble: 'Hello, how can we help you?',
-      defaultMsg: 'Hello Lombok_Travelers, I would like to inquire about holiday packages in Lombok.'
+      bubble: 'Chat With Travelogy',
+      defaultMsg: 'Hello Travelogy, I would like to inquire about your tour and travel services.'
     },
     footer: {
-      desc: 'Official local travel agency headquartered in Tetebatu, East Lombok. Your trusted partner for private tours, family vacations, honeymoon escapes, and transport services.',
-      servicesTitle: 'Tour Services',
+      tagline: 'Bringing Happiness in Every Journey',
+      desc: 'PT. Travelogy Tour Organizer is an authorized tour & travel company based in Jember, East Java. Offering Tour Packages, Transport Rental, Hotel bookings, and Event Planning.',
+      linksTitle: 'Navigation',
+      servicesTitle: 'Services',
       contactTitle: 'Contact Us',
-      copyright: 'All Rights Reserved. Tetebatu, East Lombok, NTB, Indonesia.'
+      copyright: 'PT. Travelogy Tour Organizer. All rights reserved.'
     },
     buttons: {
-      book: 'Book',
+      book: 'Plan Trip',
       bookNow: 'Book Now',
       detail: 'Detail',
       viewDetail: 'View Details',
-      chatWa: 'Chat WA',
+      chatWa: 'Chat WhatsApp',
       chatWaLong: 'Chat via WhatsApp',
-      submit: 'Submit',
+      submit: 'Send Request',
       resetFilter: 'Reset Filters'
     },
     packageDetail: {
       breadcrumbHome: 'Home',
       breadcrumbTour: 'Tour Packages',
-      startingFrom: 'Starting from:',
-      perPerson: 'per person / private trip',
+      startingFrom: 'Estimated Price:',
+      perPerson: 'Consult via WhatsApp',
       packageDescTitle: 'Package Overview',
       itineraryTitle: 'Travel Itinerary',
-      facilitiesTitle: 'Package Inclusions & Exclusions',
-      inclusionsTitle: 'Package Inclusions:',
-      exclusionsTitle: 'Package Exclusions:',
-      extraAddonsTitle: 'Professional Documentation Add-on Services',
-      droneTitle: 'Drone Aerial Video Footage (HD)',
-      droneDesc: 'Professional drone pilot + RAW beach & hill footage: Inquire / Rp 750,000/day',
-      reelsTitle: 'Cinematic Video + Instagram/TikTok Reels Editing',
-      reelsDesc: 'Mirrorless camera & underwater GoPro + edited video ready to upload: Inquire / Rp 1,500,000/trip',
-      priceTitle: 'Pricing for',
-      priceSubtitle: 'Price per person (pax) tailored to group size and accommodation tier:',
-      colPax: 'Group Size',
+      facilitiesTitle: 'Facilities & Inclusions',
+      inclusionsTitle: 'Included in Package:',
+      exclusionsTitle: 'Not Included:',
+      extraAddonsTitle: 'Optional Media & Documentation',
+      priceTitle: 'Custom Quote & Group Size',
+      priceSubtitle: 'Pricing tailored to participant count, hotel tier, and pickup location:',
+      colPax: 'Participants',
       colNoHotel: 'Without Hotel',
       colHotel3: '3-Star Hotel',
       colHotel4: '4-Star Hotel',
-      row2pax: '2 Guests (Couple/Pair)',
+      row2pax: '2 Guests (Couple)',
       row3pax: '3 – 4 Guests (Small Family)',
       row5pax: '5 – 6 Guests (Medium Group)',
-      row7pax: '7 – 12+ Guests (HiAce Minibus Group)',
-      valConsult: 'Inquire',
-      valRequest: 'Request Price',
-      valSpecialGroup: 'Special Group',
-      priceNote: '* Prices can be customized based on season (High/Peak Season Lebaran, Christmas & New Year), group size, and hotel preferences. Contact Lombok_Travelers for the best quote and special group discounts.',
-      ctaQuestion: 'Already have your travel dates in mind? Book now to secure your private vehicle and native guide:',
-      reviewsTitle: 'Guest Reviews for this Package',
-      review1Text: '"The itinerary was perfectly paced, never rushed. Our native driver from Tetebatu was exceedingly warm and patient with our family. Lombok is breathtaking!"',
-      review1Author: '— Mas Dimas & Family (Jakarta)',
-      review2Text: '"Delicious local food, pristine vehicle that smelled clean and fresh. Transparent service with zero unexpected costs on the ground. Thank you Lombok_Travelers!"',
-      review2Author: '— Mrs. Ratna (Surabaya)',
-      sidebarFrom: 'Starting from',
-      sidebarPerPax: 'per person / private trip',
-      sidebarCar: 'Air-Conditioned Private Vehicle',
-      sidebarDriver: 'Native Sasak Local Driver',
-      sidebarTickets: 'Destination Tickets & Parking Included',
-      sidebarFastResp: 'Fast response within 5 - 15 minutes',
-      basecampTitle: 'Tetebatu Base Camp',
-      basecampSubtitle: 'East Lombok Travel Partner',
-      basecampDesc: 'Want to customize routes or add Tetebatu & Sembalun to this package? We are ready to adjust the itinerary to your wishes!',
-      basecampLink: 'Request Custom Itinerary ›',
-      relatedTag: 'More Options',
-      relatedTitle: 'Related Tour Packages',
-      viewAllPkgs: 'View All Packages'
+      row7pax: '7 – 14+ Guests (Minibus / Group)',
+      valConsult: 'Inquire via WhatsApp',
+      valRequest: 'Request Quote',
+      valSpecialGroup: 'Special Group Rate',
+      priceNote: '* Note: Package and itinerary details represent official Travelogy preview/proposal formats. Contact our team for an exact, tailored quotation.',
+      ctaQuestion: 'Want to customize travel dates or the itinerary route? Connect with our travel designers directly:',
+      sidebarFrom: 'Package Inquiry',
+      sidebarPerPax: 'Well-Paced & Comfortable Travel',
+      sidebarCar: 'Air-Conditioned Private Transport',
+      sidebarDriver: 'Knowledgeable Courteous Driver',
+      sidebarTickets: 'Admission Tickets & Route Planning',
+      sidebarFastResp: 'Prompt response via WhatsApp',
+      relatedTag: 'Explore More',
+      relatedTitle: 'Recommended Packages',
+      viewAllPkgs: 'View All Packages',
+      btnAskTrip: 'Ask About This Trip'
     },
     bookingModal: {
-      systemBadge: 'Lombok_Travelers Booking System',
-      titleNew: 'Tour Package Booking',
-      titleSuccess: 'Reservation Received',
+      systemBadge: 'Travelogy Tour Organizer',
+      titleNew: 'Trip Inquiry',
+      titleSuccess: 'Inquiry Received',
       nameLabel: 'Full Name *',
-      namePlaceholder: 'e.g. John Doe',
+      namePlaceholder: 'e.g. Amanda Putri',
       waLabel: 'Active WhatsApp Number *',
-      waPlaceholder: '+62 / +1 ...',
-      waHint: 'For instant schedule confirmation & voucher delivery',
+      waPlaceholder: 'e.g. +62 813-3399-2989',
+      waHint: 'For itinerary consultation & confirmation',
       emailLabel: 'Email Address (Optional)',
-      emailPlaceholder: 'email@example.com',
-      pkgLabel: 'Selected Tour Package *',
-      dateLabel: 'Planned Travel Date *',
-      paxLabel: 'Number of Guests (Pax) *',
+      emailPlaceholder: 'name@example.com',
+      pkgLabel: 'Selected Package *',
+      dateLabel: 'Estimated Travel Date *',
+      paxLabel: 'Estimated Participants *',
       pickupLabel: 'Pickup Location *',
-      pickupPlaceholder: 'e.g. Lombok Airport / Senggigi Hotel / Harbor',
+      pickupPlaceholder: 'e.g. Jember / Surabaya / Malang / Airport',
       transportLabel: 'Preferred Vehicle Class',
-      notesLabel: 'Special Requests / Accommodation Preferences (Optional)',
-      notesPlaceholder: 'e.g. 3-star hotel tier, traveling with toddler, double-bed room...',
-      termsText: 'By submitting this booking, our local team will verify vehicle & guide availability and contact you via WhatsApp with a detailed itinerary confirmation.',
-      btnSubmitting: 'Submitting...',
-      btnSubmit: 'Submit Booking & Chat on WhatsApp',
-      successTitle: 'Booking Request Submitted!',
-      successSubtitle: 'Thank you! Our Tetebatu local team has logged your booking into our system.',
-      refLabel: 'Booking Reference',
+      notesLabel: 'Special Requests / Notes (Optional)',
+      notesPlaceholder: 'e.g. 3-star hotel preference, family trip with children...',
+      termsText: 'By submitting this inquiry, the Travelogy team will prepare your personalized route proposal and contact you via WhatsApp.',
+      btnSubmitting: 'Processing...',
+      btnSubmit: 'Send Inquiry to Travelogy WhatsApp',
+      successTitle: 'Inquiry Ready to Connect!',
+      successSubtitle: 'Thank you for contacting PT. Travelogy Tour Organizer.',
+      refLabel: 'Inquiry Reference',
       summaryPkg: 'Package:',
-      summaryDate: 'Travel Date:',
-      summaryPax: 'Participants:',
-      summaryStatus: 'Status: Awaiting Team Confirmation',
-      followUpPrompt: 'Connect directly on WhatsApp to speed up your booking confirmation and driver assignment:',
-      btnWaConfirm: 'Confirm on WhatsApp Now',
-      btnClose: 'Done & Back to Website',
+      summaryDate: 'Date:',
+      summaryPax: 'Guests:',
+      summaryStatus: 'Status: Connecting to WhatsApp',
+      followUpPrompt: 'Click below to chat immediately with the Travelogy travel consultant:',
+      btnWaConfirm: 'Open WhatsApp Chat Now',
+      btnClose: 'Back to Website',
       errorName: 'Name is required (at least 2 characters).',
       errorWa: 'Invalid WhatsApp number (at least 8 digits).',
-      errorDate: 'Please select a travel departure date.',
+      errorDate: 'Please select a departure travel date.',
       errorDatePast: 'Travel date cannot be in the past.',
-      errorPax: 'Participants must be between 1 and 100 people.',
-      errorGeneral: 'An error occurred while submitting your booking. Please try again.'
+      errorPax: 'Number of participants must be between 1 and 100.',
+      errorGeneral: 'A system issue occurred. Please contact us directly via WhatsApp.'
     },
     concierge: {
-      tag: 'Need Help Choosing?',
-      bannerTitle: 'Still Wondering Which Package Fits Best?',
-      bannerDesc: 'Tell us your travel style, and our assistant will match the ideal package for your duration, group, and preferences.',
-      bannerBtn: 'Chat with Travel Assistant',
-      modalTag: 'Travel Assistant',
-      modalTitle: 'Find Your Dream Holiday Package',
-      modalSubtitle: 'Answer 3 quick questions and our assistant will recommend the best match:',
-      q1: '1. How long is your planned vacation?',
-      q1Opt1: '1 Day (Daily Trip)',
+      tag: 'Trip Planning',
+      bannerTitle: 'Need Guidance Choosing a Destination?',
+      bannerDesc: 'Share your holiday expectations and our Travelogy team will recommend the optimal package for your schedule and budget.',
+      bannerBtn: 'Consult Trip',
+      modalTag: 'Trip Assistant',
+      modalTitle: 'Travelogy Trip Recommendation',
+      modalSubtitle: 'Select your preferences to find the best match:',
+      q1: '1. What is your planned trip duration?',
+      q1Opt1: '1 Day (Quick Escape)',
       q1Opt2: '2 - 3 Days',
-      q1Opt3: '4 - 5 Days',
-      q2: '2. What is your primary travel theme?',
-      q2Opt1: 'Nature & Sasak Culture',
-      q2Opt2: 'Beaches & 3 Gilis Snorkeling',
-      q2Opt3: 'Romantic Couples Honeymoon',
-      q3: '3. How many guests are traveling?',
-      q3Opt1: 'Solo Traveler (1 Guest)',
-      q3Opt2: 'Couple / Pair (2 Guests)',
-      q3Opt3: 'Family / Group (3+ Guests)',
-      btnCalculate: 'See Recommended Package',
-      recTag: 'Top Recommendation For You',
+      q1Opt3: '4 Days or more',
+      q2: '2. What is your desired trip theme?',
+      q2Opt1: 'Volcano & Nature Adventure (Bromo / Ijen)',
+      q2Opt2: 'Culture & Scenic Coastlines (Bali / Jogja)',
+      q2Opt3: 'Relaxed Highlands & Local Exploration (Jember / Malang)',
+      q3: '3. How many people are traveling?',
+      q3Opt1: 'Solo / Couple (1-2 People)',
+      q3Opt2: 'Family (3-6 People)',
+      q3Opt3: 'Corporate / Large Group (7+ People)',
+      btnCalculate: 'Show Recommendation',
+      recTag: 'Recommended Package',
       btnViewPkg: 'View Package Details',
-      btnConsultWa: 'Consult via WhatsApp'
+      btnConsultWa: 'Inquire via WhatsApp'
     }
   }
 };
@@ -768,12 +844,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const savedLang = localStorage.getItem('lombok_lang') as Language | null;
+      const savedLang = localStorage.getItem('travelogy_lang') as Language | null;
       if (savedLang === 'id' || savedLang === 'en') {
         setLanguageState(savedLang);
         document.documentElement.lang = savedLang;
       }
-      const savedCurr = localStorage.getItem('lombok_currency') as Currency | null;
+      const savedCurr = localStorage.getItem('travelogy_currency') as Currency | null;
       if (savedCurr === 'IDR' || savedCurr === 'USD') {
         setCurrencyState(savedCurr);
       }
@@ -785,7 +861,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     try {
-      localStorage.setItem('lombok_lang', lang);
+      localStorage.setItem('travelogy_lang', lang);
       document.documentElement.lang = lang;
     } catch {
       // ignore
@@ -795,7 +871,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const setCurrency = (curr: Currency) => {
     setCurrencyState(curr);
     try {
-      localStorage.setItem('lombok_currency', curr);
+      localStorage.setItem('travelogy_currency', curr);
     } catch {
       // ignore
     }
@@ -813,8 +889,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const convertPriceString = (priceStr: string) => {
     if (currency !== 'USD' || !priceStr) return priceStr;
 
-    // Matches patterns like "Rp 550.000", "Rp. 1.250.000", "Rp 850,000", "IDR 500.000"
-    // Captures only the numeric portion right after Rp / IDR
     if (/(?:Rp\.?|IDR)/i.test(priceStr)) {
       return priceStr.replace(/(?:Rp\.?|IDR)\s*([\d.,]+)/gi, (match, priceDigits) => {
         const cleanNum = priceDigits.replace(/[^\d]/g, '');
@@ -825,7 +899,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       });
     }
 
-    // If it's a standalone formatted number like "550.000"
     if (/^[\d.,\s]+$/.test(priceStr.trim())) {
       const cleaned = priceStr.trim().replace(/[^\d]/g, '');
       const idr = parseInt(cleaned, 10);

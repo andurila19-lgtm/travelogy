@@ -1,23 +1,23 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Trip Harian Lombok: Snorkeling 3 Gili & Air Terjun Tetebatu — Lombok_Travelers',
+  title: 'Trip Harian (1-Day Tour) — Travelogy Tour Organizer Jember',
   description:
-    'Pilihan one-day trip harian di Lombok: Snorkeling 3 Gili Trawangan, Air Terjun Sarang Walet Tetebatu, Panorama Sembalun, dan Pantai Pink. Berangkat setiap hari tanpa repot.',
+    'Pilihan one-day trip favorit bersama Travelogy: 1-Day Bromo Sunrise Safari, 1-Day Kawah Ijen Blue Fire, Tanjung Papuma & Teluk Love Jember, serta Malang Batu Tour.',
   alternates: {
-    canonical: 'https://lomboktravelers.reaksy.com/trip-harian',
+    canonical: 'https://travelogy.co.id/trip-harian',
   },
   openGraph: {
-    title: 'Trip Harian Lombok Terbaik — Snorkeling & Wisata Alam',
+    title: 'Trip Harian Terbaik — PT. Travelogy Tour Organizer',
     description:
-      'Jelajahi keindahan Lombok dalam 1 hari dengan private transport, boat snorkeling, dan pemandu lokal Tetebatu.',
-    url: 'https://lomboktravelers.reaksy.com/trip-harian',
+      'Eksplorasi destinasi memukau dalam 1 hari bersama armada dan supir terpercaya dari Jember.',
+    url: 'https://travelogy.co.id/trip-harian',
     images: [
       {
-        url: '/images/gili_snorkeling.jpg',
+        url: '/images/travelogy_hero.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Trip Harian Lombok Snorkeling',
+        height: 675,
+        alt: 'Trip Harian Travelogy Tour Organizer',
       },
     ],
   },

@@ -1,347 +1,549 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const pathname = usePathname();
-  const { language, setLanguage, currency, setCurrency, t } = useLanguage();
+  const { language, setLanguage } = useLanguage();
 
-  const isHome = pathname === '/';
-  const isPaket = pathname.startsWith('/paket');
-  const isTrip = pathname.startsWith('/trip-harian');
-  const isTransport = pathname.startsWith('/transport');
-  const isArtikel = pathname.startsWith('/artikel');
-  const isAbout = pathname.startsWith('/tentang-kami');
-  const isKontak = pathname.startsWith('/kontak');
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.classList.add('mobile-nav-lock-scroll');
+      document.documentElement.classList.add('mobile-nav-lock-scroll');
+    } else {
+      document.body.classList.remove('mobile-nav-lock-scroll');
+      document.documentElement.classList.remove('mobile-nav-lock-scroll');
+    }
+    return () => {
+      document.body.classList.remove('mobile-nav-lock-scroll');
+      document.documentElement.classList.remove('mobile-nav-lock-scroll');
+    };
+  }, [mobileOpen]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   if (pathname.startsWith('/admin')) {
     return null;
   }
 
+  const isHome = pathname === '/';
+
   return (
-    <>
-      {/* HEADER / NAVBAR */}
-      <header id="header">
-        <div className="navbar-container">
-          {/* Logo Left */}
-          <Link href="/" className="brand-logo">
-            <img src="/images/logo.png" alt="Lombok_Travelers Logo" />
-            <div className="brand-logo-text">
-              <span className="brand-name">Lombok_Travelers</span>
-              <span className="brand-tagline">Tetebatu • Lombok Timur</span>
-            </div>
+    <header
+      id="header"
+      className={`travelogy-header ${isScrolled ? 'is-scrolled' : ''}`}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.98)' : '#ffffff',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(226, 235, 228, 0.8)',
+        boxShadow: isScrolled ? '0 4px 20px rgba(27, 67, 50, 0.08)' : '0 1px 3px rgba(0, 0, 0, 0.04)',
+        transition: 'all 0.3s ease'
+      }}
+    >
+      <div
+        className="navbar-container"
+        style={{
+          maxWidth: '1240px',
+          margin: '0 auto',
+          padding: '0 20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          width: '100%'
+        }}
+      >
+        {/* Brand Logo Left */}
+        <Link
+          href="/"
+          className="brand-logo"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            textDecoration: 'none',
+            flexShrink: 0
+          }}
+        >
+          <img
+            src="/images/travelogy_logo.png"
+            alt="Travelogy Tour Organizer Logo"
+            className="brand-logo-img"
+            style={{
+              width: '42px',
+              height: '42px',
+              borderRadius: '10px',
+              objectFit: 'cover',
+              boxShadow: '0 3px 10px rgba(28, 96, 97, 0.22)'
+            }}
+          />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span
+              className="brand-name font-editorial"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: '20px',
+                fontWeight: 700,
+                letterSpacing: '0.8px',
+                color: 'var(--primary)',
+                lineHeight: 1.1
+              }}
+            >
+              TRAVELOGY
+            </span>
+            <span
+              className="brand-tagline"
+              style={{
+                fontSize: '10px',
+                letterSpacing: '0.6px',
+                textTransform: 'uppercase',
+                color: 'var(--muted)',
+                fontWeight: 600,
+                marginTop: '2px'
+              }}
+            >
+              Tour Organizer • Jember
+            </span>
+          </div>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav
+          className="nav-menu desktop-menu"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '28px'
+          }}
+        >
+          <Link
+            href="/"
+            className={`nav-link ${isHome ? 'active' : ''}`}
+            style={{
+              fontWeight: 600,
+              fontSize: '14.5px',
+              color: isHome ? 'var(--primary)' : 'var(--dark)',
+              textDecoration: 'none',
+              transition: 'color 0.2s',
+              position: 'relative'
+            }}
+          >
+            Home
           </Link>
 
-          {/* Navigation Center */}
-          <nav className="nav-menu">
-            <div className="nav-item">
-              <Link href="/" className={`nav-link ${isHome ? 'active' : ''}`}>
-                {t.nav.home}
-              </Link>
-            </div>
-            <div className="nav-item">
-              <Link href="/paket" className={`nav-link ${isPaket ? 'active' : ''}`}>
-                {t.nav.tourPackages} <i className="fa fa-angle-down"></i>
-              </Link>
-              <div className="dropdown-menu">
-                <Link href="/paket" className="dropdown-link" style={{ fontWeight: 700, color: 'var(--primary)' }}>
-                  {language === 'en' ? '› View All Packages' : '› Lihat Semua Paket'}
-                </Link>
-                <div style={{ height: '1px', background: '#eee', margin: '4px 0' }}></div>
-                <Link href="/paket/paket-lombok-3-hari-2-malam" className="dropdown-link">
-                  {language === 'en' ? 'Lombok 3D2N Package (Best Seller)' : 'Paket Lombok 3H2M (Best Seller)'}
-                </Link>
-                <Link href="/paket/paket-lombok-2-hari-1-malam" className="dropdown-link">
-                  {language === 'en' ? 'Lombok 2D1N Package' : 'Paket Lombok 2H1M'}
-                </Link>
-                <Link href="/paket/paket-lombok-4-hari-3-malam" className="dropdown-link">
-                  {language === 'en' ? 'Lombok 4D3N Package' : 'Paket Lombok 4H3M'}
-                </Link>
-                <Link href="/paket/paket-lombok-5-hari-4-malam" className="dropdown-link">
-                  {language === 'en' ? 'Lombok 5D4N Package' : 'Paket Lombok 5H4M'}
-                </Link>
-                <Link href="/paket/private-lombok-honeymoon-trip" className="dropdown-link">
-                  {language === 'en' ? 'Private Romantic Honeymoon' : 'Private Honeymoon'}
-                </Link>
-                <Link href="/paket/tetebatu-nature-cultural-immersion" className="dropdown-link">
-                  {language === 'en' ? 'Tetebatu Cultural Tour' : 'Tetebatu Cultural Tour'}
-                </Link>
-              </div>
-            </div>
-            <div className="nav-item">
-              <Link href="/trip-harian" className={`nav-link ${isTrip ? 'active' : ''}`}>
-                {t.nav.dailyTrips}
-              </Link>
-            </div>
-            <div className="nav-item">
-              <Link href="/transport" className={`nav-link ${isTransport ? 'active' : ''}`}>
-                {t.nav.transport}
-              </Link>
-            </div>
-            <div className="nav-item">
-              <Link href="/artikel" className={`nav-link ${isArtikel ? 'active' : ''}`}>
-                {t.nav.articles}
-              </Link>
-            </div>
-            <div className="nav-item">
-              <Link href="/tentang-kami" className={`nav-link ${isAbout ? 'active' : ''}`}>
-                {language === 'en' ? 'About Us' : 'Tentang Kami'}
-              </Link>
-            </div>
-            <div className="nav-item">
-              <Link href="/kontak" className={`nav-link ${isKontak ? 'active' : ''}`}>
-                {language === 'en' ? 'Contact' : 'Kontak'}
-              </Link>
-            </div>
-          </nav>
+          <Link
+            href="/destinasi"
+            className={`nav-link ${pathname.startsWith('/destinasi') ? 'active' : ''}`}
+            style={{
+              fontWeight: 600,
+              fontSize: '14.5px',
+              color: pathname.startsWith('/destinasi') ? 'var(--primary)' : 'var(--dark)',
+              textDecoration: 'none',
+              transition: 'color 0.2s'
+            }}
+          >
+            Destinations
+          </Link>
 
-          {/* Language & Currency Controls Right (Desktop) */}
-          <div className="header-right desktop-controls">
-            {/* Currency Selector Pill */}
-            <div style={{
+          <Link
+            href="/paket"
+            className={`nav-link ${pathname.startsWith('/paket') ? 'active' : ''}`}
+            style={{
+              fontWeight: 600,
+              fontSize: '14.5px',
+              color: pathname.startsWith('/paket') ? 'var(--primary)' : 'var(--dark)',
+              textDecoration: 'none',
+              transition: 'color 0.2s'
+            }}
+          >
+            Tour Packages
+          </Link>
+
+          <Link
+            href="/transport"
+            className={`nav-link ${pathname.startsWith('/transport') ? 'active' : ''}`}
+            style={{
+              fontWeight: 600,
+              fontSize: '14.5px',
+              color: pathname.startsWith('/transport') ? 'var(--primary)' : 'var(--dark)',
+              textDecoration: 'none',
+              transition: 'color 0.2s'
+            }}
+          >
+            Transport
+          </Link>
+
+          <Link
+            href="/tentang-kami"
+            className={`nav-link ${pathname.startsWith('/tentang-kami') ? 'active' : ''}`}
+            style={{
+              fontWeight: 600,
+              fontSize: '14.5px',
+              color: pathname.startsWith('/tentang-kami') ? 'var(--primary)' : 'var(--dark)',
+              textDecoration: 'none',
+              transition: 'color 0.2s'
+            }}
+          >
+            About
+          </Link>
+
+          <Link
+            href="/custom-trip"
+            className={`nav-link ${pathname.startsWith('/custom-trip') ? 'active' : ''}`}
+            style={{
+              fontWeight: 600,
+              fontSize: '14.5px',
+              color: pathname.startsWith('/custom-trip') ? 'var(--primary)' : 'var(--dark)',
+              textDecoration: 'none',
+              transition: 'color 0.2s'
+            }}
+          >
+            Custom Trip
+          </Link>
+        </nav>
+
+        {/* Right CTA & Controls */}
+        <div
+          className="header-right-actions"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '14px'
+          }}
+        >
+          {/* Language Switcher Pill */}
+          <div
+            style={{
               display: 'inline-flex',
               alignItems: 'center',
-              backgroundColor: '#f1f5f9',
+              backgroundColor: '#f1f5f2',
               borderRadius: '20px',
               padding: '2px',
-              border: '1px solid #cbd5e1'
-            }}>
-              <button
-                type="button"
-                onClick={() => setCurrency('IDR')}
-                style={{
-                  background: currency === 'IDR' ? '#002366' : 'transparent',
-                  color: currency === 'IDR' ? '#ffffff' : '#64748b',
-                  border: 'none',
-                  borderRadius: '16px',
-                  padding: '3px 8px',
-                  fontWeight: currency === 'IDR' ? 700 : 600,
-                  fontSize: '11px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-                title="Rupiah (IDR)"
-              >
-                IDR
-              </button>
-              <button
-                type="button"
-                onClick={() => setCurrency('USD')}
-                style={{
-                  background: currency === 'USD' ? '#002366' : 'transparent',
-                  color: currency === 'USD' ? '#ffffff' : '#64748b',
-                  border: 'none',
-                  borderRadius: '16px',
-                  padding: '3px 8px',
-                  fontWeight: currency === 'USD' ? 700 : 600,
-                  fontSize: '11px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s'
-                }}
-                title="US Dollar (USD)"
-              >
-                USD
-              </button>
-            </div>
-
-            {/* Language Toggle */}
-            <div className="bahasa-toggle">
-              <button
-                type="button"
-                className={`bahasa-item ${language === 'id' ? 'active-lang' : ''}`}
-                onClick={() => setLanguage('id')}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontWeight: language === 'id' ? 800 : 500,
-                  color: language === 'id' ? '#002366' : '#777777',
-                  padding: '2px 4px',
-                  borderRadius: '4px',
-                  outline: language === 'id' ? '1px solid #002366' : 'none'
-                }}
-                aria-label="Pilih Bahasa Indonesia"
-              >
-                ID{' '}
-                <svg width="18" height="12" viewBox="0 0 18 12" fill="none" style={{ border: '1px solid #ddd', verticalAlign: 'middle', display: 'inline-block' }}>
-                  <rect width="18" height="6" fill="#E70011" />
-                  <rect y="6" width="18" height="6" fill="#FFFFFF" />
-                </svg>
-              </button>
-              <span style={{ color: '#ccc', margin: '0 2px' }}>|</span>
-              <button
-                type="button"
-                className={`bahasa-item ${language === 'en' ? 'active-lang' : ''}`}
-                onClick={() => setLanguage('en')}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontWeight: language === 'en' ? 800 : 500,
-                  color: language === 'en' ? '#002366' : '#777777',
-                  padding: '2px 4px',
-                  borderRadius: '4px',
-                  outline: language === 'en' ? '1px solid #002366' : 'none'
-                }}
-                aria-label="Select English Language"
-              >
-                EN{' '}
-                <svg width="18" height="12" viewBox="0 0 60 30" fill="none" style={{ border: '1px solid #ddd', verticalAlign: 'middle', display: 'inline-block' }}>
-                  <clipPath id="gb-flag"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
-                  <clipPath id="gb-t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
-                  <g clipPath="url(#gb-flag)">
-                    <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-                    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
-                    <path d="M0,0 L60,30 M60,0 L0,30" clipPath="url(#gb-t)" stroke="#C8102E" strokeWidth="4"/>
-                    <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
-                    <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6"/>
-                  </g>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Hamburger Button */}
-          <button className="mobile-toggle" aria-label="Menu Navigasi" onClick={() => setMobileOpen(true)}>
-            <i className="fa fa-bars"></i>
-          </button>
-        </div>
-      </header>
-
-      {/* MOBILE NAVIGATION DRAWER */}
-      <div className={`mobile-nav-drawer ${mobileOpen ? 'active' : ''}`} onClick={(e) => { if (e.target === e.currentTarget) setMobileOpen(false); }}>
-        <div className="mobile-nav-content">
-          <div className="mobile-nav-header">
-            <div className="brand-logo-text">
-              <span className="brand-name" style={{ fontSize: '16px', color: '#002366' }}>Lombok_Travelers</span>
-              <span className="brand-tagline">Tetebatu • Lombok Timur</span>
-            </div>
-            <button className="mobile-nav-close" aria-label="Tutup Menu" onClick={() => setMobileOpen(false)}>
-              <i className="fa fa-times"></i>
+              border: '1px solid #dbe6dd'
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setLanguage('id')}
+              style={{
+                background: language === 'id' ? 'var(--primary)' : 'transparent',
+                color: language === 'id' ? '#ffffff' : 'var(--muted)',
+                border: 'none',
+                borderRadius: '16px',
+                padding: '4px 10px',
+                fontWeight: 700,
+                fontSize: '11px',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              aria-label="Bahasa Indonesia"
+            >
+              ID
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage('en')}
+              style={{
+                background: language === 'en' ? 'var(--primary)' : 'transparent',
+                color: language === 'en' ? '#ffffff' : 'var(--muted)',
+                border: 'none',
+                borderRadius: '16px',
+                padding: '4px 10px',
+                fontWeight: 700,
+                fontSize: '11px',
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              aria-label="English"
+            >
+              EN
             </button>
           </div>
-          <div className="mobile-nav-links">
-            <Link href="/" className={isHome ? 'active' : ''} onClick={() => setMobileOpen(false)}>
-              <span><i className="fa fa-home" style={{ width: '22px', color: 'var(--primary)' }}></i> {t.nav.home}</span>
-              <i className="fa fa-angle-right" style={{ color: '#cbd5e1', fontSize: '13px' }}></i>
-            </Link>
-            <Link href="/paket" className={isPaket ? 'active' : ''} onClick={() => setMobileOpen(false)}>
-              <span><i className="fa fa-suitcase" style={{ width: '22px', color: 'var(--primary)' }}></i> {t.nav.tourPackages}</span>
-              <i className="fa fa-angle-right" style={{ color: '#cbd5e1', fontSize: '13px' }}></i>
-            </Link>
-            <Link href="/trip-harian" className={isTrip ? 'active' : ''} onClick={() => setMobileOpen(false)}>
-              <span><i className="fa fa-clock-o" style={{ width: '22px', color: 'var(--primary)' }}></i> {t.nav.dailyTrips}</span>
-              <i className="fa fa-angle-right" style={{ color: '#cbd5e1', fontSize: '13px' }}></i>
-            </Link>
-            <Link href="/transport" className={isTransport ? 'active' : ''} onClick={() => setMobileOpen(false)}>
-              <span><i className="fa fa-car" style={{ width: '22px', color: 'var(--primary)' }}></i> {t.nav.transport}</span>
-              <i className="fa fa-angle-right" style={{ color: '#cbd5e1', fontSize: '13px' }}></i>
-            </Link>
-            <Link href="/artikel" className={isArtikel ? 'active' : ''} onClick={() => setMobileOpen(false)}>
-              <span><i className="fa fa-newspaper-o" style={{ width: '22px', color: 'var(--primary)' }}></i> {t.nav.articles}</span>
-              <i className="fa fa-angle-right" style={{ color: '#cbd5e1', fontSize: '13px' }}></i>
-            </Link>
-            <Link href="/tentang-kami" className={isAbout ? 'active' : ''} onClick={() => setMobileOpen(false)}>
-              <span><i className="fa fa-users" style={{ width: '22px', color: 'var(--primary)' }}></i> {language === 'en' ? 'About Us' : 'Tentang Kami'}</span>
-              <i className="fa fa-angle-right" style={{ color: '#cbd5e1', fontSize: '13px' }}></i>
-            </Link>
-            <Link href="/kontak" className={isKontak ? 'active' : ''} onClick={() => setMobileOpen(false)}>
-              <span><i className="fa fa-envelope-o" style={{ width: '22px', color: 'var(--primary)' }}></i> {language === 'en' ? 'Contact' : 'Kontak'}</span>
-              <i className="fa fa-angle-right" style={{ color: '#cbd5e1', fontSize: '13px' }}></i>
-            </Link>
-          </div>
-          <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: '1px solid var(--border-light)' }}>
-            {/* Mobile Language Selector */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <div style={{ fontSize: '13px', fontWeight: 600, color: '#64748b' }}>
-                <i className="fa fa-globe"></i> {language === 'en' ? 'Language:' : 'Bahasa:'}
-              </div>
-              <div style={{ display: 'inline-flex', background: '#f1f5f9', borderRadius: '16px', padding: '2px', border: '1px solid #cbd5e1' }}>
-                <button
-                  type="button"
-                  onClick={() => setLanguage('id')}
-                  style={{
-                    background: language === 'id' ? '#002366' : 'transparent',
-                    color: language === 'id' ? '#fff' : '#64748b',
-                    border: 'none',
-                    borderRadius: '14px',
-                    padding: '3px 10px',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  ID
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setLanguage('en')}
-                  style={{
-                    background: language === 'en' ? '#002366' : 'transparent',
-                    color: language === 'en' ? '#fff' : '#64748b',
-                    border: 'none',
-                    borderRadius: '14px',
-                    padding: '3px 10px',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  EN
-                </button>
-              </div>
-            </div>
 
-            {/* Mobile Currency Selector */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-              <div style={{ fontSize: '13px', fontWeight: 600, color: '#64748b' }}>
-                <i className="fa fa-money"></i> Currency:
-              </div>
-              <div style={{ display: 'inline-flex', background: '#f1f5f9', borderRadius: '16px', padding: '2px', border: '1px solid #cbd5e1' }}>
-                <button
-                  type="button"
-                  onClick={() => setCurrency('IDR')}
-                  style={{
-                    background: currency === 'IDR' ? '#002366' : 'transparent',
-                    color: currency === 'IDR' ? '#fff' : '#64748b',
-                    border: 'none',
-                    borderRadius: '14px',
-                    padding: '3px 10px',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  IDR
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setCurrency('USD')}
-                  style={{
-                    background: currency === 'USD' ? '#002366' : 'transparent',
-                    color: currency === 'USD' ? '#fff' : '#64748b',
-                    border: 'none',
-                    borderRadius: '14px',
-                    padding: '3px 10px',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  USD
-                </button>
-              </div>
-            </div>
-            <a href="https://wa.me/6283117110638" target="_blank" rel="noopener noreferrer" className="btn-sidebar-wa">
-              <i className="fa fa-whatsapp"></i> Chat WhatsApp
-            </a>
-          </div>
+          {/* Primary CTA: "Plan Your Trip" (Desktop only) */}
+          <Link
+            href="/custom-trip"
+            className="header-plan-cta"
+            style={{
+              backgroundColor: 'var(--primary)',
+              color: '#ffffff',
+              padding: '10px 22px',
+              borderRadius: '30px',
+              fontWeight: 700,
+              fontSize: '14px',
+              textDecoration: 'none',
+              boxShadow: '0 4px 14px rgba(27, 67, 50, 0.25)',
+              transition: 'all 0.25s ease',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            <span>Plan Your Trip</span>
+            <i className="fa fa-arrow-right" style={{ fontSize: '12px' }}></i>
+          </Link>
+
+          {/* Mobile Hamburger Toggle Button */}
+          <button
+            type="button"
+            className={`hamburger-btn ${mobileOpen ? 'is-active' : ''}`}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Tutup Menu Navigasi' : 'Buka Menu Navigasi'}
+            aria-expanded={mobileOpen}
+          >
+            <i className={`fa ${mobileOpen ? 'fa-times' : 'fa-bars'}`}></i>
+          </button>
         </div>
       </div>
-    </>
+
+      {/* Mobile Floating Drawer & Backdrop */}
+      {mobileOpen && (
+        <>
+          <div
+            className="mobile-nav-backdrop"
+            onClick={() => setMobileOpen(false)}
+            onTouchMove={(e) => e.preventDefault()}
+            aria-hidden="true"
+          />
+
+          <div
+            className="mobile-nav-floating-island"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu Navigasi Mobile"
+          >
+            {/* Floating Island Header */}
+            <div className="mobile-island-header">
+              <Link
+                href="/"
+                className="mobile-island-brand"
+                onClick={() => setMobileOpen(false)}
+              >
+                <img
+                  src="/images/travelogy_logo.png"
+                  alt="Travelogy Logo"
+                  className="mobile-island-brand-img"
+                />
+                <div>
+                  <div className="mobile-island-brand-title">TRAVELOGY</div>
+                  <div className="mobile-island-brand-sub">Tour Organizer • Jember</div>
+                </div>
+              </Link>
+              <button
+                type="button"
+                className="mobile-island-close-btn"
+                onClick={() => setMobileOpen(false)}
+                aria-label="Tutup Menu"
+              >
+                <i className="fa fa-times"></i>
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="mobile-island-nav">
+              <Link
+                href="/"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname === '/' ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-home"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Beranda' : 'Home'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/destinasi"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/destinasi') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-map-marker"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Destinasi Wisata' : 'Destinations'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/paket"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/paket') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-compass"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Paket Tour & Liburan' : 'Tour Packages'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/transport"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/transport') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-car"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Rental Mobil & Transport' : 'Transport & Rental'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/trip-harian"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/trip-harian') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-sun-o"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Trip Harian / 1 Day' : 'Daily Trips'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/custom-trip"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/custom-trip') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-calendar-check-o"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Custom Trip Planner' : 'Custom Trip'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/artikel"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/artikel') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-newspaper-o"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Artikel & Panduan Wisata' : 'Articles & Guides'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/tentang-kami"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/tentang-kami') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-info-circle"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Tentang Travelogy' : 'About Us'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+
+              <Link
+                href="/kontak"
+                onClick={() => setMobileOpen(false)}
+                className={`mobile-island-link ${pathname.startsWith('/kontak') ? 'active' : ''}`}
+              >
+                <div className="mobile-island-link-left">
+                  <span className="mobile-island-icon-box">
+                    <i className="fa fa-phone"></i>
+                  </span>
+                  <span>{language === 'id' ? 'Kontak & Reservasi' : 'Contact Us'}</span>
+                </div>
+                <i className="fa fa-angle-right mobile-island-link-arrow"></i>
+              </Link>
+            </nav>
+
+            {/* Quick Actions */}
+            <div className="mobile-island-actions">
+              <Link
+                href="/custom-trip"
+                onClick={() => setMobileOpen(false)}
+                className="mobile-island-btn-plan"
+              >
+                <span>{language === 'id' ? 'Rencanakan Liburan Sekarang' : 'Plan Your Trip'}</span>
+                <i className="fa fa-arrow-right" style={{ fontSize: '12px' }}></i>
+              </Link>
+
+              <a
+                href="https://wa.me/6281333992989?text=Halo%20Travelogy%20Tour%20Organizer%2C%20saya%20ingin%20konsultasi%20trip"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mobile-island-btn-wa"
+              >
+                <i className="fa fa-whatsapp" style={{ fontSize: '18px' }}></i>
+                <span>Chat WhatsApp (+62 813-3399-2989)</span>
+              </a>
+            </div>
+
+            {/* Footer Meta / Lang Switch */}
+            <div className="mobile-island-footer-meta">
+              <div className="mobile-island-lang-switch">
+                <button
+                  type="button"
+                  className={language === 'id' ? 'active' : ''}
+                  onClick={() => setLanguage('id')}
+                >
+                  🇮🇩 ID
+                </button>
+                <button
+                  type="button"
+                  className={language === 'en' ? 'active' : ''}
+                  onClick={() => setLanguage('en')}
+                >
+                  🇬🇧 EN
+                </button>
+              </div>
+              <span>Jl. Mastrip No.71, Jember</span>
+            </div>
+          </div>
+        </>
+      )}
+    </header>
   );
 }

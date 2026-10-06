@@ -2,111 +2,305 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useLanguage } from '@/context/LanguageContext';
 
 export default function Footer() {
-  const { language } = useLanguage();
   const pathname = usePathname();
 
   if (pathname.startsWith('/admin')) {
     return null;
   }
 
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer id="footer">
-      <div className="footer-top">
-        <div className="box1140 footer-grid">
-          
-          {/* Col 1: Brand & Contact */}
-          <div className="footer-col footer-brand-info">
-            <div className="footer-logo-row">
-              <img src="/images/logo.png" alt="Lombok_Travelers" />
-              <span>Lombok_Travelers</span>
+    <footer
+      id="footer"
+      style={{
+        backgroundColor: '#0d2d2e',
+        color: '#d1ded6',
+        borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+        paddingTop: '64px',
+        paddingBottom: '32px'
+      }}
+    >
+      <div
+        className="box1140"
+        style={{
+          maxWidth: '1240px',
+          margin: '0 auto',
+          padding: '0 24px'
+        }}
+      >
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '40px',
+            marginBottom: '48px'
+          }}
+        >
+          {/* Col 1: Brand & Identity */}
+          <div style={{ maxWidth: '360px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+              <img
+                src="/images/travelogy_logo.png"
+                alt="PT. Travelogy Tour Organizer"
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(232, 202, 164, 0.3)',
+                  objectFit: 'cover',
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)'
+                }}
+              />
+              <div>
+                <span
+                  style={{
+                    display: 'block',
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: '20px',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    letterSpacing: '0.8px'
+                  }}
+                >
+                  TRAVELOGY
+                </span>
+                <span style={{ fontSize: '11px', color: '#a2baa8', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                  Tour Organizer
+                </span>
+              </div>
             </div>
-            <p>
-              {language === 'en'
-                ? 'Official local travel partner based in Tetebatu, East Lombok. Trusted services for private tours, family holiday packages, honeymoon trips, and reliable island transportation.'
-                : 'Local travel partner untuk wisata Lombok, private trip, paket wisata, transportasi, itinerary, dan custom trip berbasis di Tetebatu, Lombok Timur.'}
+
+            <p
+              style={{
+                fontStyle: 'italic',
+                color: 'var(--secondary)',
+                fontWeight: 600,
+                fontSize: '15px',
+                marginBottom: '14px'
+              }}
+            >
+              &ldquo;Bringing Happiness in Every Journey&rdquo;
             </p>
-            <div className="footer-contact-item">
-              <i className="fa fa-map-marker"></i>
-              <span>Tetebatu, Kec. Sikur, Kabupaten Lombok Timur, Nusa Tenggara Barat 83662</span>
-            </div>
-            <div className="footer-contact-item">
-              <i className="fa fa-whatsapp"></i>
-              <span>WhatsApp: 0831-1711-0638</span>
-            </div>
-            <div className="footer-sosmed">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="sosmed-btn" aria-label="Instagram"><i className="fa fa-instagram"></i></a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="sosmed-btn" aria-label="Facebook"><i className="fa fa-facebook"></i></a>
-              <a href="https://wa.me/6283117110638" target="_blank" rel="noopener noreferrer" className="sosmed-btn" aria-label="WhatsApp"><i className="fa fa-whatsapp"></i></a>
-            </div>
-          </div>
 
-          {/* Col 2: Paket Wisata */}
-          <div className="footer-col">
-            <h3>{language === 'en' ? 'Tour Packages' : 'Paket Wisata'}</h3>
-            <div className="footer-links">
-              <Link href="/paket">{language === 'en' ? '› All Tour Packages' : '› Semua Paket Tour'}</Link>
-              <Link href="/paket/paket-lombok-3-hari-2-malam">{language === 'en' ? 'Lombok 3D2N Package' : 'Paket Lombok 3H2M'}</Link>
-              <Link href="/paket/paket-lombok-2-hari-1-malam">{language === 'en' ? 'Lombok 2D1N Package' : 'Paket Lombok 2H1M'}</Link>
-              <Link href="/paket/paket-lombok-4-hari-3-malam">{language === 'en' ? 'Lombok 4D3N Package' : 'Paket Lombok 4H3M'}</Link>
-              <Link href="/paket/paket-lombok-5-hari-4-malam">{language === 'en' ? 'Lombok 5D4N Package' : 'Paket Lombok 5H4M'}</Link>
-              <Link href="/paket/private-lombok-honeymoon-trip">{language === 'en' ? 'Private Honeymoon' : 'Private Honeymoon'}</Link>
-              <Link href="/paket/tetebatu-nature-cultural-immersion">{language === 'en' ? 'Tetebatu Cultural' : 'Tetebatu Cultural'}</Link>
-            </div>
-          </div>
+            <p style={{ fontSize: '13.5px', lineHeight: 1.6, color: '#b9ccbf', marginBottom: '20px' }}>
+              PT. Travelogy Tour Organizer hadir membantu Anda merencanakan dan menikmati setiap perjalanan dengan nyaman, terencana, dan berkesan. Solusi lengkap tour, transportasi, hotel, dan event dari Jember.
+            </p>
 
-          {/* Col 3: Trip Harian */}
-          <div className="footer-col">
-            <h3>{language === 'en' ? 'Daily Trips' : 'Trip Harian'}</h3>
-            <div className="footer-links">
-              <Link href="/trip-harian">{language === 'en' ? '› All 1-Day Tours' : '› Semua Trip Harian'}</Link>
-              <Link href="/trip-harian">Sasak & Kuta Mandalika</Link>
-              <Link href="/trip-harian">Tetebatu Nature Trip</Link>
-              <Link href="/trip-harian">Pink Beach & Snorkeling</Link>
-              <Link href="/trip-harian">Gili Trawangan Snorkeling</Link>
-              <Link href="/trip-harian">Sembalun & Bukit Selong</Link>
-            </div>
-          </div>
-
-          {/* Col 4: Transport & Info */}
-          <div className="footer-col">
-            <h3>{language === 'en' ? 'Transport & Rental' : 'Sewa Transportasi'}</h3>
-            <div className="footer-links">
-              <Link href="/transport">{language === 'en' ? '› Car Rental & Fleet' : '› Daftar Sewa Mobil'}</Link>
-              <Link href="/transport">All New Avanza</Link>
-              <Link href="/transport">Toyota Innova Reborn</Link>
-              <Link href="/transport">Toyota HiAce Commuter</Link>
-              <Link href="/transport">Toyota Fortuner VRZ</Link>
-              <Link href="/transport">{language === 'en' ? 'Airport Transfer (BIL)' : 'Antar-Jemput Bandara BIL'}</Link>
-            </div>
-          </div>
-
-          {/* Col 5: Company & Articles */}
-          <div className="footer-col">
-            <h3>{language === 'en' ? 'Company & Guides' : 'Informasi & Panduan'}</h3>
-            <div className="footer-links">
-              <Link href="/artikel">{language === 'en' ? 'Travel Articles & Guides' : 'Artikel & Panduan Wisata'}</Link>
-              <Link href="/tentang-kami">{language === 'en' ? 'About Lombok_Travelers' : 'Tentang Lombok_Travelers'}</Link>
-              <Link href="/kontak">{language === 'en' ? 'Contact & Office Basecamp' : 'Kontak & Kantor Basecamp'}</Link>
-              <Link href="/#custom-trip">{language === 'en' ? 'Request Custom Trip' : 'Formulir Custom Trip'}</Link>
-              <a href="https://wa.me/6283117110638" target="_blank" rel="noopener noreferrer">
-                WhatsApp 0831-1711-0638
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <a
+                href="https://wa.me/6281333992989"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255,255,255,0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#25d366',
+                  fontSize: '18px',
+                  transition: 'background 0.2s'
+                }}
+                aria-label="WhatsApp Travelogy"
+              >
+                <i className="fa fa-whatsapp"></i>
+              </a>
+              <a
+                href="mailto:travelogycorp@gmail.com"
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255,255,255,0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#ffffff',
+                  fontSize: '16px',
+                  transition: 'background 0.2s'
+                }}
+                aria-label="Email Travelogy"
+              >
+                <i className="fa fa-envelope"></i>
               </a>
             </div>
           </div>
 
-        </div>
-      </div>
+          {/* Col 2: Navigation Links */}
+          <div>
+            <h3
+              style={{
+                color: '#ffffff',
+                fontSize: '16px',
+                fontWeight: 700,
+                letterSpacing: '0.5px',
+                marginBottom: '20px',
+                position: 'relative',
+                paddingBottom: '10px'
+              }}
+            >
+              Navigation
+              <span
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '30px',
+                  height: '2px',
+                  backgroundColor: 'var(--secondary)'
+                }}
+              ></span>
+            </h3>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
+              <li>
+                <Link href="/" style={{ color: '#b9ccbf', transition: 'color 0.2s' }}>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/destinasi" style={{ color: '#b9ccbf', transition: 'color 0.2s' }}>
+                  Destinations
+                </Link>
+              </li>
+              <li>
+                <Link href="/paket" style={{ color: '#b9ccbf', transition: 'color 0.2s' }}>
+                  Tour Packages
+                </Link>
+              </li>
+              <li>
+                <Link href="/transport" style={{ color: '#b9ccbf', transition: 'color 0.2s' }}>
+                  Transport
+                </Link>
+              </li>
+              <li>
+                <Link href="/tentang-kami" style={{ color: '#b9ccbf', transition: 'color 0.2s' }}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/custom-trip" style={{ color: '#b9ccbf', transition: 'color 0.2s' }}>
+                  Custom Trip
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-      <div className="footer-bottom">
-        <div className="box1140" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-          <p style={{ margin: 0 }}>© 2026 Lombok_Travelers. All Rights Reserved. Local Travel Partner Tetebatu, Lombok Timur, NTB.</p>
-          <div style={{ display: 'flex', gap: '16px', fontSize: '12px' }}>
-            <Link href="/admin/bookings" style={{ color: '#94a3b8', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-              <i className="fa fa-lock"></i> Owner / Admin Booking Portal
-            </Link>
+          {/* Col 3: Business Services */}
+          <div>
+            <h3
+              style={{
+                color: '#ffffff',
+                fontSize: '16px',
+                fontWeight: 700,
+                letterSpacing: '0.5px',
+                marginBottom: '20px',
+                position: 'relative',
+                paddingBottom: '10px'
+              }}
+            >
+              Our Services
+              <span
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '30px',
+                  height: '2px',
+                  backgroundColor: 'var(--secondary)'
+                }}
+              ></span>
+            </h3>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: '#b9ccbf' }}>
+              <li>Tour & Travel Organizer</li>
+              <li>Private & Group Transport</li>
+              <li>Airport & Station Transfer</li>
+              <li>Hotel & Resort Booking</li>
+              <li>Corporate Event Planning</li>
+              <li>Custom Tailored Journeys</li>
+            </ul>
+          </div>
+
+          {/* Col 4: Contact & Location */}
+          <div>
+            <h3
+              style={{
+                color: '#ffffff',
+                fontSize: '16px',
+                fontWeight: 700,
+                letterSpacing: '0.5px',
+                marginBottom: '20px',
+                position: 'relative',
+                paddingBottom: '10px'
+              }}
+            >
+              Contact Travelogy
+              <span
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '30px',
+                  height: '2px',
+                  backgroundColor: 'var(--secondary)'
+                }}
+              ></span>
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '13.5px', color: '#b9ccbf' }}>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                <i className="fa fa-map-marker" style={{ color: 'var(--secondary)', fontSize: '16px', marginTop: '3px' }}></i>
+                <span>
+                  Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124
+                </span>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <i className="fa fa-whatsapp" style={{ color: '#25d366', fontSize: '16px' }}></i>
+                <a
+                  href="https://wa.me/6281333992989"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#ffffff', fontWeight: 600 }}
+                >
+                  +62 813-3399-2989
+                </a>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <i className="fa fa-envelope-o" style={{ color: 'var(--secondary)', fontSize: '14px' }}></i>
+                <a href="mailto:travelogycorp@gmail.com" style={{ color: '#b9ccbf' }}>
+                  travelogycorp@gmail.com
+                </a>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <i className="fa fa-clock-o" style={{ color: 'var(--secondary)', fontSize: '14px' }}></i>
+                <span>Jam Operasional: 09:00 - 13:00 WIB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div
+          style={{
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            paddingTop: '24px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '12px',
+            fontSize: '12.5px',
+            color: '#88a391'
+          }}
+        >
+          <div>
+            &copy; {currentYear} PT. Travelogy Tour Organizer. All rights reserved. Jember, Jawa Timur.
+          </div>
+          <div>
+            Digital Travel Platform Proposal &bull; Bringing Happiness in Every Journey
           </div>
         </div>
       </div>

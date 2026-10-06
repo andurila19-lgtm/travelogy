@@ -1,23 +1,23 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Tentang Lombok_Travelers — Partner Wisata Lokal Asli Tetebatu, Lombok Timur',
+  title: 'Tentang Kami — PT. Travelogy Tour Organizer Jember',
   description:
-    'Profil Lombok_Travelers, agen perjalanan lokal berbasis di Tetebatu, Lombok Timur. Didirikan oleh pemandu lokal berlisensi dengan dedikasi memperkenalkan keaslian alam & budaya Lombok.',
+    'Profil PT. Travelogy Tour Organizer, biro perjalanan terpercaya berbasis di Jember, Jawa Timur. Tagline: Bringing Happiness in Every Journey. Layanan Tour, Transport, Hotel & Event Planning.',
   alternates: {
-    canonical: 'https://lomboktravelers.reaksy.com/tentang-kami',
+    canonical: 'https://travelogy.co.id/tentang-kami',
   },
   openGraph: {
-    title: 'Tentang Kami — Lombok_Travelers Tetebatu',
+    title: 'Tentang Kami — PT. Travelogy Tour Organizer',
     description:
-      'Kenal lebih dekat dengan tim lokal Lombok_Travelers. Layanan tour terpercaya, ramah, dan berpengalaman puluhan tahun.',
-    url: 'https://lomboktravelers.reaksy.com/tentang-kami',
+      'Bringing Happiness in Every Journey. Temukan dedikasi Travelogy mendampingi setiap perjalanan liburan dan event Anda dari Jember.',
+    url: 'https://travelogy.co.id/tentang-kami',
     images: [
       {
-        url: '/images/hero_tetebatu.png',
+        url: '/images/travelogy_hero.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Tentang Lombok Travelers Tetebatu',
+        height: 675,
+        alt: 'Tentang Travelogy Tour Organizer Jember',
       },
     ],
   },

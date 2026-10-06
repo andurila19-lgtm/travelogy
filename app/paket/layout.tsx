@@ -1,24 +1,24 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Paket Wisata Lombok & Private Tour Murah 2026 — Lombok_Travelers',
+  title: 'Tour Packages & Perjalanan Wisata — Travelogy Tour Organizer',
   description:
-    'Katalog lengkap paket wisata Lombok: Paket 2H1M, 3H2M, 4H3M, 5H4M, dan Honeymoon romantis. Fasilitas private car, hotel bintang, boat snorkeling, dan guide lokal asli Sasak.',
+    'Katalog lengkap paket wisata Travelogy: 3D2N Bromo Escape, 4D3N Bali Experience, Malang Adventure, Kawah Ijen Blue Fire, Yogyakarta Heritage, dan Jember Discovery.',
   alternates: {
-    canonical: 'https://lomboktravelers.reaksy.com/paket',
+    canonical: 'https://travelogy.co.id/paket',
   },
   openGraph: {
-    title: 'Katalog Paket Wisata Lombok Lengkap & Bergaransi — Lombok_Travelers',
+    title: 'Tour Packages & Perjalanan Wisata — PT. Travelogy Tour Organizer',
     description:
-      'Pilihan private trip terbaik di Lombok. Eksplorasi Mandalika, 3 Gili, Tetebatu, dan Sembalun bersama tim lokal berlisensi.',
-    url: 'https://lomboktravelers.reaksy.com/paket',
-    siteName: 'Lombok_Travelers',
+      'Pilihan paket liburan terbaik bersama Travelogy. Perjalanan terencana, armada prima, dan pendampingan profesional dari Jember.',
+    url: 'https://travelogy.co.id/paket',
+    siteName: 'Travelogy Tour Organizer',
     images: [
       {
-        url: '/images/hero_tetebatu.png',
+        url: '/images/travelogy_hero.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Paket Wisata Lombok Travelers',
+        height: 675,
+        alt: 'Paket Wisata Travelogy Tour Organizer',
       },
     ],
   },

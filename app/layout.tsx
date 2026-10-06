@@ -13,44 +13,45 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://lomboktravelers.reaksy.com'),
-  title: 'Lombok_Travelers — Paket Wisata Lombok, Private Trip & Transportasi Tetebatu',
+  metadataBase: new URL('https://travelogy.co.id'),
+  title: 'Travelogy Tour Organizer | Tour & Travel Jember',
   description:
-    'Lombok_Travelers adalah local travel partner di Tetebatu, Lombok Timur. Melayani paket wisata Lombok 2H1M, 3H2M, 4H3M, trip harian, private tour, dan sewa transportasi bergaransi ramah & profesional.',
+    'Travelogy Tour Organizer menyediakan layanan tour, travel, transport, hotel, dan event planning dari Jember untuk perjalanan yang lebih mudah dan berkesan.',
   keywords: [
-    'paket wisata lombok',
-    'tour lombok murah',
-    'private trip lombok',
-    'tetebatu lombok timur',
-    'paket tour 3 hari 2 malam lombok',
-    'snorkeling gili trawangan',
-    'sewa mobil lombok',
-    'lombok travelers'
+    'travelogy tour organizer',
+    'tour and travel jember',
+    'travel jember',
+    'sewa mobil jember',
+    'paket wisata bromo',
+    'paket tour bromo dari jember',
+    'paket liburan bali',
+    'event organizer jember',
+    'pt travelogy tour organizer'
   ],
-  authors: [{ name: 'Lombok_Travelers' }],
-  creator: 'Lombok_Travelers',
+  authors: [{ name: 'PT. Travelogy Tour Organizer' }],
+  creator: 'PT. Travelogy Tour Organizer',
   openGraph: {
     type: 'website',
     locale: 'id_ID',
-    url: 'https://lomboktravelers.reaksy.com',
-    siteName: 'Lombok_Travelers',
-    title: 'Lombok_Travelers — Paket Wisata Lombok & Private Trip Tetebatu',
+    url: 'https://travelogy.co.id',
+    siteName: 'Travelogy Tour Organizer',
+    title: 'Travelogy Tour Organizer | Tour & Travel Jember',
     description:
-      'Jelajahi Lombok dengan cara yang lebih berkesan bersama tim lokal asli Tetebatu. Paket wisata 2H1M, 3H2M, 4H3M, custom trip dan transportasi.',
+      'Travelogy Tour Organizer menyediakan layanan tour, travel, transport, hotel, dan event planning dari Jember untuk perjalanan yang lebih mudah dan berkesan.',
     images: [
       {
-        url: '/images/hero_tetebatu.png',
+        url: '/images/travelogy_hero.jpg',
         width: 1200,
-        height: 630,
-        alt: 'Lombok_Travelers Tetebatu Landscape'
+        height: 675,
+        alt: 'Travelogy Tour Organizer - Bringing Happiness in Every Journey'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lombok_Travelers — Paket Wisata Lombok & Private Trip',
-    description: 'Local travel partner di Tetebatu, Lombok Timur. Paket wisata, private trip & transportasi.',
-    images: ['/images/hero_tetebatu.png']
+    title: 'Travelogy Tour Organizer | Tour & Travel Jember',
+    description: 'Bringing Happiness in Every Journey. Layanan Tour, Transport, Hotel & Event Planning dari Jember.',
+    images: ['/images/travelogy_hero.jpg']
   }
 };
 
@@ -64,23 +65,26 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TravelAgency',
-    name: 'Lombok_Travelers',
-    image: 'https://lomboktravelers.reaksy.com/images/logo.png',
-    '@id': 'https://lomboktravelers.reaksy.com/#agency',
-    url: 'https://lomboktravelers.reaksy.com',
-    telephone: '+6283117110638',
+    name: 'PT. Travelogy Tour Organizer',
+    alternateName: 'Travelogy Tour Organizer',
+    slogan: 'Bringing Happiness in Every Journey',
+    image: 'https://travelogy.co.id/images/travelogy_logo.png',
+    '@id': 'https://travelogy.co.id/#agency',
+    url: 'https://travelogy.co.id',
+    telephone: '+6281333992989',
+    email: 'travelogycorp@gmail.com',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Tetebatu, Kec. Sikur',
-      addressLocality: 'Lombok Timur',
-      addressRegion: 'Nusa Tenggara Barat',
-      postalCode: '83662',
+      streetAddress: 'Jl. Mastrip No.71, Lingkungan Panji, Sumbersari',
+      addressLocality: 'Jember',
+      addressRegion: 'Jawa Timur',
+      postalCode: '68124',
       addressCountry: 'ID'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: -8.5305,
-      longitude: 116.4172
+      latitude: -8.1637,
+      longitude: 113.7171
     },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
@@ -93,38 +97,32 @@ export default function RootLayout({
         'Saturday',
         'Sunday'
       ],
-      opens: '06:00',
-      closes: '22:00'
+      opens: '09:00',
+      closes: '13:00'
     },
-    priceRange: 'Rp 500.000 - Rp 3.500.000',
-    currenciesAccepted: 'IDR, USD',
+    priceRange: 'Rp 350.000 - Rp 5.000.000',
+    currenciesAccepted: 'IDR',
     areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Lombok' },
-      { '@type': 'AdministrativeArea', name: 'Tetebatu' },
-      { '@type': 'AdministrativeArea', name: 'Gili Islands' },
-      { '@type': 'AdministrativeArea', name: 'Sembalun' },
+      { '@type': 'AdministrativeArea', name: 'Jember' },
+      { '@type': 'AdministrativeArea', name: 'Bromo' },
+      { '@type': 'AdministrativeArea', name: 'Malang' },
+      { '@type': 'AdministrativeArea', name: 'Bali' },
+      { '@type': 'AdministrativeArea', name: 'Yogyakarta' },
+      { '@type': 'AdministrativeArea', name: 'Jawa Timur' }
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '142',
-      bestRating: '5',
-      worstRating: '1',
-    },
     sameAs: [
-      'https://www.instagram.com/lombok_travelers',
-      'https://wa.me/6283117110638'
+      'https://wa.me/6281333992989'
     ]
   };
 
   return (
     <html lang="id">
       <head>
-        <link rel="shortcut icon" href="/images/logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/images/travelogy_logo.png" type="image/png" />
         <link
           rel="preload"
           as="image"
-          href="/images/rinjani_hero.jpg"
+          href="/images/travelogy_hero.jpg"
           // @ts-expect-error fetchpriority is standard in modern HTML
           fetchpriority="high"
         />

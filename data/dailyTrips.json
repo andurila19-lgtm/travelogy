@@ -1,66 +1,34 @@
 [
   {
     "id": 1,
-    "title": "Sasak & Kuta Mandalika",
+    "title": "1-Day Bromo Sunrise Safari",
     "duration": "1 Hari",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDr6U-cNCJReQAZiOIE9vEdk8RuA0b1ETWGkY9n0Dl4Y1S3aIvXg3BU-q6qa9DkD0AInIqEeQDraSgIyWfIndC_mmvKgO53RDefYqG8hrmIBgDxOpDYauPw7ljyl56Lk_SkJdVttpxGLZBTM35qlNCtc4MpNHuJfqpXiP5n8-lZQUezllR6qzmTf5Hrxp-akG7lvK6kXQ4Vh5mgvF4aQeI6zWqBHXNNnYaZKzifeQ0w0T3hFJ-dqG6g",
-    "desc": "Desa Adat Sade, Tenun Sukarara, Sirkuit Mandalika, Pantai Tanjung Aan & Bukit Merese.",
+    "image": "/images/travelogy_hero.jpg",
+    "desc": "Sunrise spektakuler Penanjakan, kawah aktif Bromo, lautan pasir berbisik, dan bukit teletubbies.",
     "price": "Konsultasikan"
   },
   {
     "id": 2,
-    "title": "Tetebatu Nature Trip",
+    "title": "1-Day Kawah Ijen Blue Fire",
     "duration": "1 Hari",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBlyQbG7Xk09X-zF4TVEzN7vjZi_FlIDuKf7bUu83Me65P3hxtzztMudpHT6RLVnx-9IPaf9rQiOjxU1ftDedhn6zkfOQMPKJg1nsYTwcsl0QVAjL3ZL_Cgcbekbh68FZXJACB9dkkATQoSptLB2xryww4y86CVFQSKsiusDtbecb3z2-iS53MTRrKW6_PXM9d4Mkv2EYvt5bRh_Hhhwb8RW7PKhTqS1qGR9Rp1pcfEpM7Hnj6RUrZ1",
-    "desc": "Terasiring sawah Tetebatu, Black Monkey Forest, Air Terjun Sarang Walet & sangrai kopi lokal.",
+    "image": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80",
+    "desc": "Midnight trekking menyaksikan api biru langka, danau kawah toska, dan panorama fajar rim kawah.",
     "price": "Konsultasikan"
   },
   {
     "id": 3,
-    "title": "Pink Beach & Snorkeling",
+    "title": "1-Day Tanjung Papuma & Teluk Love Jember",
     "duration": "1 Hari",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDTbrGKinn1UKKBKH5wRoFYMO3R8yEVpHdEpf7bBfdTu1nUYYcTDECjmX12CZ_8eXyhRDJTK7jeZ11Fvs6hUY1rjly963y0tNadfutl_Ulv4cBK0mf3-gJkIaQHKav7mfW4VHPl3xOi-xjEhR7cHtaRfd_D0wC1wQrmXHMkRG-_hjmSGsYlAEv3v4wd3m9y_i2mQmxWZ_N_7_lHESWsTLMh79ooo4HaVGxc33YlnLlZDIyoI0Ajhya_",
-    "desc": "Eksplorasi Pantai Pink Tangsi, Pulau Pasir timbul, snorkeling terumbu karang di Gili Petelu.",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    "desc": "Eksplorasi pantai selatan Jember, batu karang Siti Hinggil, Teluk Love, dan kuliner ikan bakar nelayan.",
     "price": "Konsultasikan"
   },
   {
     "id": 4,
-    "title": "Gili Trawangan & 3 Gili",
+    "title": "1-Day Malang Batu Highland Tour",
     "duration": "1 Hari",
-    "image": "/images/gili_snorkeling.jpg",
-    "desc": "Snorkeling bersama penyu di Gili Meno & Gili Air, keliling sepeda dan santai di Gili Trawangan.",
-    "price": "Konsultasikan"
-  },
-  {
-    "id": 5,
-    "title": "Gili Nanggu Secret Islands",
-    "duration": "1 Hari",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCXFiA-A1V3lxkRRq1TLYKAH--twJKYdv7yCAGetDcM84zUeDJarsMPI2qvt39BjQE76dYaIIf-EMmuak1VoQdhMdLyQq5w9OqNpwGFLKCnFYWuqvgrpupnt3StPM1Jk9N-5fRlRdaSnboo6KiuDoRoF_9tTyAN9r0-HUfh8_G2KUrUauRC90tK01QtnyKOHEHKmS2BrJzKu6PFV8ocCjXiYvb2xC21czJCcPdmhzzhbCkz5W-06V0o",
-    "desc": "Kawasan gili selatan yang tenang, surga snorkeling ikan warna-warni, makan siang di Gili Sudak & Kedis.",
-    "price": "Konsultasikan"
-  },
-  {
-    "id": 6,
-    "title": "Sembalun & Bukit Selong",
-    "duration": "1 Hari",
-    "image": "/images/sembalun_bukit_selong.jpg",
-    "desc": "Dataran tinggi kaki Gunung Rinjani, petak sawah warna-warni Bukit Selong, Desa Kuno Beleq & Kebun Strawberry.",
-    "price": "Konsultasikan"
-  },
-  {
-    "id": 7,
-    "title": "Air Terjun Senaru & Tiu Kelep",
-    "duration": "1 Hari",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCrdhTpDoO05VhKgf5uHhx2JjbLtWULHXfgSyWL9rMRw-hFYF76-JmxErOFqEpEwl1ZZAMgZMe_Ozyn6mGabgWSEZqiHbfqQEqx5_Q3VZyTyIRgujTXtGIKn1C-asysxMLe59NN3Fm8pb4GdjSaHBM2Z8aPg2PttvZ8uaJimjRXRJV69j9T05sb_H4Z61ndjaOTHFg9eNg3zA2ZVg0SvLAPwRle3pep5MdanbQtu8ZHod5AuYWCfpm3",
-    "desc": "Jalur trekking hutan tropis menuju Air Terjun Sendang Gile dan kemegahan Air Terjun Tiu Kelep di kaki Rinjani.",
-    "price": "Konsultasikan"
-  },
-  {
-    "id": 8,
-    "title": "South Lombok & Selong Belanak",
-    "duration": "1 Hari",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCXFiA-A1V3lxkRRq1TLYKAH--twJKYdv7yCAGetDcM84zUeDJarsMPI2qvt39BjQE76dYaIIf-EMmuak1VoQdhMdLyQq5w9OqNpwGFLKCnFYWuqvgrpupnt3StPM1Jk9N-5fRlRdaSnboo6KiuDoRoF_9tTyAN9r0-HUfh8_G2KUrUauRC90tK01QtnyKOHEHKmS2BrJzKu6PFV8ocCjXiYvb2xC21czJCcPdmhzzhbCkz5W-06V0o",
-    "desc": "Pantai Selong Belanak (belajar selancar), Pantai Mawun yang melengkung indah, dan sunset tebing Kuta.",
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+    "desc": "Petik apel segar langsung dari pohon, Museum Angkut, Coban Rondo, dan pusat oleh-oleh khas Batu.",
     "price": "Konsultasikan"
   }
 ]

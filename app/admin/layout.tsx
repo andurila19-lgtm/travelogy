@@ -84,7 +84,7 @@ export default function AdminLayout({
             setNewBookingAlert({
               name: newest.customer_name || 'Tamu Baru',
               pax: newest.participants || 2,
-              package: newest.package_name || 'Paket Wisata Lombok',
+              package: newest.package_name || 'Paket Wisata Travelogy',
             });
             playChime();
             setTimeout(() => setNewBookingAlert(null), 8000);
@@ -238,29 +238,23 @@ export default function AdminLayout({
               color: '#ffffff',
             }}
           >
-            <div
+            <img
+              src="/images/travelogy_logo.png"
+              alt="Travelogy"
               style={{
                 width: '38px',
                 height: '38px',
-                borderRadius: '10px',
-                background: 'linear-gradient(135deg, #185a38 0%, #25d366 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 900,
-                fontSize: '18px',
-                color: '#ffffff',
-                boxShadow: '0 2px 8px rgba(37, 211, 102, 0.35)',
+                borderRadius: '8px',
+                objectFit: 'cover',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
               }}
-            >
-              LT
-            </div>
+            />
             <div>
               <strong style={{ fontSize: '15px', letterSpacing: '0.02em', display: 'block', color: '#ffffff' }}>
-                Lombok_Travelers
+                Travelogy ERP
               </strong>
-              <span style={{ fontSize: '11px', color: '#86efac', fontWeight: 600 }}>
-                Operations ERP & CRM
+              <span style={{ fontSize: '11px', color: '#a7d7b5', fontWeight: 600 }}>
+                Operations & CRM
               </span>
             </div>
           </Link>
@@ -300,7 +294,7 @@ export default function AdminLayout({
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 6px #22c55e' }}></span>
-              <span>Tetebatu Basecamp</span>
+              <span>Jember Headquarters</span>
             </div>
             <span style={{ fontSize: '10px', fontWeight: 700, color: '#38bdf8' }}>ONLINE</span>
           </div>
@@ -557,13 +551,13 @@ export default function AdminLayout({
                 <span className="admin-status-dot" style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#22c55e' }}></span>
               </div>
               <div style={{ fontSize: '14px', fontWeight: 800, color: '#0f172a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                Lombok_Travelers
+                Travelogy Tour Organizer
               </div>
             </div>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-            {/* Desktop / Tablet WITA badge */}
+            {/* Desktop / Tablet WIB badge */}
             <div
               className="admin-time-badge"
               style={{
@@ -578,8 +572,8 @@ export default function AdminLayout({
                 borderRadius: '6px',
               }}
             >
-              <i className="fa fa-clock-o" style={{ color: '#16a34a' }}></i>
-              <span>Tetebatu: <strong style={{ color: '#0f172a' }}>WITA</strong></span>
+              <i className="fa fa-clock-o" style={{ color: 'var(--primary)' }}></i>
+              <span>Jember: <strong style={{ color: '#0f172a' }}>WIB</strong></span>
             </div>
 
             <Link

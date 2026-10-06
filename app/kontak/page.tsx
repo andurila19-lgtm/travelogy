@@ -3,236 +3,269 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import PageHeaderNav from '@/components/PageHeaderNav';
 
 export default function KontakPage() {
   const { language } = useLanguage();
+  const isEn = language === 'en';
 
   const [nama, setNama] = useState('');
   const [wa, setWa] = useState('');
-  const [layanan, setLayanan] = useState('Paket Wisata Lombok');
+  const [layanan, setLayanan] = useState('Tour & Travel');
   const [tanggal, setTanggal] = useState('');
   const [pesan, setPesan] = useState('');
-  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Halo Lombok_Travelers, saya ingin konsultasi:\n- Nama: ${nama}\n- WhatsApp: ${wa}\n- Layanan: ${layanan}\n- Tanggal Trip: ${tanggal || '-'}\n- Pesan: ${pesan || '-'}`;
-    const url = `https://wa.me/6283117110638?text=${encodeURIComponent(text)}`;
-    setSubmitted(true);
+    const text = `Halo Travelogy, saya ingin konsultasi:\n- Nama: ${nama}\n- WhatsApp: ${wa}\n- Layanan: ${layanan}\n- Rencana Tanggal: ${tanggal || 'Sesuai Diskusi'}\n- Pesan: ${pesan || '-'}`;
+    const url = `https://wa.me/6281333992989?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 
   return (
-    <div className="multipage-wrapper">
-      {/* PAGE HEADER */}
-      <div className="page-header-banner">
-        <div className="box1140">
-          <nav className="breadcrumb-nav">
-            <Link href="/">{language === 'en' ? 'Home' : 'Beranda'}</Link>
-            <span>›</span>
-            <strong>{language === 'en' ? 'Contact Us' : 'Kontak Kami'}</strong>
-          </nav>
-          <h1 className="page-header-title">
-            {language === 'en'
-              ? 'Contact Lombok_Travelers — Tetebatu Basecamp'
-              : 'Hubungi Lombok_Travelers — Kantor & Layanan Pelanggan'}
-          </h1>
-          <p className="page-header-subtitle">
-            {language === 'en'
-              ? 'We are ready to assist your Lombok vacation planning. Chat with us on WhatsApp or visit our local office in Tetebatu, East Lombok.'
-              : 'Kami siap membantu rencana liburan Anda di Lombok. Hubungi kami via WhatsApp atau kunjungi basecamp kami di Tetebatu, Lombok Timur.'}
-          </p>
-        </div>
-      </div>
+    <div className="multipage-wrapper" style={{ backgroundColor: '#fafcfb', minHeight: '100vh', paddingTop: '20px' }}>
+      {/* PAGE HEADER WITH BACK BUTTONS & BREADCRUMBS */}
+      <PageHeaderNav
+        breadcrumbs={[{ label: isEn ? 'Contact & Office' : 'Kontak & Kantor' }]}
+        badge={isEn ? 'Reach Travelogy' : 'Hubungi Travelogy'}
+        title={isEn ? 'Contact & Operational Headquarters' : 'Kontak & Kantor Operasional'}
+        description="PT. Travelogy Tour Organizer • Jl. Mastrip No.71, Sumbersari, Jember, Jawa Timur 68124."
+      />
 
-      <div className="box1140" style={{ padding: '40px 15px 80px 15px' }}>
-        <div className="contact-layout-grid">
-          
+      <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '48px 24px 80px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: '32px',
+            marginBottom: '64px'
+          }}
+        >
           {/* LEFT: INFO CARD */}
-          <div className="contact-info-card">
-            <h2 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)', marginBottom: '20px' }}>
-              {language === 'en' ? 'Direct Information' : 'Informasi Kontak Resmi'}
-            </h2>
-
-            <div className="contact-item-row">
-              <div className="contact-icon-box">
-                <i className="fa fa-map-marker"></i>
-              </div>
-              <div>
-                <strong>{language === 'en' ? 'Basecamp Office' : 'Alamat Basecamp Kantor'}</strong>
-                <p style={{ margin: '4px 0 0 0', color: '#555', fontSize: '14px' }}>
-                  Jl. Pariwisata Tetebatu, Kec. Sikur, Kabupaten Lombok Timur, Nusa Tenggara Barat 83662
-                </p>
-              </div>
-            </div>
-
-            <div className="contact-item-row">
-              <div className="contact-icon-box">
-                <i className="fa fa-whatsapp"></i>
-              </div>
-              <div>
-                <strong>WhatsApp Hotline (24/7 Fast Response)</strong>
-                <p style={{ margin: '4px 0 0 0', color: '#555', fontSize: '14px' }}>
-                  <a href="https://wa.me/6283117110638" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', fontWeight: 700 }}>
-                    0831-1711-0638
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div className="contact-item-row">
-              <div className="contact-icon-box">
-                <i className="fa fa-clock-o"></i>
-              </div>
-              <div>
-                <strong>{language === 'en' ? 'Operating Hours' : 'Jam Operasional'}</strong>
-                <p style={{ margin: '4px 0 0 0', color: '#555', fontSize: '14px' }}>
-                  Senin – Minggu: 06:00 – 22:00 WITA<br />
-                  <span style={{ fontSize: '12px', color: '#888' }}>*Emergency hotline 24 jam untuk tamu yang sedang dalam perjalanan.</span>
-                </p>
-              </div>
-            </div>
-
-            <div className="contact-item-row">
-              <div className="contact-icon-box">
-                <i className="fa fa-envelope-o"></i>
-              </div>
-              <div>
-                <strong>Email</strong>
-                <p style={{ margin: '4px 0 0 0', color: '#555', fontSize: '14px' }}>
-                  info@lomboktravelers.com / booking@lomboktravelers.com
-                </p>
-              </div>
-            </div>
-
-            {/* Direct WhatsApp Quick Card */}
-            <div style={{ background: 'var(--primary-soft)', padding: '20px', borderRadius: '8px', marginTop: '24px', border: '1px solid rgba(24, 90, 56, 0.2)' }}>
-              <h4 style={{ color: 'var(--primary-dark)', marginBottom: '8px' }}>
-                <i className="fa fa-bolt"></i> {language === 'en' ? 'Instant WhatsApp Chat' : 'Respon Cepat WhatsApp'}
-              </h4>
-              <p style={{ fontSize: '13px', color: 'var(--dark-soft)', marginBottom: '14px' }}>
-                {language === 'en'
-                  ? 'Connect immediately with our local tour advisor for quick rate quotes and date availability.'
-                  : 'Ingin tanya harga cepat atau cek ketersediaan driver dan armada untuk besok? Klik tombol di bawah ini:'}
+          <div
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '20px',
+              padding: '36px',
+              border: '1px solid var(--border)',
+              boxShadow: '0 8px 24px rgba(27, 67, 50, 0.05)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '24px'
+            }}
+          >
+            <div>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--primary)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                Kantor Resmi
+              </span>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '24px', fontWeight: 700, color: 'var(--dark)', marginTop: '4px', marginBottom: '8px' }}>
+                Travelogy Tour Organizer
+              </h2>
+              <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.6 }}>
+                PT. Travelogy Tour Organizer hadir di Jember melayani kebutuhan Tour & Travel, Sewa Transportasi, Reservasi Hotel, serta Event Planning.
               </p>
-              <a
-                href="https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20ingin%20tanya%20info%20paket%20wisata."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-sidebar-wa"
-                style={{ textAlign: 'center', justifyContent: 'center' }}
-              >
-                <i className="fa fa-whatsapp"></i> Chat WhatsApp Sekarang
-              </a>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div style={{ display: 'flex', gap: '14px' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>
+                  <i className="fa fa-map-marker"></i>
+                </div>
+                <div>
+                  <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>Alamat Kantor:</strong>
+                  <p style={{ margin: '4px 0 0', color: 'var(--dark-soft)', fontSize: '13.5px', lineHeight: 1.5 }}>
+                    Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '14px' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: '#25d366', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>
+                  <i className="fa fa-whatsapp"></i>
+                </div>
+                <div>
+                  <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>WhatsApp Customer Care:</strong>
+                  <a
+                    href="https://wa.me/6281333992989"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '14.5px', textDecoration: 'none' }}
+                  >
+                    +62 813-3399-2989
+                  </a>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '14px' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>
+                  <i className="fa fa-envelope-o"></i>
+                </div>
+                <div>
+                  <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>Email Resmi:</strong>
+                  <a href="mailto:travelogycorp@gmail.com" style={{ color: 'var(--dark-soft)', fontSize: '14px', textDecoration: 'none' }}>
+                    travelogycorp@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '14px' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: 'var(--primary-soft)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', flexShrink: 0 }}>
+                  <i className="fa fa-clock-o"></i>
+                </div>
+                <div>
+                  <strong style={{ display: 'block', fontSize: '14px', color: 'var(--dark)' }}>Jam Operasional:</strong>
+                  <p style={{ margin: '4px 0 0', color: 'var(--dark-soft)', fontSize: '13.5px' }}>
+                    09:00 - 13:00 WIB
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* RIGHT: INTERACTIVE FORM */}
-          <div className="contact-form-card">
-            <h2 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--navy)', marginBottom: '8px' }}>
-              {language === 'en' ? 'Send an Inquiry' : 'Formulir Konsultasi Liburan'}
-            </h2>
-            <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px' }}>
-              {language === 'en'
-                ? 'Fill in your details below and we will tailor the best quote for your trip.'
-                : 'Isi rencana perjalanan Anda di bawah ini untuk mendapatkan penawaran spesial dan rekomendasi itinerary terbaik:'}
+          {/* RIGHT: INQUIRY FORM */}
+          <div
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '20px',
+              padding: '36px',
+              border: '1px solid var(--border)',
+              boxShadow: '0 8px 24px rgba(27, 67, 50, 0.05)'
+            }}
+          >
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', fontWeight: 700, color: 'var(--dark)', marginBottom: '8px' }}>
+              Kirim Pesan / Konsultasi
+            </h3>
+            <p style={{ fontSize: '13.5px', color: 'var(--muted)', marginBottom: '24px' }}>
+              Isi data di bawah ini untuk terhubung langsung ke WhatsApp Travelogy.
             </p>
 
-            {submitted && (
-              <div style={{ background: '#dcfce7', color: '#166534', padding: '14px', borderRadius: '6px', marginBottom: '20px', fontSize: '14px' }}>
-                <i className="fa fa-check-circle"></i>{' '}
-                {language === 'en'
-                  ? 'Thank you! WhatsApp window has opened with your inquiry details.'
-                  : 'Terima kasih! WhatsApp telah terbuka dengan rincian pesan Anda. Tim kami segera membalas.'}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="custom-form">
-              <div className="form-group">
-                <label className="form-label">
-                  {language === 'en' ? 'Full Name *' : 'Nama Lengkap *'}
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                  Nama Lengkap *
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder={language === 'en' ? 'e.g. John Doe' : 'Contoh: Budi Santoso'}
                   value={nama}
                   onChange={(e) => setNama(e.target.value)}
-                  className="form-input"
+                  placeholder="Nama Anda"
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '14px', outline: 'none', backgroundColor: '#fafcfb' }}
                 />
               </div>
 
-              <div className="form-row-2">
-                <div className="form-group">
-                  <label className="form-label">
-                    {language === 'en' ? 'WhatsApp Number *' : 'Nomor WhatsApp Aktif *'}
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="08xxxxxxxxxx"
-                    value={wa}
-                    onChange={(e) => setWa(e.target.value)}
-                    className="form-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label className="form-label">
-                    {language === 'en' ? 'Planned Travel Date' : 'Rencana Tanggal Trip'}
-                  </label>
-                  <input
-                    type="date"
-                    value={tanggal}
-                    onChange={(e) => setTanggal(e.target.value)}
-                    className="form-input"
-                  />
-                </div>
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                  Nomor WhatsApp *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  value={wa}
+                  onChange={(e) => setWa(e.target.value)}
+                  placeholder="081333992989"
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '14px', outline: 'none', backgroundColor: '#fafcfb' }}
+                />
               </div>
 
-              <div className="form-group">
-                <label className="form-label">
-                  {language === 'en' ? 'Interested Service' : 'Pilihan Layanan'}
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                  Layanan yang Diminati
                 </label>
                 <select
                   value={layanan}
                   onChange={(e) => setLayanan(e.target.value)}
-                  className="form-input"
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '14px', outline: 'none', backgroundColor: '#fafcfb' }}
                 >
-                  <option value="Paket Wisata Lombok (Multi-Day)">Paket Wisata Lombok (2H1M - 5H4M)</option>
-                  <option value="Private Trip Harian (1 Day Tour)">Private Trip Harian (1 Day Tour)</option>
-                  <option value="Sewa Mobil & Transportasi">Sewa Mobil & Transportasi (+ Driver & BBM)</option>
-                  <option value="Paket Honeymoon Romantis">Paket Honeymoon Romantis</option>
-                  <option value="Tetebatu Cultural & Waterfall Trip">Tetebatu Cultural & Waterfall Trip</option>
-                  <option value="Custom Itinerary Sesuai Keinginan">Custom Itinerary Sesuai Keinginan</option>
+                  <option value="Tour & Travel (Paket Wisata)">Tour & Travel (Paket Wisata)</option>
+                  <option value="Sewa Mobil & Transportasi">Sewa Mobil & Transportasi</option>
+                  <option value="Reservasi Hotel & Villa">Reservasi Hotel & Villa</option>
+                  <option value="Event Organizer / Gathering">Event Organizer / Gathering</option>
+                  <option value="Custom Trip">Custom Trip Khusus</option>
                 </select>
               </div>
 
-              <div className="form-group">
-                <label className="form-label">
-                  {language === 'en' ? 'Notes / Questions' : 'Catatan / Pertanyaan Tambahan'}
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                  Rencana Tanggal Perjalanan
                 </label>
-                <textarea
-                  rows={4}
-                  placeholder={
-                    language === 'en'
-                      ? 'Tell us your group size, hotel preferences or specific destinations you want to visit...'
-                      : 'Ceritakan jumlah peserta, preferensi hotel, atau destinasi yang ingin Anda kunjungi...'
-                  }
-                  value={pesan}
-                  onChange={(e) => setPesan(e.target.value)}
-                  className="form-input"
-                  style={{ resize: 'vertical' }}
-                ></textarea>
+                <input
+                  type="date"
+                  value={tanggal}
+                  onChange={(e) => setTanggal(e.target.value)}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '14px', outline: 'none', backgroundColor: '#fafcfb' }}
+                />
               </div>
 
-              <button type="submit" className="btn-form-submit">
-                <i className="fa fa-whatsapp"></i>{' '}
-                {language === 'en' ? 'Send Inquiry via WhatsApp' : 'Kirim Pesan via WhatsApp'}
+              <div>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}>
+                  Pesan / Pertanyaan
+                </label>
+                <textarea
+                  rows={3}
+                  value={pesan}
+                  onChange={(e) => setPesan(e.target.value)}
+                  placeholder="Tuliskan pertanyaan atau kebutuhan perjalanan Anda..."
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: '10px', border: '1px solid var(--border)', fontSize: '14px', outline: 'none', backgroundColor: '#fafcfb', resize: 'vertical' }}
+                />
+              </div>
+
+              <button
+                type="submit"
+                style={{
+                  backgroundColor: 'var(--primary)',
+                  color: '#ffffff',
+                  padding: '14px 24px',
+                  borderRadius: '30px',
+                  border: 'none',
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  marginTop: '8px'
+                }}
+              >
+                <i className="fa fa-whatsapp" style={{ fontSize: '18px' }}></i>
+                <span>Kirim via WhatsApp</span>
               </button>
             </form>
           </div>
+        </div>
 
+        {/* GOOGLE MAPS EMBED SECTION */}
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            borderRadius: '20px',
+            overflow: 'hidden',
+            border: '1px solid var(--border)',
+            boxShadow: '0 8px 24px rgba(27, 67, 50, 0.05)'
+          }}
+        >
+          <div style={{ padding: '24px 32px', borderBottom: '1px solid var(--border-light)' }}>
+            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '20px', fontWeight: 700, color: 'var(--dark)', marginBottom: '4px' }}>
+              Lokasi Kantor PT. Travelogy Tour Organizer di Jember
+            </h3>
+            <p style={{ fontSize: '13.5px', color: 'var(--muted)' }}>
+              Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124
+            </p>
+          </div>
+
+          <div style={{ height: '420px', width: '100%', backgroundColor: '#f1f5f2' }}>
+            <iframe
+              title="Peta Kantor PT Travelogy Tour Organizer Jember"
+              src="https://maps.google.com/maps?q=Jl.+Mastrip+No.71,+Sumbersari,+Jember,+Jawa+Timur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, display: 'block' }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

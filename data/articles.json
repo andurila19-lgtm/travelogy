@@ -1,93 +1,66 @@
 [
   {
-    "id": "snorkeling-3-gili",
-    "slug": "snorkeling-3-gili",
-    "title": "Panduan Lengkap Snorkeling 3 Gili: Trawangan, Meno, dan Air",
+    "id": "tips-liburan-bromo-dari-jember",
+    "slug": "tips-liburan-bromo-dari-jember",
+    "title": "Panduan Lengkap Wisata Bromo dari Jember: Rute, Sunrise & Perlengkapan",
     "category": "Tips Traveling",
     "readTime": "5 Menit Baca",
-    "date": "12 September 2026",
-    "image": "/images/gili_snorkeling.jpg",
-    "excerpt": "Ketahui spot patung bawah laut Nest karya Jason deCaires Taylor, turtle point penyu liar, serta tips sewa private glass-bottom boat tanpa repot.",
+    "date": "15 September 2026",
+    "image": "/images/travelogy_hero.jpg",
+    "excerpt": "Ketahui waktu terbaik menyaksikan golden sunrise Penanjakan, tips sewa Jeep 4x4, serta rekomendasi pakaian hangat menghadapi suhu dingin Bromo.",
     "content": [
-      "Gili Trawangan, Gili Meno, dan Gili Air adalah tiga pulau kecil tanpa kendaraan bermotor yang menjadi primadona wisata bahari di Lombok. Untuk pengalaman snorkeling terbaik, disarankan menyewa perahu kayu private dengan kaca transparan di lantainya (glass-bottom boat).",
-      "Spot pertama yang wajib dikunjungi adalah Underwater Statues di lepas pantai Gili Meno. 48 patung seukuran manusia yang melingkar ini menjadi rumah bagi terumbu karang dan ribuan ikan warna-warni.",
-      "Spot kedua adalah Turtle Point di perairan antara Meno dan Trawangan. Di sini, Anda hampir 100% dijamin dapat berenang berdampingan dengan penyu hijau (Chelonia mydas) di habitat aslinya.",
-      "Tips dari kami: Bawa kamera anti-air atau pesan paket wisata Lombok_Travelers yang sudah include dokumentasi action cam GoPro GRATIS!"
+      "Gunung Bromo di Taman Nasional Bromo Tengger Semeru merupakan salah satu ikon wisata alam paling memukau di Indonesia. Bagi wisatawan dari kawasan Jember dan sekitarnya, perjalanan darat menuju Bromo dapat ditempuh dalam waktu 3 hingga 4 jam perjalanan nyaman.",
+      "Spot utama yang wajib dikunjungi adalah Penanjakan 1 atau Kingkong Hill untuk menyaksikan detik-detik terbitnya matahari berlatar siluet megah Gunung Batok dan kawah aktif Bromo.",
+      "Setelah sunrise, lanjutkan petualangan menuruni Lautan Pasir Berbisik dan mendaki 250 anak tangga menuju bibir kawah aktif, lalu berfoto di hamparan hijau Savana Bukit Teletubbies.",
+      "Tips dari tim Travelogy: Suhu udara pagi di Bromo dapat mencapai 5 hingga 10 derajat Celcius. Siapkan jaket tebal windproof, kupluk, sarung tangan, dan masker untuk melindungi diri dari debu vulkanik."
     ]
   },
   {
-    "id": "desa-wisata-tetebatu",
-    "slug": "desa-wisata-tetebatu",
-    "title": "5 Alasan Kenapa Desa Wisata Tetebatu Wajib Masuk Bucket List Anda",
+    "id": "pesona-tanjung-papuma-jember",
+    "slug": "pesona-tanjung-papuma-jember",
+    "title": "5 Daya Tarik Pantai Tanjung Papuma Jember yang Memikat Hati",
     "category": "Destinasi",
+    "readTime": "4 Menit Baca",
+    "date": "08 September 2026",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    "excerpt": "Pantai Pasir Putih Malikan (Papuma) menyuguhkan formasi batu karang raksasa di tengah laut, hutan tropis asri, dan kuliner boga bahari nelayan.",
+    "content": [
+      "Terletak di pesisir selatan Kabupaten Jember (Kecamatan Wuluhan), Tanjung Papuma merupakan primadona wisata bahari Jawa Timur dengan gugusan batu karang kokoh yang menjulang dari deburan ombak samudra.",
+      "Nama Papuma sendiri merupakan akronim dari 'Pasir Putih Malikan'. Selain pasir putihnya yang bersih, pengunjung dapat mendaki Siti Hinggil untuk menikmati panorama 360 derajat pantai selatan dari ketinggian tebing.",
+      "Di sore hari, suasana sunset di Papuma sangat memikat fotografer. Di sekitar pantai juga tersedia warung-warung nelayan yang menyajikan ikan bakar segar berpadu sambal khas Jember.",
+      "Travelogy Tour Organizer siap memfasilitasi perjalanan Anda ke Tanjung Papuma lengkap dengan armada prima dan supir lokal yang memahami rute terbaik."
+    ]
+  },
+  {
+    "id": "panduan-kawah-ijen-blue-fire",
+    "slug": "panduan-kawah-ijen-blue-fire",
+    "title": "Persiapan Mendaki Kawah Ijen: Menyaksikan Keajaiban Api Biru Dunia",
+    "category": "Petualangan",
     "readTime": "6 Menit Baca",
-    "date": "05 September 2026",
-    "image": "/images/hero_tetebatu.png",
-    "excerpt": "Dijuluki sebagai Ubud-nya Lombok, Tetebatu menawarkan ketenangan persawahan berundak, air terjun Sarang Walet, dan perjumpaan dengan Black Monkey langka.",
+    "date": "25 Agustus 2026",
+    "image": "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80",
+    "excerpt": "Mendaki Kawah Ijen tengah malam untuk menyaksikan fenomena alam api biru langka dan danau asam toska terbesar di dunia.",
     "content": [
-      "Terletak tepat di lereng selatan Gunung Rinjani, Tetebatu memiliki hawa sejuk pegunungan dan panorama terasering sawah yang memukau tanpa hiruk pikuk keramaian kota.",
-      "Daya tarik utama Tetebatu meliputi trekking menyusuri sawah tradisional dengan latar belakang Gunung Rinjani, menyusuri goa alami Air Terjun Sarang Walet (Hidden Canyon), serta melihat habitat monyet hitam endemik (Trachypithecus auratus cristatus).",
-      "Selain keindahan alam, Tetebatu adalah pusat budaya Sasak otentik di mana warga memproduksi kopi robusta tradisional, rempah vanili, dan tenun lokal. Menginap di homestay lokal Tetebatu memberikan pengalaman kehangatan masyarakat asli yang jarang ditemukan di tempat lain."
+      "Kawah Ijen yang terletak di perbatasan Banyuwangi dan Bondowoso memiliki fenomena langka Blue Fire yang hanya terdapat dua di seluruh dunia (Indonesia dan Islandia).",
+      "Pendakian dimulai dari Pos Paltuding sekitar pukul 02.00 dini hari dengan jarak tempuh trekking sekitar 3 kilometer (kurang lebih 1,5 hingga 2 jam perjalanan santai).",
+      "Perlengkapan wajib yang tidak boleh dilewatkan adalah masker respirator gas untuk menyaring asap belerang, senter kepala (headlamp), sepatu trekking antiselip, dan jaket hangat.",
+      "Bersama Travelogy Tour Organizer, Anda akan didampingi oleh pemandu lokal berlisensi dan armada antar-jemput yang aman dan nyaman dari Jember."
     ]
   },
   {
-    "id": "tips-mendaki-rinjani",
-    "slug": "tips-mendaki-rinjani",
-    "title": "Persiapan Fisik & Tips Mendaki Gunung Rinjani untuk Pemula",
-    "category": "Rinjani & Trekking",
-    "readTime": "7 Menit Baca",
-    "date": "28 Agustus 2026",
-    "image": "/images/rinjani_hero.jpg",
-    "excerpt": "Mendaki atap Pulau Lombok setinggi 3.726 mdpl membutuhkan stamina matang, perlengkapan tepat, dan pemilihan jalur Sembalun atau Senaru.",
-    "content": [
-      "Gunung Rinjani merupakan gunung berapi tertinggi kedua di Indonesia. Jalur Sembalun umumnya dipilih bagi pendaki yang menargetkan puncak (Summit 3.726 mdpl) karena menyajikan padang savana luas.",
-      "Bagi pemula, program 2 Hari 1 Malam sampai Plawangan Senaru atau Sembalun Crater Rim sudah menyuguhkan pemandangan magis Danau Segara Anak dan Gunung Baru Jari tanpa harus memaksakan diri ke puncak.",
-      "Pastikan Anda melakukan latihan kardio (jogging atau renang) minimal 3-4 minggu sebelum hari pendakian, menggunakan sepatu trekking dengan grip memadai, dan selalu mendaki bersama pemandu lokal berlisensi."
-    ]
-  },
-  {
-    "id": "pink-beach-lombok",
-    "slug": "pink-beach-lombok",
-    "title": "Eksplorasi Pantai Tangsi (Pink Beach): Lokasi, Rute & Waktu Terbaik",
-    "category": "Destinasi",
+    "id": "keuntungan-custom-trip",
+    "slug": "keuntungan-custom-trip",
+    "title": "Mengapa Memilih Custom Trip Bersama Tour Organizer Lebih Menyenangkan?",
+    "category": "Tips Traveling",
     "readTime": "4 Menit Baca",
     "date": "18 Agustus 2026",
-    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80",
-    "excerpt": "Warna merah muda pasir Pantai Tangsi berasal dari serpihan koral merah mikroskopis Foraminifera yang terhempas ombak secara alami.",
+    "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80",
+    "excerpt": "Bebas atur waktu, destinasi sesuai selera, tanpa terburu-buru jadwal rombongan lain. Simak keunggulan merancang custom trip bersama Travelogy.",
     "content": [
-      "Pantai Tangsi atau Pink Beach terletak di ujung tenggara Lombok Timur (Kecamatan Jerowaru). Warna pasirnya tampak paling jelas merah muda saat disinari matahari pagi sekitar pukul 08.00 hingga 11.00 WITA.",
-      "Rute terbaik mencapai Pink Beach adalah menaiki perahu private dari Pelabuhan Tanjung Luar. Jalur laut ini sangat kami rekomendasikan karena Anda bisa sekaligus singgah di Pulau Pasir (Sand Island) yang hanya muncul saat air surut serta snorkeling di Gili Petelu."
-    ]
-  },
-  {
-    "id": "kuliner-khas-lombok",
-    "slug": "kuliner-khas-lombok",
-    "title": "Wisata Kuliner Khas Lombok: Selain Ayam Taliwang yang Wajib Dicoba",
-    "category": "Kuliner Sasak",
-    "readTime": "4 Menit Baca",
-    "date": "10 Agustus 2026",
-    "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80",
-    "excerpt": "Cicipi kelezatan Pelecing Kangkung lombok berakar renyah, Sate Rembiga sapi manis pedas, Nasi Balap Puyung gurih, dan Beberuk Terong segar.",
-    "content": [
-      "Kuliner Pulau Lombok terkenal dengan cita rasa bumbu rempah cabai merah yang kaya dan pedas membakar.",
-      "Sate Rembiga: Potongan daging sapi empuk yang dimarinasi dalam gula merah, cabai, dan ketumbar lalu dibakar hingga caramelized.",
-      "Pelecing Kangkung: Kangkung khas Lombok memiliki batang tebal dan tekstur sangat renyah, disiram sambal terasi bakar dan perasan jeruk limau.",
-      "Nasi Balap Puyung: Nasi hangat dengan suwiran ayam pedas kering, kacang kedelai renyah, dan taburan serundeng kelapa."
-    ]
-  },
-  {
-    "id": "musim-terbaik-lombok",
-    "slug": "musim-terbaik-lombok",
-    "title": "Kapan Waktu Terbaik Liburan ke Lombok? Panduan Cuaca & Musim",
-    "category": "Tips Traveling",
-    "readTime": "5 Menit Baca",
-    "date": "01 Agustus 2026",
-    "image": "/images/sembalun_bukit_selong.jpg",
-    "excerpt": "Simak perbedaan musim kemarau (Mei - Oktober) untuk snorkeling dan pendakian, serta musim hijau (Desember - April) untuk panorama alam segar.",
-    "content": [
-      "Musim Kemarau (Mei – Oktober): Waktu paling ideal untuk aktivitas laut, snorkeling di 3 Gili, Pantai Pink, dan pendakian Gunung Rinjani. Langit cerah, ombak tenang, dan jarak pandang bawah air sangat jernih.",
-      "Musim Penghujan / Hijau (Desember – April): Tetebatu dan Sembalun berubah menjadi hamparan hijau zamrud yang sangat asri. Air terjun Tiu Kelep dan Sendang Gile berada pada debit maksimal.",
-      "Tips: Jika ingin menghindari keramaian peak season, pilihlah bulan Mei, Juni, atau September untuk suasana santai dan tiket pesawat lebih terjangkau."
+      "Setiap wisatawan memiliki preferensi liburan yang berbeda: ada yang menyukai eksplorasi alam menantang, ada yang fokus pada wisata kuliner dan sejarah, serta ada yang memprioritaskan waktu santai bersama anak dan orang tua.",
+      "Dengan layanan Custom Trip dari PT. Travelogy Tour Organizer, Anda memiliki kendali penuh menentukan tanggal keberangkatan, rute destinasi, pilihan jenis armada, serta kelas hotel yang diinginkan.",
+      "Tim konsultan kami siap menyusun jadwal perjalanan paling efektif sehingga waktu liburan Anda tidak habis di jalan, namun tetap santai dan fleksibel saat menikmati setiap obyek wisata.",
+      "Konsultasikan rencana perjalanan impian keluarga atau kantor Anda sekarang juga melalui WhatsApp resmi Travelogy."
     ]
   }
 ]

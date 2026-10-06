@@ -22,15 +22,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!pkg) {
     return {
-      title: 'Paket Wisata Tidak Ditemukan — Lombok_Travelers',
+      title: 'Paket Perjalanan Tidak Ditemukan — Travelogy Tour Organizer',
     };
   }
 
   return {
-    title: `${pkg.title} — Lombok_Travelers`,
+    title: `${pkg.title} — Travelogy Tour Organizer`,
     description: pkg.shortDesc,
     openGraph: {
-      title: `${pkg.title} — Lombok_Travelers`,
+      title: `${pkg.title} — Travelogy Tour Organizer`,
       description: pkg.shortDesc,
       images: [
         {
@@ -66,12 +66,12 @@ export default async function PackageDetailPage({ params }: PageProps) {
       priceCurrency: 'IDR',
       price: '0',
       availability: 'https://schema.org/InStock',
-      url: `https://lomboktravelers.reaksy.com/paket/${pkg.slug}`,
+      url: `https://travelogy.co.id/paket/${pkg.slug}`,
     },
     provider: {
       '@type': 'TravelAgency',
-      name: 'Lombok_Travelers',
-      url: 'https://lomboktravelers.reaksy.com',
+      name: 'PT. Travelogy Tour Organizer',
+      url: 'https://travelogy.co.id',
     },
   };
 

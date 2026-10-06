@@ -1,23 +1,23 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Panduan Wisata & Tips Liburan ke Lombok Terbaru 2026 — Lombok_Travelers',
+  title: 'Panduan Wisata & Tips Perjalanan — PT. Travelogy Tour Organizer',
   description:
-    'Kumpulan artikel, tips snorkeling 3 Gili, rute trekking Gunung Rinjani, pesona Desa Wisata Tetebatu, dan rekomendasi kuliner khas Sasak langsung dari pemandu lokal.',
+    'Kumpulan artikel perjalanan, tips sunrise Gunung Bromo, pesona Pantai Papuma Jember, panduan Kawah Ijen Blue Fire, dan solusi custom trip bersama Travelogy Tour Organizer.',
   alternates: {
-    canonical: 'https://lomboktravelers.reaksy.com/artikel',
+    canonical: 'https://travelogy.co.id/artikel',
   },
   openGraph: {
-    title: 'Panduan & Artikel Wisata Lombok Terlengkap — Lombok_Travelers',
+    title: 'Panduan Wisata & Tips Perjalanan — PT. Travelogy Tour Organizer',
     description:
-      'Tips traveling, rute rahasia, rekomendasi musim liburan, dan panduan budaya Lombok dari tim lokal Tetebatu.',
-    url: 'https://lomboktravelers.reaksy.com/artikel',
+      'Inspirasi perjalanan, rute wisata favorit Jawa Timur, dan rekomendasi custom trip dari PT. Travelogy Tour Organizer Jember.',
+    url: 'https://travelogy.co.id/artikel',
     images: [
       {
-        url: '/images/rinjani_hero.jpg',
+        url: '/images/travelogy_hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Artikel Wisata Lombok Travelers',
+        alt: 'Artikel & Panduan Wisata Travelogy',
       },
     ],
   },

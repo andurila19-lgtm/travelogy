@@ -12,41 +12,35 @@ export interface FaqItem {
 
 export const faqsData: FaqItem[] = [
   {
-    q: 'Apakah paket wisata di Lombok_Travelers bersifat private atau digabung rombongan lain?',
-    qEn: 'Are the tour packages private or shared with other travelers?',
-    a: 'Seluruh paket wisata kami berstatus 100% Private Trip. Artinya, kendaraan ber-AC, driver lokal, serta private boat snorkeling hanya diperuntukkan bagi Anda dan keluarga/rombongan Anda sendiri, tanpa digabung dengan tamu lain. Jadwal perjalanan pun lebih fleksibel dan santai.',
-    aEn: 'All of our tour packages are 100% Private Trips. Your air-conditioned car, local Sasak driver, and snorkeling boat are exclusively dedicated to you and your party, ensuring optimal privacy and a relaxed pace.',
+    q: 'Apa saja layanan utama yang disediakan PT. Travelogy Tour Organizer?',
+    qEn: 'What are the main services provided by PT. Travelogy Tour Organizer?',
+    a: 'Travelogy Tour Organizer menyediakan 4 pilar layanan utama: (1) Tour & Travel (paket wisata privat dan rombongan), (2) Layanan Transportasi (sewa mobil, minibus, bus wisata, dan transfer bandara/stasiun), (3) Reservasi Hotel & Villa, serta (4) Event Planning (corporate gathering, outing kantor, dan outbound).',
+    aEn: 'Travelogy Tour Organizer offers 4 core pillars of services: (1) Tours & Travel (private and group travel packages), (2) Transportation services (car rental, minibuses, tourism buses, and station/airport transfers), (3) Hotel & Villa reservations, and (4) Event Planning (corporate gatherings, company outings, and outbound activities).'
   },
   {
-    q: 'Apakah harga paket sudah termasuk tiket pesawat ke Lombok?',
-    qEn: 'Do package prices include flights to Lombok?',
-    a: 'Harga paket wisata darat kami belum termasuk tiket pesawat ke/dari Lombok. Hal ini memberi Anda keleluasaan memilih maskapai, waktu penerbangan, dan promo tiket terbaik. Penjemputan di Bandara Internasional Lombok (BIL) sudah termasuk penuh dalam paket.',
-    aEn: 'Packages do not include flights to Lombok, allowing you the flexibility to book your preferred airline and schedule. However, VIP airport pick-up and drop-off in Lombok are fully included in all packages.',
+    q: 'Bagaimana cara berkonsultasi atau memesan perjalanan di Travelogy?',
+    qEn: 'How can I consult or book a trip with Travelogy?',
+    a: 'Sangat mudah! Anda dapat mengklik tombol "Chat With Travelogy" atau menghubungi WhatsApp resmi kami di +62 813-3399-2989. Anda juga dapat mengisi formulir Custom Trip di website ini untuk menerima rekomendasi jadwal dan estimasi biaya terperinci.',
+    aEn: 'Very simple! You can click the "Chat With Travelogy" button or contact our official WhatsApp at +62 813-3399-2989. You can also fill out the Custom Trip form on this website to receive a tailored schedule and quotation.'
   },
   {
-    q: 'Bagaimana cara booking dan sistem pembayarannya?',
-    qEn: 'How do I book and what is the payment process?',
-    a: 'Proses booking sangat mudah: hubungi tim kami via WhatsApp untuk konfirmasi tanggal, destinasi, dan jumlah peserta. Anda cukup membayar uang muka (DP) sebesar 30% untuk mengamankan armada dan pemandu. Pelunasan sisa pembayaran dapat dilakukan secara fleksibel saat tiba di Lombok.',
-    aEn: 'Booking is simple: chat with our team on WhatsApp to confirm dates, itinerary, and group size. A 30% deposit secures your booking, and the remaining balance can be settled upon your arrival in Lombok.',
+    q: 'Apakah jadwal perjalanan (itinerary) bisa disesuaikan dengan kebutuhan pribadi atau kantor?',
+    qEn: 'Can the itinerary be tailored to personal or corporate needs?',
+    a: 'Tentu saja. Konsep layanan Travelogy adalah Personalized Journey & End-to-End Planning. Anda bebas menentukan destinasi, titik penjemputan (Jember, Surabaya, Malang, atau kota lain), jenis armada, dan kelas hotel sesuai preferensi Anda.',
+    aEn: 'Absolutely. Travelogy focuses on Personalized Journeys and End-to-End Planning. You have total freedom to specify destinations, pickup points (Jember, Surabaya, Malang, etc.), vehicle types, and hotel categories.'
   },
   {
-    q: 'Apakah rute perjalanan (itinerary) bisa di-custom sesuai keinginan?',
-    qEn: 'Can the itinerary be customized to our preferences?',
-    a: 'Sangat bisa! Sebagai biro lokal Tetebatu, kami sangat fleksibel. Anda dapat menambah destinasi seperti trekking sawah Tetebatu, air terjun Benang Kelambu, Pantai Pink, atau Bukit Merese sesuai preferensi dan ritme liburan Anda.',
-    aEn: 'Absolutely! As a local Tetebatu operator, we happily customize itineraries based on your interests—whether that means extra waterfall hikes, pink beaches, or relaxing café stops.',
+    q: 'Di mana kantor operasional Travelogy dan bagaimana jam operasionalnya?',
+    qEn: 'Where is Travelogy head office located and what are the operating hours?',
+    a: 'Kantor resmi PT. Travelogy Tour Organizer berlokasi di Jl. Mastrip No.71, Lingkungan Panji, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68124. Jam operasional kantor kami adalah pukul 09:00 - 13:00 WIB, dan layanan chat konsultasi WhatsApp tetap aktif merespons kebutuhan Anda.',
+    aEn: 'The official office of PT. Travelogy Tour Organizer is located at Jl. Mastrip No.71, Sumbersari, Jember, East Java 68124. Office operational hours are 09:00 - 13:00 WIB, with our WhatsApp consultation remaining readily responsive.'
   },
   {
-    q: 'Kapan waktu terbaik untuk liburan ke Pulau Lombok?',
-    qEn: 'When is the best time to visit Lombok?',
-    a: 'Waktu terbaik secara umum adalah musim kemarau (Mei hingga Oktober) dengan cuaca cerah dan jarak pandang bawah air sangat jernih untuk snorkeling 3 Gili. Jika Anda menyukai pemandangan sawah Tetebatu dan Sembalun yang hijau segar bak zamrud, bulan Desember hingga April juga sangat mempesona.',
-    aEn: 'The dry season from May to October is prime for sunny beach days, climbing Mount Rinjani, and clear snorkeling in the Gilis. Meanwhile, December to April offers lush emerald-green rice terraces in Tetebatu and Sembalun.',
-  },
-  {
-    q: 'Apakah aman untuk anak-anak, lansia, atau pemula snorkeling?',
-    qEn: 'Is it safe for children, seniors, and beginner snorkelers?',
-    a: 'Sangat aman. Tim driver dan guide lokal kami terlatih mendampingi keluarga dengan anak-anak maupun lansia. Untuk trip snorkeling di 3 Gili, kami menyediakan pelampung standar keselamatan (life jacket) dan guide perahu akan mendampingi Anda langsung di air.',
-    aEn: 'Very safe. Our local guides and drivers take great care of families with kids and seniors. For snorkeling tours, certified life jackets and in-water guide assistance are provided at all times.',
-  },
+    q: 'Apakah Travelogy melayani sewa armada transportasi saja tanpa paket tour?',
+    qEn: 'Does Travelogy provide vehicle rental services without tour packages?',
+    a: 'Ya, kami melayani sewa transportasi murni (Travel & Transport) untuk keperluan perjalanan dinas, drop-off bandara/stasiun, sewa harian supir + BBM, hingga kebutuhan carter rombongan keluarga atau perusahaan.',
+    aEn: 'Yes, we provide pure transport rental services for business trips, airport/station drop-offs, daily car rental with driver + fuel, as well as group charters for families and corporate clients.'
+  }
 ];
 
 export default function FaqSection() {
@@ -58,19 +52,39 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="faq-section" id="faq" style={{ padding: '70px 0', background: 'var(--bg-surface)' }}>
-      <div className="box1140">
+    <section className="faq-section" id="faq" style={{ padding: '72px 0', background: 'var(--bg-surface)' }}>
+      <div className="box1140" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 24px' }}>
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 40px auto' }}>
-          <span className="section-tag" style={{ background: 'var(--primary-soft)', color: 'var(--primary)', padding: '5px 14px', borderRadius: '4px', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            {language === 'en' ? 'Help & Knowledge Center' : 'Tanya Jawab Wisatawan'}
+          <span
+            style={{
+              background: 'var(--primary-soft)',
+              color: 'var(--primary)',
+              padding: '6px 16px',
+              borderRadius: '20px',
+              fontSize: '12px',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em'
+            }}
+          >
+            {language === 'en' ? 'Help & Consultation' : 'Tanya Jawab'}
           </span>
-          <h2 style={{ fontSize: '28px', fontWeight: 800, color: 'var(--navy)', marginTop: '12px', marginBottom: '10px' }}>
-            {language === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan yang Sering Diajukan (FAQ)'}
+          <h2
+            style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: '32px',
+              fontWeight: 700,
+              color: 'var(--dark)',
+              marginTop: '12px',
+              marginBottom: '10px'
+            }}
+          >
+            {language === 'en' ? 'Frequently Asked Questions' : 'Pertanyaan Seputar Layanan Travelogy'}
           </h2>
-          <p style={{ color: 'var(--dark-soft)', fontSize: '14.5px', lineHeight: 1.6 }}>
+          <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: 1.6 }}>
             {language === 'en'
-              ? 'Everything you need to know about booking private tours, custom itineraries, and traveling in Lombok.'
-              : 'Informasi lengkap seputar pemesanan paket wisata, fleksibilitas perjalanan, dan tips berlibur di Lombok bersama Lombok_Travelers.'}
+              ? 'Find answers to common questions about trips, transport, and planning with PT. Travelogy Tour Organizer.'
+              : 'Informasi lengkap seputar pemesanan perjalanan, transportasi, dan layanan PT. Travelogy Tour Organizer.'}
           </p>
         </div>
 
@@ -86,10 +100,10 @@ export default function FaqSection() {
                 style={{
                   background: '#ffffff',
                   border: isOpen ? '1px solid var(--primary)' : '1px solid var(--border)',
-                  borderRadius: '10px',
-                  boxShadow: isOpen ? '0 4px 15px rgba(24, 90, 56, 0.08)' : '0 1px 3px rgba(0,0,0,0.03)',
+                  borderRadius: '12px',
+                  boxShadow: isOpen ? '0 6px 20px rgba(27, 67, 50, 0.07)' : '0 1px 3px rgba(0,0,0,0.03)',
                   overflow: 'hidden',
-                  transition: 'all 0.25s ease',
+                  transition: 'all 0.25s ease'
                 }}
               >
                 <button
@@ -98,7 +112,7 @@ export default function FaqSection() {
                   aria-expanded={isOpen}
                   style={{
                     width: '100%',
-                    padding: '18px 22px',
+                    padding: '20px 24px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -107,66 +121,34 @@ export default function FaqSection() {
                     border: 'none',
                     textAlign: 'left',
                     cursor: 'pointer',
-                    fontSize: '15.5px',
-                    fontWeight: 700,
                     color: isOpen ? 'var(--primary)' : 'var(--dark)',
+                    fontWeight: 700,
+                    fontSize: '15.5px'
                   }}
                 >
                   <span>{question}</span>
-                  <span
-                    style={{
-                      width: '28px',
-                      height: '28px',
-                      borderRadius: '50%',
-                      background: isOpen ? 'var(--primary)' : 'var(--border-light)',
-                      color: isOpen ? '#ffffff' : 'var(--dark)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '12px',
-                      flexShrink: 0,
-                      transition: 'transform 0.2s ease',
-                    }}
-                  >
-                    <i className={`fa ${isOpen ? 'fa-minus' : 'fa-plus'}`}></i>
-                  </span>
+                  <i
+                    className={`fa ${isOpen ? 'fa-angle-up' : 'fa-angle-down'}`}
+                    style={{ fontSize: '18px', color: 'var(--primary)' }}
+                  ></i>
                 </button>
 
                 {isOpen && (
                   <div
                     style={{
-                      padding: '0 22px 20px 22px',
-                      fontSize: '14px',
+                      padding: '0 24px 20px 24px',
+                      color: 'var(--dark-soft)',
+                      fontSize: '14.5px',
                       lineHeight: 1.7,
-                      color: '#475569',
-                      borderTop: '1px solid #f1f5f9',
-                      paddingTop: '14px',
+                      borderTop: '1px solid var(--border-light)'
                     }}
                   >
-                    {answer}
+                    <p style={{ marginTop: '12px' }}>{answer}</p>
                   </div>
                 )}
               </div>
             );
           })}
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '36px' }}>
-          <p style={{ fontSize: '13.5px', color: 'var(--muted)', marginBottom: '12px' }}>
-            {language === 'en'
-              ? 'Still have a specific question about your trip plan?'
-              : 'Punya pertanyaan khusus seputar rombongan atau request destinasi lain?'}
-          </p>
-          <a
-            href="https://wa.me/6283117110638?text=Halo%20Lombok_Travelers,%20saya%20punya%20pertanyaan%20seputar%20paket%20wisata%20Lombok."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-          >
-            <i className="fa fa-whatsapp" style={{ color: '#25d366', fontSize: '18px' }}></i>{' '}
-            {language === 'en' ? 'Ask Our Tour Consultant' : 'Tanya Konsultan Tour via WhatsApp'}
-          </a>
         </div>
       </div>
     </section>
