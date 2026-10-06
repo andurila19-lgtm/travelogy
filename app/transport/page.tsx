@@ -2,9 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useLanguage } from '@/context/LanguageContext';
-import BookingModal from '@/components/BookingModal';
 import PageHeaderNav from '@/components/PageHeaderNav';
+
+const BookingModal = dynamic(() => import('@/components/BookingModal'), {
+  ssr: false,
+});
 
 interface VehicleRaw {
   id: string;
@@ -229,7 +233,15 @@ export default function TransportPage() {
                 }}
               >
                 <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={v.image} alt={v.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img
+                    src={v.image}
+                    alt={v.name}
+                    loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={200}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                   <span
                     style={{
                       position: 'absolute',

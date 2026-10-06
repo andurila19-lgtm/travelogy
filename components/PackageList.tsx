@@ -172,6 +172,10 @@ export default function PackageList({ packages }: PackageListProps) {
                 <img
                   src={pkg.image}
                   alt={pkg.title}
+                  loading="lazy"
+                  decoding="async"
+                  width={400}
+                  height={220}
                   style={{
                     width: '100%',
                     height: '100%',

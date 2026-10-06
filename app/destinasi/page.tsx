@@ -126,6 +126,10 @@ export default function DestinasiPage() {
                 <img
                   src={dest.image}
                   alt={dest.name}
+                  loading="lazy"
+                  decoding="async"
+                  width={400}
+                  height={230}
                   style={{
                     width: '100%',
                     height: '100%',

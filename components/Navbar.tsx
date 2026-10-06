@@ -101,6 +101,9 @@ export default function Navbar() {
             src="/images/travelogy_logo.png"
             alt="Travelogy Tour Organizer Logo"
             className="brand-logo-img"
+            width={42}
+            height={42}
+            decoding="async"
             style={{
               width: '42px',
               height: '42px',
@@ -354,6 +357,10 @@ export default function Navbar() {
                   src="/images/travelogy_logo.png"
                   alt="Travelogy Logo"
                   className="mobile-island-brand-img"
+                  width={36}
+                  height={36}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div>
                   <div className="mobile-island-brand-title">TRAVELOGY</div>

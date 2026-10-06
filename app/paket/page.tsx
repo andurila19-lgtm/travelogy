@@ -7,8 +7,12 @@ import packagesData from '@/data/packages.json';
 import { TourPackage } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 import { getLocalizedPackage } from '@/lib/localization';
+import dynamic from 'next/dynamic';
 import PageHeaderNav from '@/components/PageHeaderNav';
-import BookingModal from '@/components/BookingModal';
+
+const BookingModal = dynamic(() => import('@/components/BookingModal'), {
+  ssr: false,
+});
 
 function SearchParamSync({
   setFilterCategory,
@@ -362,7 +366,15 @@ export default function PaketPage() {
                   }}
                 >
                   <div style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
-                    <img src={pkg.image} alt={pkg.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img
+                      src={pkg.image}
+                      alt={pkg.title}
+                      loading="lazy"
+                      decoding="async"
+                      width={400}
+                      height={220}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
                     <span
                       style={{
                         position: 'absolute',

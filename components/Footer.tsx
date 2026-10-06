@@ -45,6 +45,10 @@ export default function Footer() {
               <img
                 src="/images/travelogy_logo.png"
                 alt="PT. Travelogy Tour Organizer"
+                loading="lazy"
+                decoding="async"
+                width={48}
+                height={48}
                 style={{
                   width: '48px',
                   height: '48px',

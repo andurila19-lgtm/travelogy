@@ -196,6 +196,10 @@ export default function CustomTripPage() {
                 <img
                   src="/images/travelogy_logo.png"
                   alt="Travelogy"
+                  loading="lazy"
+                  decoding="async"
+                  width={42}
+                  height={42}
                   style={{
                     width: '42px',
                     height: '42px',

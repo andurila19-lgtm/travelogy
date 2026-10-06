@@ -154,6 +154,10 @@ export default function ArticleDetailClient({
           <img
             src={article.image}
             alt={article.title}
+            loading="lazy"
+            decoding="async"
+            width={800}
+            height={450}
             style={{ width: '100%', height: 'auto', maxHeight: '480px', objectFit: 'cover', display: 'block' }}
           />
         </div>
@@ -263,6 +267,10 @@ export default function ArticleDetailClient({
                   <img
                     src={rel.image}
                     alt={rel.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={300}
+                    height={150}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>

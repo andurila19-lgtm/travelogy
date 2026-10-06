@@ -1,8 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import AiConciergeModal from './AiConciergeModal';
+import dynamic from 'next/dynamic';
 import { useLanguage } from '@/context/LanguageContext';
+
+const AiConciergeModal = dynamic(() => import('./AiConciergeModal'), {
+  ssr: false,
+});
 
 export default function ConciergeTrigger() {
   const [modalOpen, setModalOpen] = useState(false);

@@ -104,6 +104,10 @@ export default function TentangKamiPage() {
               <img
                 src="/images/travelogy_hero.jpg"
                 alt="Travelogy Tour Organizer Jember"
+                loading="lazy"
+                decoding="async"
+                width={600}
+                height={350}
                 style={{ width: '100%', height: 'auto', display: 'block' }}
               />
             </div>

@@ -99,11 +99,14 @@ export default function CustomTripForm() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
           <div>
             <label
+              htmlFor="custom-nama"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'Full Name *' : 'Nama Lengkap *'}
             </label>
             <input
+              id="custom-nama"
+              name="nama"
               type="text"
               required
               value={nama}
@@ -123,11 +126,14 @@ export default function CustomTripForm() {
 
           <div>
             <label
+              htmlFor="custom-whatsapp"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'WhatsApp Number *' : 'Nomor WhatsApp *'}
             </label>
             <input
+              id="custom-whatsapp"
+              name="whatsapp"
               type="tel"
               required
               value={whatsapp}
@@ -150,11 +156,14 @@ export default function CustomTripForm() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
           <div>
             <label
+              htmlFor="custom-tanggal"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'Travel Date' : 'Tanggal Perjalanan'}
             </label>
             <input
+              id="custom-tanggal"
+              name="tanggal"
               type="date"
               min={todayStr}
               value={tanggal}
@@ -173,11 +182,14 @@ export default function CustomTripForm() {
 
           <div>
             <label
+              htmlFor="custom-peserta"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'Participants (Guests)' : 'Jumlah Peserta'}
             </label>
             <input
+              id="custom-peserta"
+              name="peserta"
               type="number"
               min="1"
               max="200"
@@ -201,11 +213,14 @@ export default function CustomTripForm() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
           <div>
             <label
+              htmlFor="custom-destinasi"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'Destination' : 'Destinasi'}
             </label>
             <select
+              id="custom-destinasi"
+              name="destinasi"
               value={destinasi}
               onChange={(e) => setDestinasi(e.target.value)}
               style={{
@@ -231,11 +246,14 @@ export default function CustomTripForm() {
 
           <div>
             <label
+              htmlFor="custom-jenis-trip"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'Trip Type' : 'Jenis Perjalanan'}
             </label>
             <select
+              id="custom-jenis-trip"
+              name="jenisTrip"
               value={jenisTrip}
               onChange={(e) => setJenisTrip(e.target.value)}
               style={{
@@ -262,11 +280,14 @@ export default function CustomTripForm() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
           <div>
             <label
+              htmlFor="custom-transport"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'Transportation Need' : 'Kebutuhan Transportasi'}
             </label>
             <select
+              id="custom-transport"
+              name="transport"
               value={transport}
               onChange={(e) => setTransport(e.target.value)}
               style={{
@@ -289,11 +310,14 @@ export default function CustomTripForm() {
 
           <div>
             <label
+              htmlFor="custom-hotel"
               style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
             >
               {language === 'en' ? 'Accommodation Need' : 'Kebutuhan Hotel'}
             </label>
             <select
+              id="custom-hotel"
+              name="hotel"
               value={hotel}
               onChange={(e) => setHotel(e.target.value)}
               style={{
@@ -318,11 +342,14 @@ export default function CustomTripForm() {
         {/* Row 5: Catatan */}
         <div>
           <label
+            htmlFor="custom-catatan"
             style={{ display: 'block', fontSize: '13px', fontWeight: 600, color: 'var(--dark)', marginBottom: '6px' }}
           >
             {language === 'en' ? 'Notes / Special Requests' : 'Catatan Khusus / Permintaan Rute'}
           </label>
           <textarea
+            id="custom-catatan"
+            name="catatan"
             rows={3}
             value={catatan}
             onChange={(e) => setCatatan(e.target.value)}

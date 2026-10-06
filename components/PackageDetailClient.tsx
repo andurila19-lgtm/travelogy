@@ -588,7 +588,15 @@ export default function PackageDetailClient({
                 }}
               >
                 <div style={{ height: '170px', position: 'relative', overflow: 'hidden' }}>
-                  <img src={rel.image} alt={rel.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img
+                    src={rel.image}
+                    alt={rel.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={320}
+                    height={170}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                   <span
                     style={{
                       position: 'absolute',

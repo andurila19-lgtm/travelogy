@@ -1,14 +1,27 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import packagesData from '@/data/packages.json';
 import { TourPackage } from '@/types';
 import PackageList from '@/components/PackageList';
-import CustomTripForm from '@/components/CustomTripForm';
-import FaqSection from '@/components/FaqSection';
-import ConciergeTrigger from '@/components/ConciergeTrigger';
+import FormSkeleton from '@/components/skeletons/FormSkeleton';
+import FaqSkeleton from '@/components/skeletons/FaqSkeleton';
 import { useLanguage } from '@/context/LanguageContext';
+
+const CustomTripForm = dynamic(() => import('@/components/CustomTripForm'), {
+  loading: () => <FormSkeleton />,
+  ssr: true,
+});
+
+const FaqSection = dynamic(() => import('@/components/FaqSection'), {
+  loading: () => <FaqSkeleton />,
+  ssr: true,
+});
+
+const ConciergeTrigger = dynamic(() => import('@/components/ConciergeTrigger'), {
+  ssr: true,
+});
 
 export default function HomePage() {
   const { language } = useLanguage();
@@ -371,6 +384,10 @@ export default function HomePage() {
                     <img
                       src={dest.image}
                       alt={dest.name}
+                      loading="lazy"
+                      decoding="async"
+                      width={400}
+                      height={220}
                       style={{
                         width: '100%',
                         height: '100%',
@@ -804,7 +821,15 @@ export default function HomePage() {
                 }}
               >
                 <div style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
-                  <img src={srv.image} alt={srv.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img
+                    src={srv.image}
+                    alt={srv.title}
+                    loading="lazy"
+                    decoding="async"
+                    width={360}
+                    height={180}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                   <span
                     style={{
                       position: 'absolute',
@@ -1192,6 +1217,10 @@ export default function HomePage() {
                 <img
                   src="/images/dest_bali.jpg"
                   alt="Travelogy Tour Organizer Experience"
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={400}
                   style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
               </div>
@@ -1215,6 +1244,10 @@ export default function HomePage() {
                 <img
                   src="/images/travelogy_logo.png"
                   alt="Travelogy Tour Organizer"
+                  loading="lazy"
+                  decoding="async"
+                  width={44}
+                  height={44}
                   style={{
                     width: '44px',
                     height: '44px',

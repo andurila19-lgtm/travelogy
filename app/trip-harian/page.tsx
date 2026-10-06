@@ -6,8 +6,12 @@ import dailyTripsData from '@/data/dailyTrips.json';
 import { DailyTrip } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 import { getLocalizedTrip } from '@/lib/localization';
-import BookingModal from '@/components/BookingModal';
+import dynamic from 'next/dynamic';
 import PageHeaderNav from '@/components/PageHeaderNav';
+
+const BookingModal = dynamic(() => import('@/components/BookingModal'), {
+  ssr: false,
+});
 
 export default function TripHarianPage() {
   const { language, t, convertPriceString } = useLanguage();
@@ -95,7 +99,14 @@ export default function TripHarianPage() {
           {filteredTrips.map((trip) => (
             <div key={trip.id} className="harian-card">
               <div className="harian-img-box">
-                <img src={trip.image} alt={trip.title} />
+                <img
+                  src={trip.image}
+                  alt={trip.title}
+                  loading="lazy"
+                  decoding="async"
+                  width={400}
+                  height={220}
+                />
                 <span className="harian-duration-tag">
                   {language === 'en' ? 'Duration' : 'Durasi'}: {trip.duration}
                 </span>

@@ -78,7 +78,14 @@ export default function ArtikelPage() {
           {filteredArticles.map((art) => (
             <article key={art.id} className="article-card">
               <div className="article-img-box">
-                <img src={art.image} alt={art.title} />
+                <img
+                  src={art.image}
+                  alt={art.title}
+                  loading="lazy"
+                  decoding="async"
+                  width={400}
+                  height={220}
+                />
                 <span className="article-cat-badge">{art.category}</span>
               </div>
               <div className="article-card-body">
@@ -156,7 +163,12 @@ export default function ArtikelPage() {
               </div>
 
               <div className="article-modal-img">
-                <img src={activeArticle.image} alt={activeArticle.title} />
+                <img
+                  src={activeArticle.image}
+                  alt={activeArticle.title}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
               <div className="article-modal-body">
